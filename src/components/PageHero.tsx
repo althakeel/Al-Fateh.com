@@ -8,6 +8,9 @@ interface PageHeroProps {
   image?: string;
   imageAlt?: string;
   imagePosition?: string;
+  /** cover = crop to fill; contain = show full image inside banner */
+  imageFit?: "cover" | "contain";
+  imageBg?: string;
 }
 
 export default function PageHero({
@@ -17,22 +20,43 @@ export default function PageHero({
   image = "/images/page-hero.jpg",
   imageAlt = "",
   imagePosition = "object-center",
+  imageFit = "cover",
+  imageBg = "bg-ivory",
 }: PageHeroProps) {
+  const fitClass = imageFit === "contain" ? "object-contain" : "object-cover";
+  const isContain = imageFit === "contain";
+
   return (
     <section className="relative overflow-hidden border-b border-platinum bg-frost pt-32 pb-16 lg:pt-40 lg:pb-24">
-      <div className="absolute inset-y-0 right-0 hidden w-[48%] lg:block xl:w-1/2">
-        <div className="relative h-full w-full">
-          <Image
-            src={image}
-            alt={imageAlt}
-            fill
-            priority
-            quality={95}
-            className={`object-cover ${imagePosition}`}
-            sizes="50vw"
-          />
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-frost to-transparent" />
-        </div>
+      <div className="absolute inset-y-0 right-0 hidden w-[48%] lg:flex xl:w-1/2">
+        {isContain ? (
+          <div className={`flex w-full items-center justify-center ${imageBg} px-6`}>
+            <div className={`relative w-full max-w-none aspect-[22/7] overflow-hidden ${imageBg}`}>
+              <Image
+                src={image}
+                alt={imageAlt}
+                fill
+                priority
+                quality={95}
+                className={`${fitClass} ${imagePosition}`}
+                sizes="50vw"
+              />
+            </div>
+          </div>
+        ) : (
+          <div className="relative h-full w-full">
+            <Image
+              src={image}
+              alt={imageAlt}
+              fill
+              priority
+              quality={95}
+              className={`${fitClass} ${imagePosition}`}
+              sizes="50vw"
+            />
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-frost to-transparent" />
+          </div>
+        )}
       </div>
 
       <div className="container-x relative">
@@ -55,14 +79,18 @@ export default function PageHero({
       </div>
 
       <div className="container-x relative mt-8 lg:hidden">
-        <div className="relative aspect-[16/10] overflow-hidden border border-platinum shadow-luxe">
+        <div
+          className={`relative overflow-hidden border border-platinum shadow-luxe ${imageBg} ${
+            isContain ? "aspect-[22/7]" : "aspect-[16/10]"
+          }`}
+        >
           <Image
             src={image}
             alt={imageAlt}
             fill
             priority
             quality={95}
-            className={`object-cover ${imagePosition}`}
+            className={`${fitClass} ${imagePosition}`}
             sizes="100vw"
           />
         </div>

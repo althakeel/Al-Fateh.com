@@ -16,7 +16,8 @@ export default function WhyUsPage() {
         title="A Trusted Partner for Business Growth"
         description="We are committed to delivering high-quality consultancy services that exceed our clients' expectations. Here is what sets us apart."
         image="/images/why-us-hero.jpg"
-        imageAlt="Modern professional consultancy office environment"
+        imageAlt="Client consultation and strategic advisory partnership"
+        imagePosition="object-center"
       />
       <WhyUs />
     </>
