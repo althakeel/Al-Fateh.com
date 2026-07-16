@@ -15,7 +15,7 @@ export default function WhyUsPage() {
         eyebrow="Why Al FATEH"
         title="A Trusted Partner for Business Growth"
         description="We are committed to delivering high-quality consultancy services that exceed our clients' expectations. Here is what sets us apart."
-        image="/images/about-office.jpg"
+        image="/images/why-us-hero.jpg"
         imageAlt="Modern professional consultancy office environment"
       />
       <WhyUs />

@@ -21,8 +21,8 @@ export default function AboutPage() {
           </>
         }
         description="Our mission is to empower businesses and organizations by providing strategic insights and innovative solutions that drive growth and success."
-        image="/images/about-office.jpg"
-        imageAlt="Modern consultancy office interior"
+        image="/images/about-hero.jpg"
+        imageAlt="Al FATEH consultancy lobby with gold brand mark"
       />
       <About />
     </>
