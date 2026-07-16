@@ -786,6 +786,132 @@ body {
   animation: float-slow 7s ease-in-out infinite;
 }
 
+.hero-media-img {
+  animation: hero-media-ken 18s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.hero-media:hover .hero-media-img {
+  animation-play-state: paused;
+}
+
+@keyframes hero-media-ken {
+  0% {
+    transform: scale(1.04) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.1) translate(-1.5%, -1%);
+  }
+  100% {
+    transform: scale(1.06) translate(1%, 0.5%);
+  }
+}
+
+.hero-accent-text {
+  background: linear-gradient(
+    110deg,
+    var(--color-accent-500) 0%,
+    var(--color-accent-400) 35%,
+    #e8d4a8 50%,
+    var(--color-accent-400) 65%,
+    var(--color-accent-500) 100%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: hero-shimmer 4.5s ease-in-out infinite;
+}
+
+@keyframes hero-shimmer {
+  0%,
+  100% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 0% 50%;
+  }
+}
+
+.hero-frame {
+  animation: hero-frame-pulse 4s ease-in-out infinite;
+}
+
+.hero-frame-delay {
+  animation: hero-frame-pulse 4.8s ease-in-out 0.6s infinite;
+}
+
+@keyframes hero-frame-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: translate(0, 0);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(3px, -3px);
+  }
+}
+
+.hero-stat-float {
+  animation: fade-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) both,
+    hero-soft-float 5.5s ease-in-out 1.2s infinite;
+}
+
+@keyframes hero-soft-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.hero-cta-pulse {
+  animation: fade-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) both,
+    hero-glow-pulse 3.2s ease-in-out 1s infinite;
+}
+
+@keyframes hero-glow-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 30px 80px -30px color-mix(in srgb, var(--color-accent-500) 45%, transparent),
+      0 0 0 1px color-mix(in srgb, var(--color-accent-500) 14%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 30px 80px -24px color-mix(in srgb, var(--color-accent-500) 70%, transparent),
+      0 0 0 1px color-mix(in srgb, var(--color-accent-500) 28%, transparent);
+  }
+}
+
+.hero-side-label {
+  animation: hero-side-in 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+}
+
+@keyframes hero-side-in {
+  from {
+    opacity: 0;
+    letter-spacing: 0.5em;
+  }
+  to {
+    opacity: 0.7;
+    letter-spacing: 0.28em;
+  }
+}
+
+.hero-overlay-chip {
+  animation: fade-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) both,
+    float-card 5s ease-in-out 1.4s infinite;
+}
+
+.hero-overlay-card {
+  animation: fade-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) both,
+    float-card 5.5s ease-in-out 1.8s infinite;
+}
+
 .animate-ken-burns {
   animation: ken-burns 24s ease-out forwards;
 }
