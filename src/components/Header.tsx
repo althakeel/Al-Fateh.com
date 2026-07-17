@@ -9,6 +9,7 @@ import {
   Briefcase,
   Target,
   Award,
+  Newspaper,
   Mail,
   Menu,
   X,
@@ -16,7 +17,7 @@ import {
 import { navLinks } from "@/data/navigation";
 import Logo from "@/components/Logo";
 
-const navIcons = [House, Building2, Briefcase, Target, Award, Mail];
+const navIcons = [House, Building2, Briefcase, Target, Award, Newspaper, Mail];
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
