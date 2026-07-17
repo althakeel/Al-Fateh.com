@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import emailjs from "@emailjs/browser";
 import {
   Check,
+  Loader2,
   Mail,
   MapPin,
   MessageCircle,
@@ -21,20 +23,62 @@ const initialForm = {
   message: "",
 };
 
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY ?? "";
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID ?? "";
+const EMAILJS_TEMPLATE_ID =
+  process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? "template_2e0310u";
+
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState(initialForm);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setFormData(initialForm);
+    setError("");
+
+    if (!EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID) {
+      setError(
+        "Email is not configured yet. Please add your EmailJS Public Key and Service ID."
+      );
+      return;
+    }
+
+    setSending(true);
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          name: formData.name,
+          company: formData.company || "Not provided",
+          email: formData.email,
+          phone: formData.phone || "Not provided",
+          service: formData.service || "Not specified",
+          message: formData.message,
+          reply_to: formData.email,
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+
+      setSubmitted(true);
+      setFormData(initialForm);
+    } catch {
+      setError(
+        "Something went wrong sending your message. Please try again or use WhatsApp."
+      );
+    } finally {
+      setSending(false);
+    }
   };
 
   const labelClass =
     "mb-2 block text-[11px] font-semibold uppercase tracking-[0.14em] text-ink";
   const inputClass =
-    "w-full rounded-[2px] border border-platinum bg-ivory px-4 py-3.5 text-sm text-ink placeholder-mute/50 outline-none transition-all focus:border-accent-500 focus:ring-2 focus:ring-accent-500/20";
+    "w-full rounded-[2px] border border-platinum bg-ivory px-4 py-3.5 text-sm text-ink placeholder-mute/50 outline-none transition-all focus:border-accent-500 focus:ring-2 focus:ring-accent-500/20 disabled:opacity-60";
 
   const nextSteps = [
     "We review your request",
@@ -75,8 +119,10 @@ export default function ContactForm() {
                       </label>
                       <input
                         id="name"
+                        name="name"
                         type="text"
                         required
+                        disabled={sending}
                         value={formData.name}
                         onChange={(e) =>
                           setFormData({ ...formData, name: e.target.value })
@@ -91,7 +137,9 @@ export default function ContactForm() {
                       </label>
                       <input
                         id="company"
+                        name="company"
                         type="text"
+                        disabled={sending}
                         value={formData.company}
                         onChange={(e) =>
                           setFormData({ ...formData, company: e.target.value })
@@ -109,8 +157,10 @@ export default function ContactForm() {
                       </label>
                       <input
                         id="email"
+                        name="email"
                         type="email"
                         required
+                        disabled={sending}
                         value={formData.email}
                         onChange={(e) =>
                           setFormData({ ...formData, email: e.target.value })
@@ -125,7 +175,9 @@ export default function ContactForm() {
                       </label>
                       <input
                         id="phone"
+                        name="phone"
                         type="tel"
+                        disabled={sending}
                         value={formData.phone}
                         onChange={(e) =>
                           setFormData({ ...formData, phone: e.target.value })
@@ -142,6 +194,8 @@ export default function ContactForm() {
                     </label>
                     <select
                       id="service"
+                      name="service"
+                      disabled={sending}
                       value={formData.service}
                       onChange={(e) =>
                         setFormData({ ...formData, service: e.target.value })
@@ -167,8 +221,10 @@ export default function ContactForm() {
                     </label>
                     <textarea
                       id="message"
+                      name="message"
                       required
                       rows={5}
+                      disabled={sending}
                       value={formData.message}
                       onChange={(e) =>
                         setFormData({ ...formData, message: e.target.value })
@@ -178,9 +234,26 @@ export default function ContactForm() {
                     />
                   </div>
 
+                  {error && (
+                    <p className="text-sm text-red-600" role="alert">
+                      {error}
+                    </p>
+                  )}
+
                   <div className="flex flex-col gap-3 pt-1 sm:flex-row">
-                    <button type="submit" className="btn-primary group flex-1">
-                      Request Consultation
+                    <button
+                      type="submit"
+                      disabled={sending}
+                      className="btn-primary group flex-1 disabled:cursor-not-allowed disabled:opacity-70"
+                    >
+                      {sending ? (
+                        <>
+                          <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
+                          Sending...
+                        </>
+                      ) : (
+                        "Request Consultation"
+                      )}
                     </button>
                     <a
                       href={contact.whatsappHref}
