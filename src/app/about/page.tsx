@@ -7,15 +7,15 @@ import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = createPageMetadata({
   title: "About Us",
   description:
-    "Learn about Al FATEH for Consultation Services — a Dubai-based advisory firm empowering organizations with strategic insights, innovative solutions, and client-centric consultancy across the UAE.",
+    "Learn about Al FATEH — an accounting and consultation firm helping organizations with bookkeeping, financial reporting, tax compliance, payroll, and strategic advisory services.",
   path: "/about",
   image: "/images/brand-logo-dark.png",
   imageAlt: "Al FATEH brand logo",
   keywords: [
     "about Al FATEH",
-    "Al Fateh consultation services",
-    "Dubai consultancy company",
-    "UAE business advisors",
+    "accounting consultancy firm",
+    "financial advisory company",
+    "professional accountants",
   ],
 });
 

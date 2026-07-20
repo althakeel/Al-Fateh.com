@@ -43,8 +43,8 @@ export function createPageMetadata({
     authors: [{ name: siteConfig.legalName, url: siteConfig.url }],
     creator: siteConfig.legalName,
     publisher: siteConfig.legalName,
-    category: "Business Consulting",
-    classification: "Business & Professional Services",
+    category: "Accounting Services",
+    classification: "Accounting & Professional Services",
     referrer: "origin-when-cross-origin",
     formatDetection: {
       email: false,
@@ -104,7 +104,7 @@ export function createPageMetadata({
           width: 1200,
           height: 630,
           alt: imageAlt,
-          type: "image/png",
+          type: imageType,
         },
         {
           url: faviconUrl,
@@ -130,6 +130,13 @@ export function createPageMetadata({
       "msapplication-TileColor": siteConfig.themeColor,
       "msapplication-TileImage": siteConfig.favicon,
       "theme-color": siteConfig.themeColor,
+      "geo.region": "AE",
+      "business:contact_data:email": siteConfig.email,
+      "business:contact_data:phone_number": siteConfig.phone,
+      "og:email": siteConfig.email,
+      "og:phone_number": siteConfig.phone,
+      "article:publisher": siteConfig.legalName,
+      "service:type": "Accounting Services",
     },
   };
 }
@@ -181,6 +188,11 @@ export function organizationJsonLd() {
     sameAs: [contact.whatsappHref],
     knowsAbout: [
       "Accounting Services",
+      "Bookkeeping",
+      "Financial Reporting",
+      "VAT and Corporate Tax",
+      "Payroll Management",
+      "Financial Advisory",
       "Feasibility Studies",
       "Maritime Consultancy",
       "Media Consultancy",

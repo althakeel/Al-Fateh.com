@@ -39,8 +39,8 @@ export async function generateMetadata({
     keywords: [
       post.category,
       "Al FATEH insights",
-      "consultancy blog Dubai",
-      "UAE business advice",
+      "accounting and finance advice",
+      "business accounting blog",
     ],
   });
 }

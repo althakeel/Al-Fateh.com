@@ -26,9 +26,9 @@ export default function Footer() {
                 Begin a conversation with the Al FATEH advisory team.
               </h2>
               <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/65 sm:text-lg">
-                Strategic business consultancy based in Dubai, UAE — delivering
-                expert guidance across feasibility, maritime, media, HR, AI, and
-                project development.
+                Professional accounting and consultation services — bookkeeping,
+                financial reporting, tax compliance, payroll, and practical
+                financial advisory for growing organizations.
               </p>
             </div>
 
@@ -48,7 +48,7 @@ export default function Footer() {
             {[
               { title: "Response", value: "Within 1 business day" },
               { title: "Confidentiality", value: "NDA on request" },
-              { title: "Coverage", value: "UAE & GCC" },
+              { title: "Focus", value: "Accounting & Advisory" },
               { title: "Engagement", value: "Senior-led team" },
             ].map((item) => (
               <div
@@ -68,8 +68,8 @@ export default function Footer() {
           <div>
             <Logo variant="light" />
             <p className="mt-5 text-sm leading-relaxed text-white/55">
-              Structured decisions, practical outcomes, and advisory support built
-              around the needs of organizations operating in the UAE.
+              Structured accounting, clear reporting, and advisory support built
+              around the financial and operational needs of growing organizations.
             </p>
           </div>
 

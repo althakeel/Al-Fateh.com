@@ -5,19 +5,19 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Consultancy Services",
+  title: "Accounting & Consultancy Services",
   description:
-    "Explore Al FATEH consultancy services in Dubai: accounting, feasibility studies, maritime, media, HR, AI innovation, and project development tailored for UAE businesses.",
+    "Explore Al FATEH accounting services: bookkeeping, financial reporting, VAT and corporate tax, payroll, budgeting, and financial advisory — plus feasibility, maritime, media, HR, AI, and project consultancy.",
   path: "/services",
   image: "/images/hero-boardroom.jpg",
-  imageAlt: "Professional consultancy team in a boardroom meeting",
+  imageAlt: "Professional accounting and consultancy team in a boardroom meeting",
   keywords: [
-    "consultancy services Dubai",
-    "accounting services UAE",
-    "feasibility studies consultancy",
-    "maritime consultancy Dubai",
-    "HR consultancy UAE",
-    "AI consulting Dubai",
+    "accounting services",
+    "bookkeeping services",
+    "VAT and tax compliance",
+    "payroll services",
+    "financial reporting services",
+    "accounting consultancy",
   ],
 });
 

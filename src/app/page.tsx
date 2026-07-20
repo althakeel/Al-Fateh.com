@@ -18,24 +18,21 @@ export const metadata: Metadata = createPageMetadata({
   description: siteConfig.description,
   path: "/",
   image: "/images/hero-desk.jpg",
-  imageAlt:
-    "Al FATEH professional accounting and consultancy workspace",
+  imageAlt: "Al FATEH professional accounting and consultancy workspace",
   keywords: [
-    "accounting services",
+    "professional accounting services",
     "bookkeeping and payroll",
-    "VAT corporate tax accounting",
-    "Al FATEH accounting",
-    "financial reporting consultancy",
-    "accounting and advisory services",
+    "VAT and corporate tax filing",
+    "financial statements preparation",
+    "Al FATEH accounting services",
+    "business accounting consultancy",
   ],
 });
 
 export default function Home() {
   return (
     <div className="relative overflow-hidden">
-      <JsonLd
-        data={breadcrumbJsonLd([{ name: "Home", path: "/" }])}
-      />
+      <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }])} />
       <HomeAnimatedBackdrop />
       <div className="relative z-10">
         <Hero />

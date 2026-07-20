@@ -7,17 +7,16 @@ import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = createPageMetadata({
   title: "Blog & Insights",
   description:
-    "Practical insights from Al FATEH on feasibility studies, UAE market strategy, business innovation, and informed decision-making for organizations in Dubai and beyond.",
+    "Practical insights from Al FATEH on accounting, financial reporting, tax compliance, budgeting, and business decision-making for growing organizations.",
   path: "/blog",
   image: "/images/blog-banner.png",
-  imageAlt:
-    "Workspace desk with laptop, notebook, and coffee — Al FATEH insights",
+  imageAlt: "Al FATEH accounting and business insights",
   keywords: [
     "Al FATEH blog",
-    "business insights UAE",
-    "feasibility study articles",
-    "UAE market strategy",
-    "consultancy insights Dubai",
+    "accounting insights",
+    "financial reporting tips",
+    "tax and compliance articles",
+    "business accounting advice",
   ],
 });
 

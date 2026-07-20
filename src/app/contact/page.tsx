@@ -7,15 +7,15 @@ import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = createPageMetadata({
   title: "Contact Us",
   description:
-    "Contact Al FATEH for Consultation Services in Dubai. Request a consultation by phone, email, WhatsApp, or our online form — based at Al Saqr Business Tower, UAE.",
+    "Contact Al FATEH for accounting and consultation services. Request bookkeeping, tax, payroll, or financial advisory support by phone, email, WhatsApp, or our online form.",
   path: "/contact",
   image: "/images/contact-banner.jpg",
-  imageAlt: "Modern consultancy meeting room at Al FATEH",
+  imageAlt: "Contact Al FATEH for accounting consultation",
   keywords: [
     "contact Al FATEH",
-    "consultancy Dubai contact",
-    "request consultation UAE",
-    "Al Saqr Business Tower consultancy",
+    "accounting consultation request",
+    "bookkeeping enquiry",
+    "tax and payroll support contact",
   ],
 });
 

@@ -7,15 +7,15 @@ import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = createPageMetadata({
   title: "Why Choose Us",
   description:
-    "Why businesses trust Al FATEH: multi-disciplinary expertise, a client-centric approach, UAE market insight, and results-oriented consultancy from Dubai.",
+    "Why businesses choose Al FATEH for accounting and consultancy — accurate bookkeeping, reliable reporting, tax compliance, payroll support, and practical financial advisory.",
   path: "/why-us",
   image: "/images/page-hero.jpg",
-  imageAlt: "Dubai skyline representing Al FATEH's UAE market focus",
+  imageAlt: "Professional accounting and consultancy partnership",
   keywords: [
     "why choose Al FATEH",
-    "trusted consultancy Dubai",
-    "UAE business partner",
-    "client-centric advisory",
+    "trusted accounting partner",
+    "reliable bookkeeping firm",
+    "client-focused accounting services",
   ],
 });
 
@@ -33,7 +33,7 @@ export default function WhyUsPage() {
         title="A Trusted Partner for Business Growth"
         description="We are committed to delivering high-quality consultancy services that exceed our clients' expectations. Here is what sets us apart."
         image="/images/page-hero.jpg"
-        imageAlt="Dubai skyline representing Al FATEH's UAE market focus"
+        imageAlt="Professional accounting and consultancy partnership"
         imagePosition="object-center"
       />
       <WhyUs />

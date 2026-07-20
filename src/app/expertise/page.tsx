@@ -7,15 +7,15 @@ import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = createPageMetadata({
   title: "Our Expertise",
   description:
-    "Discover Al FATEH's strategic consultancy expertise across feasibility studies, maritime, media, HR, AI innovation, and project development for organizations in the UAE and GCC.",
+    "Discover Al FATEH expertise in accounting, financial reporting, tax compliance, payroll, and strategic consultancy for organizations that need reliable financial and advisory support.",
   path: "/expertise",
   image: "/images/regional-insight.jpg",
-  imageAlt: "Strategic business analysis and sector expertise",
+  imageAlt: "Strategic accounting and business analysis expertise",
   keywords: [
-    "consultancy expertise UAE",
-    "strategic planning Dubai",
-    "sector advisory UAE",
-    "feasibility and risk analysis",
+    "accounting expertise",
+    "financial advisory expertise",
+    "tax and payroll specialists",
+    "strategic accounting consultancy",
   ],
 });
 
