@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import WhyUs from "@/components/WhyUs";
-import Img001 from "../../images/logo-full.png"
-import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Why Choose Us",
