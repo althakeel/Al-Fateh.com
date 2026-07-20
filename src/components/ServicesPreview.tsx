@@ -52,7 +52,17 @@ export default function ServicesPreview({ limit = 6 }: ServicesPreviewProps) {
             return (
               <article
                 key={service.title}
-                className="reveal-child corp-card group relative flex flex-col overflow-hidden p-6 md:p-8"
+                role="button"
+                tabIndex={0}
+                onClick={() => setSelectedService(service)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    setSelectedService(service);
+                  }
+                }}
+                aria-label={`View details for ${service.title}`}
+                className="reveal-child corp-card group relative flex cursor-pointer flex-col overflow-hidden p-6 md:p-8 outline-none transition-transform duration-300 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-accent-500/40"
               >
                 <span className="ghost-numeral absolute -right-1 -top-2 select-none text-7xl transition-colors duration-500">
                   {num}
@@ -60,14 +70,12 @@ export default function ServicesPreview({ limit = 6 }: ServicesPreviewProps) {
 
                 <div className="relative flex items-start justify-between gap-4">
                   <IconTile icon={Icon} size="lg" variant="solid" />
-                  <button
-                    type="button"
-                    onClick={() => setSelectedService(service)}
-                    aria-label={`View details for ${service.title}`}
+                  <span
+                    aria-hidden
                     className="flex h-9 w-9 items-center justify-center rounded-sm border border-platinum text-brand-700 transition-all duration-500 group-hover:border-accent-500 group-hover:text-accent-600"
                   >
                     <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </button>
+                  </span>
                 </div>
 
                 <div className="relative mt-6 flex flex-1 flex-col">

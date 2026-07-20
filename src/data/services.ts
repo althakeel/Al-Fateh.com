@@ -10,7 +10,7 @@ export const services: ServiceOffering[] = [
     description:
       "Our accounting specialists help organizations maintain accurate financial records, strengthen reporting, manage tax and payroll requirements, and make confident financial decisions.",
     offerings: [
-      "Bookkeeping Services: Record daily transactions, reconcile accounts, and maintain organized financial records that support compliance and reporting.",
+      "Bookkeeping Services: Record daily transactions, reconcile accounts, maintain organized financial records, prepare and submit tax filings, support budgeting, and ensure compliance with financial reporting requirements.",
       "Financial Accounting & Reporting: Maintain accurate financial records, prepare financial statements, and deliver timely reports to support informed business decisions.",
       "Financial Statement Preparation: Prepare professionally structured balance sheets, income statements, cash flow statements, and other statutory financial reports.",
       "VAT & Corporate Tax: Prepare VAT and corporate tax returns, ensure regulatory compliance, and provide practical tax planning for UAE businesses.",
