@@ -78,10 +78,11 @@ export function createPageMetadata({
         },
     icons: {
       icon: [
-        { url: siteConfig.favicon, sizes: "any", type: "image/x-icon" },
+        { url: siteConfig.favicon, type: "image/png", sizes: "32x32" },
         { url: siteConfig.iconPng, type: "image/png", sizes: "32x32" },
+        { url: "/favicon.ico", sizes: "any", type: "image/x-icon" },
       ],
-      shortcut: [{ url: siteConfig.favicon, type: "image/x-icon" }],
+      shortcut: [{ url: siteConfig.favicon, type: "image/png" }],
       apple: [{ url: siteConfig.iconPng, type: "image/png" }],
       other: [
         {
@@ -103,14 +104,14 @@ export function createPageMetadata({
           width: 1200,
           height: 630,
           alt: imageAlt,
-          type: imageType,
+          type: "image/png",
         },
         {
           url: faviconUrl,
           width: 48,
           height: 48,
           alt: `${siteConfig.name} favicon`,
-          type: "image/x-icon",
+          type: "image/png",
         },
       ],
     },

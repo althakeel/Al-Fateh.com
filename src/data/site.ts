@@ -22,7 +22,7 @@ export const siteConfig = {
     countryName: "United Arab Emirates",
     full: contact.location.address,
   },
-  favicon: "/images/favicon.ico",
+  favicon: "/images/favicon.png",
   iconPng: "/icon.png",
   ogImage: "/images/hero-boardroom.jpg",
   ogImageAlt: "Al FATEH consultancy team in a professional boardroom meeting",

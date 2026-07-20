@@ -39,12 +39,16 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
+      { url: "/images/favicon.png", type: "image/png", sizes: "32x32" },
+      { url: "/icon.png", type: "image/png", sizes: "32x32" },
       { url: "/images/favicon.ico", sizes: "any", type: "image/x-icon" },
       { url: "/favicon.ico", sizes: "any", type: "image/x-icon" },
-      { url: "/icon.png", type: "image/png", sizes: "32x32" },
     ],
-    shortcut: [{ url: "/images/favicon.ico", type: "image/x-icon" }],
-    apple: [{ url: "/icon.png", type: "image/png" }],
+    shortcut: [
+      { url: "/images/favicon.png", type: "image/png" },
+      { url: "/favicon.ico", type: "image/x-icon" },
+    ],
+    apple: [{ url: "/icon.png", type: "image/png", sizes: "180x180" }],
   },
   openGraph: {
     type: "website",
@@ -87,7 +91,7 @@ export const metadata: Metadata = {
   },
   other: {
     "msapplication-TileColor": siteConfig.themeColor,
-    "msapplication-TileImage": "/images/favicon.ico",
+    "msapplication-TileImage": "/images/favicon.png",
     "theme-color": siteConfig.themeColor,
   },
 };
