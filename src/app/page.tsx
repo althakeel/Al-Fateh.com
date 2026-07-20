@@ -19,15 +19,14 @@ export const metadata: Metadata = createPageMetadata({
   path: "/",
   image: "/images/hero-desk.jpg",
   imageAlt:
-    "Al FATEH professional consultancy workspace in Dubai — strategic advisory for UAE businesses",
+    "Al FATEH professional accounting and consultancy workspace",
   keywords: [
-    "consultancy Dubai",
-    "business advisory UAE",
-    "Al FATEH home",
-    "Dubai consultation services",
-    "UAE business consultants",
-    "strategic insights Dubai",
-    "feasibility and maritime consultancy",
+    "accounting services",
+    "bookkeeping and payroll",
+    "VAT corporate tax accounting",
+    "Al FATEH accounting",
+    "financial reporting consultancy",
+    "accounting and advisory services",
   ],
 });
 
