@@ -32,7 +32,7 @@ export default function HomeExpertisePreview() {
             <p className="eyebrow text-accent-600">Our Expertise</p>
             <div className="accent-bar mt-4" />
             <h2 className="mt-6 text-3xl font-bold leading-[1.1] tracking-tight text-ink sm:text-4xl lg:text-5xl">
-              Strategic Consultancy Across Key Sectors
+              Expertise Across Key Sectors
             </h2>
           </Reveal>
           <Reveal delay={120}>

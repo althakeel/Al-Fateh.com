@@ -33,7 +33,7 @@ export default function BlogPage() {
       <PageHero
         eyebrow="Insights & Perspectives"
         title="Business Insights for Better Decisions"
-        description="Practical thinking on feasibility, strategy, and innovation for organizations operating in the UAE and beyond."
+        description="Practical insights on feasibility, strategy, and innovation."
         image="/images/blog-banner.png"
         imageAlt="Workspace desk with laptop, notebook, and coffee — a space for writing and research"
         imageFit="fill"

@@ -33,7 +33,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="At Your Service"
         title="Our Consultancy Services"
-        description="Comprehensive solutions tailored to help your organization thrive across every sector we serve."
+        description="Tailored solutions to help your organization thrive."
         image="/images/hero-boardroom.jpg"
         imageAlt="Professional consultancy team in a boardroom meeting"
       />

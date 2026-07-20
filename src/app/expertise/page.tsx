@@ -30,7 +30,7 @@ export default function ExpertisePage() {
       />
       <PageHero
         eyebrow="Our Expertise"
-        title="Strategic Consultancy Across Key Sectors"
+        title="Expertise Across Key Sectors"
         description="Al FATEH delivers premium business advisory services from Dubai, combining deep sector knowledge with a results-driven approach tailored to the UAE market."
         image="/images/regional-insight.jpg"
         imageAlt="Strategic business analysis and sector expertise"
