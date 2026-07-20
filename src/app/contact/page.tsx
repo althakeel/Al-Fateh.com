@@ -1,16 +1,33 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import ContactForm from "@/components/ContactForm";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Contact Us",
   description:
-    "Get in touch with Al FATEH for consultancy services. Send us a message and our team will reach out to you soon.",
-};
+    "Contact Al FATEH for Consultation Services in Dubai. Request a consultation by phone, email, WhatsApp, or our online form — based at Al Saqr Business Tower, UAE.",
+  path: "/contact",
+  image: "/images/contact-banner.jpg",
+  imageAlt: "Modern consultancy meeting room at Al FATEH",
+  keywords: [
+    "contact Al FATEH",
+    "consultancy Dubai contact",
+    "request consultation UAE",
+    "Al Saqr Business Tower consultancy",
+  ],
+});
 
 export default function ContactPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Contact", path: "/contact" },
+        ])}
+      />
       <PageHero
         eyebrow="Contact Us"
         title="Let's Get In Touch!"

@@ -3,7 +3,13 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check, Clock3 } from "lucide-react";
 import { notFound } from "next/navigation";
 import PageHero from "@/components/PageHero";
+import JsonLd from "@/components/JsonLd";
 import { blogPosts, getBlogPost } from "@/data/blog";
+import {
+  articleJsonLd,
+  breadcrumbJsonLd,
+  createPageMetadata,
+} from "@/lib/seo";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -20,13 +26,23 @@ export async function generateMetadata({
   const post = getBlogPost(slug);
 
   if (!post) {
-    return { title: "Article Not Found" };
+    return { title: "Article Not Found", robots: { index: false, follow: false } };
   }
 
-  return {
+  return createPageMetadata({
     title: post.title,
     description: post.excerpt,
-  };
+    path: `/blog/${post.slug}`,
+    image: post.image,
+    imageAlt: post.imageAlt,
+    type: "article",
+    keywords: [
+      post.category,
+      "Al FATEH insights",
+      "consultancy blog Dubai",
+      "UAE business advice",
+    ],
+  });
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
@@ -39,6 +55,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <>
+      <JsonLd
+        data={[
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Blog", path: "/blog" },
+            { name: post.title, path: `/blog/${post.slug}` },
+          ]),
+          articleJsonLd({
+            title: post.title,
+            description: post.excerpt,
+            path: `/blog/${post.slug}`,
+            image: post.image,
+          }),
+        ]}
+      />
       <PageHero
         eyebrow={post.category}
         title={post.title}
