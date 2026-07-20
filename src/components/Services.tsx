@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { services, type ServiceOffering } from "@/data/services";
 import { serviceIcons } from "@/data/sectionIcons";
 import ServiceModal from "./ServiceModal";
@@ -30,9 +30,14 @@ export default function Services() {
 
                 <div className="relative flex items-start justify-between gap-4">
                   <IconTile icon={Icon} size="lg" variant="solid" />
-                  <span className="flex h-9 w-9 items-center justify-center rounded-sm border border-platinum text-brand-700 transition-all duration-500 group-hover:border-accent-500 group-hover:text-accent-600">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedService(service)}
+                    aria-label={`View details for ${service.title}`}
+                    className="flex h-9 w-9 items-center justify-center rounded-sm border border-platinum text-brand-700 transition-all duration-500 group-hover:border-accent-500 group-hover:text-accent-600"
+                  >
                     <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </span>
+                  </button>
                 </div>
 
                 <div className="relative mt-6 flex flex-1 flex-col">
@@ -45,14 +50,6 @@ export default function Services() {
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-mute">
                     {service.description}
                   </p>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedService(service)}
-                    className="mt-6 inline-flex items-center gap-1 text-[12px] font-semibold uppercase tracking-[0.06em] text-accent-600 transition-colors group-hover:text-accent-500"
-                  >
-                    Read More
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                  </button>
                 </div>
               </article>
             );

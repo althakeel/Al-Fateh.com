@@ -120,21 +120,22 @@ export default function Hero() {
             <div className="hero-frame pointer-events-none absolute -left-3 -top-3 h-16 w-16 border-2 border-accent-500" />
             <div className="hero-frame-delay pointer-events-none absolute -bottom-3 -right-3 h-12 w-12 border border-accent-500/50" />
 
-            <div className="hero-media group relative overflow-hidden border border-platinum bg-ivory">
-              <div className="relative aspect-[4/5] overflow-hidden sm:aspect-[5/4] lg:aspect-[4/5] xl:aspect-[5/4]">
+            <div className="hero-media group relative w-[125%] overflow-hidden border border-platinum bg-ivory shadow-luxe">
+              <div className="relative h-[450px] overflow-hidden">
+              {/* <div className="relative lg:col-span-20"></div> */}
                 <Image
                   src="/images/hero-desk.jpg"
                   alt="Professional consultancy workspace"
                   fill
                   priority
-                  className="hero-media-img object-cover object-center"
+                 className="hero-media-img object-cover object-center scale-110"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-carbon/20 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-carbon/25 via-transparent to-transparent" />
               </div>
 
               <div
-                className="hero-float absolute left-4 top-4"
+                className="hero-float absolute left-5 top-5"
                 style={{ animationDelay: "1.4s" }}
               >
                 <div
@@ -148,36 +149,66 @@ export default function Hero() {
                 </div>
               </div>
 
-              <div className="hero-float-alt absolute right-4 top-4 max-w-[200px]">
+              <div className="hero-float-alt absolute right-5 top-5 max-w-[180px]">
                 <div
-                  className="hero-overlay-card border border-white/10 bg-carbon px-4 py-3 shadow-luxe"
+                  className="hero-overlay-card border border-white/10 bg-carbon/95 px-3.5 py-3 shadow-luxe backdrop-blur-sm"
                   style={{ ["--hero-delay" as string]: "1.05s" }}
                 >
                   <div className="flex items-center gap-2">
-                    <Award className="h-4 w-4 text-accent-400" strokeWidth={1.75} />
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-accent-400">
+                    <Award
+                      className="h-3.5 w-3.5 text-accent-400"
+                      strokeWidth={1.75}
+                    />
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-accent-400">
                       Client Focused
                     </p>
                   </div>
-                  <p className="mt-2 text-xs leading-relaxed text-white/75">
+                  <p className="mt-1.5 text-xs leading-snug text-white/80">
                     Expert Industry Team
                   </p>
                 </div>
               </div>
 
-              <div className="hero-float absolute bottom-4 left-4 right-4 sm:right-auto sm:max-w-[240px]">
+              <div className="hero-float absolute bottom-5 left-5 right-5 sm:right-auto sm:max-w-[220px]">
                 <div
                   className="hero-overlay-card-alt"
                   style={{ ["--hero-delay" as string]: "1.2s" }}
                 >
-                  <div className="flex overflow-hidden border border-platinum bg-ivory/95 shadow-luxe backdrop-blur-sm">
+                  <div className="flex overflow-hidden border border-platinum/80 bg-ivory/95 shadow-luxe backdrop-blur-sm">
                     <span className="w-1 shrink-0 bg-accent-500" />
-                    <div className="px-4 py-3">
-                      <p className="text-sm font-bold text-ink">6 Consultancy Areas</p>
-                      <p className="mt-1 text-xs leading-relaxed text-mute">
-                        Feasibility studies, maritime, media, human resources,
-                        artificial intelligence, and project development
+                    <div className="px-2.5 py-2">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-mute">
+                        
                       </p>
+                      <p className="mt-1.5 text-sm font-bold text-ink">
+                        Accounting Services
+                      </p>
+                      <ul className="mt-2 space-y-1 text-[11px] leading-snug text-mute">
+                        <li className="flex gap-2">
+                          <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent-500" />
+                          Accurate financial recordkeeping
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent-500" />
+                          Financial reporting
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent-500" />
+                          Tax submission and compliance
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent-500" />
+                          Payroll management
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent-500" />
+                          Budgeting and financial planning
+                        </li>
+                        <li className="flex gap-2">
+                          <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent-500" />
+                          Financial analysis and decision support
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>

@@ -45,7 +45,7 @@ export default function PageHero({
   return (
     <section className="relative overflow-hidden border-b border-platinum bg-frost pt-32 pb-16 lg:pt-40 lg:pb-24">
       {hasImage && (
-        <div className="absolute inset-y-0 right-0 hidden w-[48%] lg:flex xl:w-1/2">
+        <div className="absolute inset-y-0 right-0 hidden w-[56%] lg:flex xl:w-[58%]">
           {isContain ? (
             <div className={`flex w-full items-center justify-center ${imageBg} px-4`}>
               <div className={`relative w-full max-w-none overflow-hidden ${containAspect} ${imageBg}`}>
@@ -57,7 +57,7 @@ export default function PageHero({
                   quality={95}
                   unoptimized
                   className={`${fitClass} ${imagePosition}`}
-                  sizes="50vw"
+                  sizes="58vw"
                 />
               </div>
             </div>
@@ -81,9 +81,9 @@ export default function PageHero({
                     priority
                     quality={95}
                     className={`${fitClass} ${imagePosition}`}
-                    sizes="50vw"
+                    sizes="58vw"
                   />
-                  <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-frost to-transparent" />
+                  <div className="pointer-events-none absolute inset-y-0 left-0 w-28 bg-gradient-to-r from-frost to-transparent" />
                 </>
               )}
             </div>
@@ -92,7 +92,7 @@ export default function PageHero({
       )}
 
       <div className="container-x relative">
-        <div className={`max-w-xl lg:max-w-2xl ${hasImage ? "xl:max-w-3xl" : "xl:max-w-4xl"}`}>
+        <div className={`max-w-xl lg:max-w-xl ${hasImage ? "xl:max-w-2xl" : "xl:max-w-4xl"}`}>
           {eyebrow && (
             <div className="animate-fade-up flex items-center gap-3">
               <span className="h-0.5 w-8 bg-accent-500" />

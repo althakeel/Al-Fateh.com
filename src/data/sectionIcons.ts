@@ -25,13 +25,13 @@ export const valueIcons: LucideIcon[] = [
 ];
 
 export const serviceIcons: LucideIcon[] = [
+  Receipt,
   ChartColumn,
   Ship,
   Megaphone,
   Users,
   Cpu,
   Workflow,
-  Receipt,
 ];
 
 export const expertiseIcons: LucideIcon[] = [

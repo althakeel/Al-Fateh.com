@@ -6,6 +6,21 @@ export interface ServiceOffering {
 
 export const services: ServiceOffering[] = [
   {
+    title: "Accounting Services",
+    description:
+      "Our accounting specialists help organizations maintain accurate financial records, strengthen reporting, manage tax and payroll requirements, and make confident financial decisions.",
+    offerings: [
+      "Bookkeeping Services: Record daily transactions, reconcile accounts, and maintain organized financial records that support compliance and reporting.",
+      "Financial Accounting & Reporting: Maintain accurate financial records, prepare financial statements, and deliver timely reports to support informed business decisions.",
+      "Financial Statement Preparation: Prepare professionally structured balance sheets, income statements, cash flow statements, and other statutory financial reports.",
+      "VAT & Corporate Tax: Prepare VAT and corporate tax returns, ensure regulatory compliance, and provide practical tax planning for UAE businesses.",
+      "Payroll Management: Process employee salaries accurately while managing payroll records, statutory deductions, and compliance requirements.",
+      "Cost Control & Analysis: Track business costs, analyze financial performance, and identify opportunities to improve profitability and operational efficiency.",
+      "Financial Advisory & Management Reporting: Provide management reports, budgeting support, and financial insights that help business owners make confident strategic decisions.",
+      "Accounting System Setup: Implement and configure accounting systems tailored to your business operations for efficient financial management.",
+    ],
+  },
+  {
     title: "Feasibility Studies Consultancy",
     description:
       "Our team of expert consultants is dedicated to helping you make informed decisions about your projects. We offer comprehensive feasibility studies that assess the potential for a proposed project from market, business, and economic perspectives.",
@@ -75,21 +90,6 @@ export const services: ServiceOffering[] = [
       "Project Assessments: We conduct comprehensive assessments of your current projects and processes to identify strengths and areas for improvement.",
       "Performance Management System Implementation: We help you implement a robust performance management system to enhance the performance of your employees in project management.",
       "Project Analytics: We leverage project analytics to help you make informed decisions about your project management strategies.",
-    ],
-  },
-  {
-    title: "Accounting Services",
-    description:
-      "Our accounting specialists help organizations maintain accurate financial records, strengthen reporting, manage tax and payroll requirements, and make confident financial decisions.",
-    offerings: [
-      "Bookkeeping Services: Record daily transactions, reconcile accounts, and maintain organized financial records that support compliance and reporting.",
-      "Financial Accounting & Reporting: Maintain accurate financial records, prepare financial statements, and deliver timely reports to support informed business decisions.",
-      "Financial Statement Preparation: Prepare professionally structured balance sheets, income statements, cash flow statements, and other statutory financial reports.",
-      "VAT & Corporate Tax: Prepare VAT and corporate tax returns, ensure regulatory compliance, and provide practical tax planning for UAE businesses.",
-      "Payroll Management: Process employee salaries accurately while managing payroll records, statutory deductions, and compliance requirements.",
-      "Cost Control & Analysis: Track business costs, analyze financial performance, and identify opportunities to improve profitability and operational efficiency.",
-      "Financial Advisory & Management Reporting: Provide management reports, budgeting support, and financial insights that help business owners make confident strategic decisions.",
-      "Accounting System Setup: Implement and configure accounting systems tailored to your business operations for efficient financial management.",
     ],
   },
 ];
