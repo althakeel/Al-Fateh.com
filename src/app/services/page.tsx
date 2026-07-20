@@ -36,6 +36,7 @@ export default function ServicesPage() {
         description="Tailored solutions to help your organization thrive."
         image="/images/hero-boardroom.jpg"
         imageAlt="Professional consultancy team in a boardroom meeting"
+        imagePosition="object-center"
       />
       <Services />
     </>

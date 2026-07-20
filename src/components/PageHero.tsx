@@ -4,15 +4,13 @@ import Image from "next/image";
 interface PageHeroProps {
   eyebrow?: string;
   title: ReactNode;
-  description?: string;
+  description?: ReactNode;
   image?: string | null;
   imageAlt?: string;
   imagePosition?: string;
-  /** cover = crop to fill; contain = letterbox; fill = stretch to banner bounds */
-  imageFit?: "cover" | "contain" | "fill";
+  /** cover = fill panel; contain = letterbox for logos */
+  imageFit?: "cover" | "contain";
   imageBg?: string;
-  /** Tailwind aspect class for contain frames */
-  imageAspect?: string;
 }
 
 export default function PageHero({
@@ -23,122 +21,75 @@ export default function PageHero({
   imageAlt = "",
   imagePosition = "object-center",
   imageFit = "cover",
-  imageBg = "bg-ivory",
-  imageAspect,
+  imageBg = "bg-frost",
 }: PageHeroProps) {
-  const fitClass =
-    imageFit === "contain"
-      ? "object-contain"
-      : imageFit === "fill"
-        ? "object-fill"
-        : "object-cover";
   const isContain = imageFit === "contain";
-  const isFill = imageFit === "fill";
-  const containAspect = imageAspect ?? "aspect-[22/7]";
-  const mobileAspect = isContain
-    ? containAspect
-    : isFill
-      ? imageAspect ?? "aspect-[2/1]"
-      : "aspect-[16/10]";
+  const fitClass = isContain ? "object-contain" : "object-cover";
   const hasImage = Boolean(image);
 
   return (
-    <section className="relative overflow-hidden border-b border-platinum bg-frost pt-32 pb-16 lg:pt-40 lg:pb-24">
-      {hasImage && (
-        <div className="absolute inset-y-0 right-0 hidden w-[56%] lg:flex xl:w-[58%]">
-          {isContain ? (
-            <div className={`flex w-full items-center justify-center ${imageBg} px-4`}>
-              <div className={`relative w-full max-w-none overflow-hidden ${containAspect} ${imageBg}`}>
-                <Image
-                  src={image!}
-                  alt={imageAlt}
-                  fill
-                  priority
-                  quality={95}
-                  unoptimized
-                  className={`${fitClass} ${imagePosition}`}
-                  sizes="58vw"
-                />
-              </div>
-            </div>
-          ) : (
-            <div className="relative h-full w-full">
-              {isFill ? (
-                <div
-                  className={`absolute inset-0 bg-center bg-no-repeat ${imageBg} ${
-                    imageAspect ? "bg-contain" : "bg-[length:100%_100%]"
-                  }`}
-                  style={{ backgroundImage: `url("${image}")` }}
-                  role={imageAlt ? "img" : undefined}
-                  aria-label={imageAlt || undefined}
-                />
-              ) : (
-                <>
-                  <Image
-                    src={image!}
-                    alt={imageAlt}
-                    fill
-                    priority
-                    quality={95}
-                    className={`${fitClass} ${imagePosition}`}
-                    sizes="58vw"
-                  />
-                  <div className="pointer-events-none absolute inset-y-0 left-0 w-28 bg-gradient-to-r from-frost to-transparent" />
-                </>
-              )}
-            </div>
-          )}
-        </div>
-      )}
-
-      <div className="container-x relative">
-        <div className={`max-w-xl lg:max-w-xl ${hasImage ? "xl:max-w-2xl" : "xl:max-w-4xl"}`}>
-          {eyebrow && (
-            <div className="animate-fade-up flex items-center gap-3">
-              <span className="h-0.5 w-8 bg-accent-500" />
-              <p className="eyebrow text-accent-600">{eyebrow}</p>
-            </div>
-          )}
-          <h1 className="animate-fade-up-delay-1 mt-5 text-3xl font-bold leading-[1.12] tracking-tight text-ink sm:text-4xl lg:text-[2.75rem]">
-            {title}
-          </h1>
-          {description && (
-            <p className="animate-fade-up-delay-2 mt-6 max-w-2xl text-base leading-relaxed text-mute sm:text-lg">
-              {description}
-            </p>
-          )}
-        </div>
-      </div>
-
-      {hasImage && (
-        <div className="container-x relative mt-8 lg:hidden">
+    <section className="page-hero overflow-x-hidden border-b border-platinum bg-ivory pt-24 lg:pt-32">
+      <div
+        className={
+          hasImage
+            ? "lg:grid lg:min-h-[280px] lg:grid-cols-2 lg:items-stretch xl:min-h-[300px]"
+            : undefined
+        }
+      >
+        <div
+          className={`container-x flex items-center py-6 sm:py-8 lg:py-10 xl:py-12 ${
+            hasImage ? "lg:pl-16 lg:pr-10 xl:pl-24 xl:pr-14" : ""
+          }`}
+        >
           <div
-            className={`relative overflow-hidden border border-platinum shadow-luxe ${imageBg} ${mobileAspect}`}
+            className={`w-full max-w-xl ${
+              hasImage ? "lg:ml-auto lg:max-w-lg xl:max-w-xl" : ""
+            }`}
           >
-            {isFill ? (
-              <div
-                className={`absolute inset-0 bg-center bg-no-repeat ${imageBg} ${
-                  imageAspect ? "bg-contain" : "bg-[length:100%_100%]"
-                }`}
-                style={{ backgroundImage: `url("${image}")` }}
-                role={imageAlt ? "img" : undefined}
-                aria-label={imageAlt || undefined}
-              />
-            ) : (
+            {eyebrow && (
+              <div className="animate-fade-up flex items-center gap-3">
+                <span className="h-0.5 w-8 bg-accent-500" />
+                <p className="eyebrow text-accent-600">{eyebrow}</p>
+              </div>
+            )}
+            <h1 className="animate-fade-up-delay-1 mt-4 text-3xl font-bold leading-[1.12] tracking-tight text-ink sm:text-4xl lg:mt-5 lg:text-[2.1rem] lg:leading-[1.14] xl:text-[2.45rem]">
+              {title}
+            </h1>
+            {description &&
+              (typeof description === "string" ? (
+                <p className="animate-fade-up-delay-2 mt-4 max-w-lg text-base leading-relaxed text-mute sm:text-[16px] sm:leading-7 lg:mt-5">
+                  {description}
+                </p>
+              ) : (
+                <div className="animate-fade-up-delay-2 mt-4 lg:mt-5">
+                  {description}
+                </div>
+              ))}
+          </div>
+        </div>
+
+        {hasImage && (
+          <div
+            className={`page-hero-media relative w-full ${imageBg} ${
+              isContain ? "page-hero-media--contain" : "page-hero-media--cover"
+            }`}
+          >
+            <div className="page-hero-media__frame relative aspect-[16/9] w-full sm:aspect-[2/1] lg:absolute lg:inset-0 lg:aspect-auto">
               <Image
                 src={image!}
                 alt={imageAlt}
                 fill
                 priority
-                quality={95}
+                quality={90}
                 unoptimized={isContain}
                 className={`${fitClass} ${imagePosition}`}
-                sizes="100vw"
+                sizes="(min-width: 1024px) 50vw, 100vw"
               />
-            )}
+              <div className="page-hero-media__fade pointer-events-none absolute inset-0" />
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </section>
   );
 }

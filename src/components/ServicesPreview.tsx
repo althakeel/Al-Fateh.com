@@ -25,7 +25,7 @@ export default function ServicesPreview({ limit = 6 }: ServicesPreviewProps) {
           <Reveal className="max-w-2xl">
             <p className="eyebrow text-accent-600">At Your Service</p>
             <div className="accent-bar mt-4" />
-            <h2 className="mt-6 text-3xl font-bold leading-[1.1] tracking-tight text-ink sm:text-4xl lg:text-5xl">
+            <h2 className="mt-3 text-2xl font-bold leading-[1.1] tracking-tight text-ink sm:text-3xl lg:text-4xl">
               Our Consultancy Services
             </h2>
             <p className="mt-4 text-base leading-relaxed text-mute sm:text-lg">

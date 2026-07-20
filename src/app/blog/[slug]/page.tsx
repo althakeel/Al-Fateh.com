@@ -76,6 +76,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         description={post.excerpt}
         image={post.image}
         imageAlt={post.imageAlt}
+        imagePosition="object-center"
       />
 
       <article className="bg-ivory py-14 lg:py-20">

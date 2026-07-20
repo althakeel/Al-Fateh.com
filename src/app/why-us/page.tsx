@@ -33,7 +33,8 @@ export default function WhyUsPage() {
         title="A Trusted Partner for Business Growth"
         description="We are committed to delivering high-quality consultancy services that exceed our clients' expectations. Here is what sets us apart."
         image="/images/page-hero.jpg"
-        imageAlt="Al FATEH brand logo"
+        imageAlt="Dubai skyline representing Al FATEH's UAE market focus"
+        imagePosition="object-center"
       />
       <WhyUs />
     </>

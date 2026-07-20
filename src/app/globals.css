@@ -1223,3 +1223,69 @@ body::-webkit-scrollbar-thumb {
                      var(--sb-track-color);
   }
 }
+
+/* —— Page hero: full-width responsive split banner —— */
+.page-hero-media {
+  overflow: hidden;
+}
+
+.page-hero-media__frame {
+  min-height: 200px;
+}
+
+.page-hero-media--cover .page-hero-media__frame img {
+  object-fit: cover;
+}
+
+.page-hero-media--contain .page-hero-media__frame img {
+  object-fit: contain;
+  padding: 1rem 1.25rem;
+}
+
+.page-hero-media__fade {
+  background: linear-gradient(
+    180deg,
+    var(--color-ivory) 0%,
+    color-mix(in srgb, var(--color-ivory) 35%, transparent) 14%,
+    transparent 28%
+  );
+}
+
+@media (max-width: 1023px) {
+  .page-hero-media {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-hero-media {
+    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .page-hero-media__frame {
+    min-height: 100%;
+  }
+
+  .page-hero-media__fade {
+    background: linear-gradient(
+      90deg,
+      var(--color-ivory) 0%,
+      color-mix(in srgb, var(--color-ivory) 75%, transparent) 18%,
+      transparent 36%
+    );
+  }
+
+  .page-hero-media--contain .page-hero-media__frame img {
+    padding: 1.5rem 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .page-hero-media {
+    clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+

@@ -36,7 +36,7 @@ export default function BlogPage() {
         description="Practical insights on feasibility, strategy, and innovation."
         image="/images/blog-banner.png"
         imageAlt="Workspace desk with laptop, notebook, and coffee — a space for writing and research"
-        imageFit="fill"
+        imagePosition="object-center"
       />
       <BlogGrid />
     </>
