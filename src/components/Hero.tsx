@@ -12,19 +12,19 @@ import {
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-frost pt-28 pb-10 lg:min-h-[92vh] lg:pt-32 lg:pb-12">
+    <section className="relative overflow-hidden bg-frost pt-28 pb-8 lg:pt-32 lg:pb-10">
       <div className="pointer-events-none absolute inset-0 pattern-nodes opacity-40" />
       <div className="hero-glow pointer-events-none absolute -left-24 top-10 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(200,157,68,0.22),transparent_65%)]" />
       <div className="hero-glow pointer-events-none absolute -right-20 bottom-10 h-[320px] w-[320px] rounded-full bg-[radial-gradient(circle,rgba(200,157,68,0.12),transparent_70%)] [animation-delay:2.5s]" />
 
-      <div className="pointer-events-none absolute bottom-24 left-3 z-20 hidden origin-left -rotate-90 lg:block xl:left-5">
+      <div className="pointer-events-none absolute bottom-10 left-3 z-20 hidden origin-left -rotate-90 lg:block xl:left-5">
         <p className="hero-side-label whitespace-nowrap text-[10px] font-semibold uppercase text-mute">
           Dubai · UAE &nbsp;·&nbsp; Al FATEH
         </p>
       </div>
 
       <div className="container-x relative z-10">
-        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-10 xl:gap-14">
+        <div className="grid items-start gap-10 lg:grid-cols-12 lg:items-center lg:gap-10 xl:gap-14">
           <div className="lg:col-span-6 xl:col-span-6">
             <div
               className="hero-reveal inline-flex items-center gap-2 rounded-full border border-platinum bg-ivory px-3.5 py-1.5 shadow-sm"
@@ -120,15 +120,14 @@ export default function Hero() {
             <div className="hero-frame pointer-events-none absolute -left-3 -top-3 h-16 w-16 border-2 border-accent-500" />
             <div className="hero-frame-delay pointer-events-none absolute -bottom-3 -right-3 h-12 w-12 border border-accent-500/50" />
 
-            <div className="hero-media group relative w-[125%] overflow-hidden border border-platinum bg-ivory shadow-luxe">
-              <div className="relative h-[450px] overflow-hidden">
-              {/* <div className="relative lg:col-span-20"></div> */}
+            <div className="hero-media group relative w-full overflow-hidden border border-platinum bg-ivory shadow-luxe lg:w-[115%] xl:w-[125%]">
+              <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[5/4] lg:aspect-auto lg:h-[420px] xl:h-[450px]">
                 <Image
                   src="/images/hero-desk.jpg"
                   alt="Professional consultancy workspace"
                   fill
                   priority
-                 className="hero-media-img object-cover object-center scale-110"
+                  className="hero-media-img object-cover object-center scale-110"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-carbon/25 via-transparent to-transparent" />

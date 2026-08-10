@@ -992,6 +992,15 @@ body {
   animation-play-state: paused;
 }
 
+.team-strip {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.team-strip::-webkit-scrollbar {
+  display: none;
+}
+
 .footer-network {
   background-color: #111315;
   background-image:
