@@ -38,14 +38,14 @@ export const teamMembers: TeamMember[] = [
   },
   {
     image: "/images/team/team-12.png",
-    alt: "Omar Raafat, Accountant at Al FATEH",
-    name: "Omar Raafat",
+    alt: "Ahmed Osama, Accountant at Al FATEH",
+    name: "Ahmed Osama",
     role: "Accountant",
   },
   {
     image: "/images/team/team-11.png",
-    alt: "Mahmoud Salah Eldein Ahmed Kamel Abdelrahman, Accountant at Al FATEH",
-    name: "Mahmoud Salah Eldein Ahmed Kamel Abdelrahman",
+    alt: "Abdulrehman Matar, Accountant at Al FATEH",
+    name: "Abdulrehman Matar",
     role: "Accountant",
   },
   {
@@ -54,7 +54,12 @@ export const teamMembers: TeamMember[] = [
     name: "Mahmoud Abdel Fadeel",
     role: "Legal Consultant",
   },
-  { image: "/images/team/team-04.png", alt: "Al FATEH team member" },
+  {
+    image: "/images/team/team-04.png",
+    alt: "Mahmoud Salah Eldin, Accountant at Al FATEH",
+    name: "Mahmoud Salah Eldin",
+    role: "Accountant",
+  },
   {
     image: "/images/team/team-06.png",
     alt: "Dalia Ghonem, Legal Consultant at Al FATEH",
