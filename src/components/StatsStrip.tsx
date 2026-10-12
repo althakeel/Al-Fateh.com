@@ -11,7 +11,7 @@ import {
 import RevealStagger from "./RevealStagger";
 
 const stats: { value: string; label: string; icon: LucideIcon }[] = [
-  { value: "6", label: "Consultancy Areas", icon: LayoutGrid },
+  { value: "7", label: "Consultancy Areas", icon: LayoutGrid },
   { value: "UAE", label: "Based in Dubai", icon: Earth },
   { value: "Expert", label: "Industry Team", icon: Award },
   { value: "100%", label: "Client Focused", icon: Users },

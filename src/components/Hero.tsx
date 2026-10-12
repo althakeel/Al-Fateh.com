@@ -89,7 +89,7 @@ export default function Hero() {
 
             <div className="mt-10 grid max-w-lg grid-cols-3 gap-2.5 sm:gap-3">
               {[
-                { value: "6", label: "Consultancy Areas", icon: LayoutGrid },
+                { value: "7", label: "Consultancy Areas", icon: LayoutGrid },
                 { value: "UAE", label: "Based in Dubai", icon: Earth },
                 { value: "100%", label: "Client Focused", icon: Users },
               ].map((stat, i) => {

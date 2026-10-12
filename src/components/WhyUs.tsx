@@ -10,7 +10,7 @@ export default function WhyUs() {
     {
       title: "Multi-Disciplinary Expertise",
       description:
-        "Six core consultancy disciplines under one roof — feasibility, maritime, media, HR, AI, and project development — so you get integrated advice without juggling multiple vendors.",
+        "Seven core consultancy disciplines under one roof — accounting, feasibility, maritime, media, HR, AI, and project development — so you get integrated advice without juggling multiple vendors.",
     },
     {
       title: "Results-Oriented Approach",
