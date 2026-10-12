@@ -12,7 +12,7 @@ const stats = [
 
 export default function HomeRegionalFocus() {
   return (
-    <section className="section-glass py-20 lg:py-28">
+    <section className="section-glass py-12 lg:py-16">
       <div className="container-x">
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal direction="left" className="relative lg:col-span-6">
@@ -39,16 +39,14 @@ export default function HomeRegionalFocus() {
               UAE Market Insight
             </h2>
             <p className="mt-6 text-base leading-relaxed text-mute sm:text-lg">
-              Our team comprises industry experts with years of experience in
-              their respective fields. They bring a wealth of knowledge and a
-              diverse set of skills to our company, enabling us to offer a
-              comprehensive suite of services that cater to the unique needs of
-              our clients.
+              From Al Saqr Business Tower we advise organizations operating in
+              the UAE, with a working grasp of local reporting, VAT, and corporate
+              tax.
             </p>
             <p className="mt-5 text-base leading-relaxed text-mute sm:text-lg">
-              Based in Dubai at Al Saqr Business Tower, we understand the local
-              business landscape and regulatory environment, giving your projects
-              a strategic home-ground advantage.
+              That local context is how we read feasibility, maritime, and
+              technology work: against the market and rules your business
+              actually faces.
             </p>
 
             <RevealStagger className="mt-8 grid gap-3 sm:grid-cols-3">

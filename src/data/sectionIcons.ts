@@ -34,6 +34,16 @@ export const serviceIcons: LucideIcon[] = [
   Workflow,
 ];
 
+export const serviceIconByTitle: Record<string, LucideIcon> = {
+  "Accounting Services": Receipt,
+  "Feasibility Studies Consultancy": ChartColumn,
+  "Maritime Consultancy": Ship,
+  "Media Studies & Consultancy": Megaphone,
+  "Human Resources Consultancy": Users,
+  "Innovation & Artificial Intelligence Consultancy": Cpu,
+  "Project Development Consultancy": Workflow,
+};
+
 export const expertiseIcons: LucideIcon[] = [
   Compass,
   Building2,

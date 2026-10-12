@@ -30,8 +30,7 @@ export default function ContactPage() {
       />
       <PageHero
         eyebrow="Contact Us"
-        title="Let's Get In Touch!"
-        description="Have a question or ready to start your next project? We'd love to hear from you."
+        title="Lets Get In Touch!"
         image="/images/contact-banner.jpg"
         imageAlt="Modern consultancy meeting room"
         imagePosition="object-center"

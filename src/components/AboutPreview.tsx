@@ -5,7 +5,7 @@ import Reveal from "./Reveal";
 
 export default function AboutPreview() {
   return (
-    <section className="section-glass py-20 lg:py-28">
+    <section className="section-glass py-12 lg:py-16">
       <div className="container-x">
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal direction="left" className="relative order-2 lg:order-1 lg:col-span-5">
@@ -19,7 +19,7 @@ export default function AboutPreview() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-carbon/40 via-transparent to-transparent" />
             </div>
-            <div className="corp-card motion-card absolute -bottom-5 -right-3 hidden px-5 py-4 sm:block lg:-right-6">
+            <div className="corp-card motion-card !absolute -bottom-5 -right-3 hidden px-5 py-4 sm:block lg:-right-6">
               <span className="icon-tile-accent-solid mb-3 inline-flex h-9 w-9 rounded-sm">
                 <MapPin size={16} strokeWidth={1.75} aria-hidden />
               </span>
@@ -37,16 +37,13 @@ export default function AboutPreview() {
               Your Vision, Our Expertise
             </h2>
             <p className="mt-6 text-base leading-relaxed text-mute sm:text-lg">
-              Our mission is to empower businesses and organizations by providing
-              them with strategic insights and innovative solutions that drive
-              growth and success. We believe in the power of knowledge and
-              innovation, and we strive to stay at the forefront of industry trends
-              and developments.
+              Al FATEH supports growing organizations with bookkeeping, financial
+              statements, VAT, corporate tax, payroll, and advisory that stays
+              tied to the numbers.
             </p>
             <p className="mt-5 text-base leading-relaxed text-mute sm:text-lg">
-              We pride ourselves on our client-centric approach. We work closely
-              with our clients to understand their needs and challenges. At our
-              consultancy, we value integrity, collaboration, and excellence.
+              The practice is based in Dubai and led by specialists who stay with
+              the work from the first briefing through to delivery.
             </p>
 
             <Link

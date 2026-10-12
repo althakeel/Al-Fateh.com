@@ -17,7 +17,7 @@ export const services: ServiceOffering[] = [
       "Payroll Management: Process employee salaries accurately while managing payroll records, statutory deductions, and compliance requirements.",
       "Cost Control & Analysis: Track business costs, analyze financial performance, and identify opportunities to improve profitability and operational efficiency.",
       "Financial Advisory & Management Reporting: Provide management reports, budgeting support, and financial insights that help business owners make confident strategic decisions.",
-      "Accounting System Setup: Implement and configure accounting systems tailored to your business operations for efficient financial management.",
+      "Account System Setup: Implement and configure accounting systems tailored to your business operations for efficient financial management.",
     ],
   },
   {
@@ -29,7 +29,7 @@ export const services: ServiceOffering[] = [
       "Cost-Benefit Analysis: We assess the potential costs and benefits of the project.",
       "Risk Assessment: We identify any potential risks or challenges that may arise.",
       "Strategic Advice: In addition to conducting a thorough analysis of your project, we also provide strategic advice to help you plan for the future.",
-      "Results-Oriented Solutions: We are committed to providing results-oriented solutions that help our clients achieve their goals.",
+      "Result-Oriented Solutions: We are committed to providing results-oriented solutions that help our clients achieve their goals.",
     ],
   },
   {
@@ -62,10 +62,10 @@ export const services: ServiceOffering[] = [
       "Our team of HR consultants is dedicated to helping your organization achieve its goals by maximizing the effectiveness of your human resources. We offer a wide range of HR consulting services, from developing HR strategies to implementing HR programs and practices.",
     offerings: [
       "HR Strategy Development: We work with you to develop an effective HR strategy that aligns with your organization's overall goals.",
-      "HR Program Implementation: We help you implement HR programs and practices that enhance the effectiveness of your human resources.",
-      "HR Assessments: We conduct comprehensive assessments of your current HR programs and processes to identify strengths and areas for improvement.",
-      "Training Programs: We identify skills gaps and develop training programs to enhance the skills of your employees.",
-      "Recruitment & Talent Acquisition Strategies: We craft recruitment & talent acquisition strategies to attract and retain top-tier candidates.",
+      "HR Program Implementation: We conduct comprehensive assessments of your current HR programs and processes to identify strengths and areas for improvement.",
+      "HR Assessments: We craft recruitment & talent acquisition strategies to attract and retain top-tier candidates.",
+      "Training Programs: We help you implement HR programs and practices that enhance the effectiveness of your human resources.",
+      "Recruitment & Talent Acquisition Strategies: We identify skills gaps and develop training programs to enhance the skills of your employees.",
     ],
   },
   {
@@ -93,3 +93,21 @@ export const services: ServiceOffering[] = [
     ],
   },
 ];
+
+export const visibleServices = services;
+
+export function serviceSlug(title: string) {
+  return title
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+export function servicePath(title: string) {
+  return `/services/${serviceSlug(title)}`;
+}
+
+export function getVisibleServiceBySlug(slug: string) {
+  return visibleServices.find((service) => serviceSlug(service.title) === slug);
+}

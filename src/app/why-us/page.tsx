@@ -31,7 +31,6 @@ export default function WhyUsPage() {
       <PageHero
         eyebrow="Why Al FATEH"
         title="A Trusted Partner for Business Growth"
-        description="We are committed to delivering high-quality consultancy services that exceed our clients' expectations. Here is what sets us apart."
         image="/images/page-hero.jpg"
         imageAlt="Professional accounting and consultancy partnership"
         imagePosition="object-center"

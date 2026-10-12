@@ -25,7 +25,7 @@ const reasons = [
 
 export default function HomeWhyUsPreview() {
   return (
-    <section className="py-20 lg:py-28">
+    <section className="py-12 lg:py-16">
       <div className="container-x">
         <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
           <Reveal className="max-w-2xl">

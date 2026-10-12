@@ -943,6 +943,52 @@ body {
   animation: ken-burns 24s ease-out forwards;
 }
 
+@keyframes about-photo-drift {
+  from {
+    transform: scale(1.06) translate3d(0, -1.5%, 0);
+  }
+  to {
+    transform: scale(1.12) translate3d(0, 1.5%, 0);
+  }
+}
+
+.about-photo {
+  animation: about-photo-drift 18s ease-in-out infinite alternate;
+}
+
+.about-line {
+  transform: scaleY(0);
+  transform-origin: top center;
+  transition: transform 1.15s cubic-bezier(0.22, 1, 0.36, 1) 0.12s;
+}
+
+.about-story.is-visible .about-line {
+  transform: scaleY(1);
+}
+
+.about-card-rule {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.about-values.is-visible .about-card-rule {
+  transform: scaleX(1);
+}
+
+.about-values.is-visible > .reveal-child:nth-child(1) .about-card-rule {
+  transition-delay: 0.15s;
+}
+.about-values.is-visible > .reveal-child:nth-child(2) .about-card-rule {
+  transition-delay: 0.28s;
+}
+.about-values.is-visible > .reveal-child:nth-child(3) .about-card-rule {
+  transition-delay: 0.41s;
+}
+.about-values.is-visible > .reveal-child:nth-child(4) .about-card-rule {
+  transition-delay: 0.54s;
+}
+
 .animate-pulse-ring {
   animation: pulse-ring 2.4s ease-out infinite;
 }
@@ -1233,7 +1279,6 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
-/* —— Page hero: full-width responsive split banner —— */
 .page-hero-media {
   overflow: hidden;
 }
@@ -1295,6 +1340,56 @@ body::-webkit-scrollbar-thumb {
 @media (min-width: 1280px) {
   .page-hero-media {
     clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+@keyframes service-enter-forward {
+  from {
+    opacity: 0;
+    transform: translate3d(48px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes service-enter-back {
+  from {
+    opacity: 0;
+    transform: translate3d(-48px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.service-indicator {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), width 0.5s cubic-bezier(0.22, 1, 0.36, 1), height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.service-enter-forward,
+.service-enter-back {
+  overflow-x: clip;
+}
+
+.service-enter-forward {
+  animation: service-enter-forward 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.service-enter-back {
+  animation: service-enter-back 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-enter-forward,
+  .service-enter-back {
+    animation: none;
+  }
+
+  .service-indicator {
+    transition: none;
   }
 }
 

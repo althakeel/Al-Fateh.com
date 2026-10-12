@@ -31,7 +31,6 @@ export default function ExpertisePage() {
       <PageHero
         eyebrow="Our Expertise"
         title="Expertise Across Key Sectors"
-        description="Premium business advisory combining deep sector knowledge with a results-driven approach."
         image="/images/regional-insight.jpg"
         imageAlt="Strategic business analysis and sector expertise"
         imagePosition="object-center"

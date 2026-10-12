@@ -800,17 +800,22 @@ export default function ContactForm() {
                   </a>
                 </li>
 
-                <li className="flex items-center gap-3">
+                <li className="flex items-start gap-3">
                   <Phone
-                    className="h-4 w-4 shrink-0 text-accent-500"
+                    className="mt-0.5 h-4 w-4 shrink-0 text-accent-500"
                     aria-hidden
                   />
-                  <a
-                    href={contact.phoneHref}
-                    className="text-sm font-semibold text-ink transition-colors hover:text-accent-600"
-                  >
-                    {contact.phoneDisplay}
-                  </a>
+                  <div className="flex flex-col gap-1">
+                    {contact.phones.map((phone) => (
+                      <a
+                        key={phone.href}
+                        href={phone.href}
+                        className="text-sm font-semibold text-ink transition-colors hover:text-accent-600"
+                      >
+                        {phone.display}
+                      </a>
+                    ))}
+                  </div>
                 </li>
 
                 <li className="flex items-center gap-3">

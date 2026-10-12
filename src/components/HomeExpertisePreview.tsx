@@ -12,12 +12,12 @@ const areas = [
       "We help organizations define clear objectives, assess market opportunities, and build actionable roadmaps for sustainable growth across the UAE and wider region.",
   },
   {
-    title: "Sector-Specific Advisory",
+    title: "Sector Specific Advisory",
     description:
       "From maritime operations to media campaigns and AI adoption, our consultants bring deep domain expertise tailored to your industry challenges.",
   },
   {
-    title: "Feasibility & Risk Analysis",
+    title: "Feasibility and Risk Analysis",
     description:
       "Make informed investment decisions with comprehensive feasibility studies, cost-benefit analysis, and risk assessments before you commit resources.",
   },
@@ -25,7 +25,7 @@ const areas = [
 
 export default function HomeExpertisePreview() {
   return (
-    <section className="section-glass py-20 lg:py-28">
+    <section className="section-glass py-12 lg:py-16">
       <div className="container-x">
         <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
           <Reveal className="max-w-2xl">

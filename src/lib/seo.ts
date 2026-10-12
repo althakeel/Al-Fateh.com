@@ -195,10 +195,7 @@ export function organizationJsonLd() {
       "Financial Advisory",
       "Feasibility Studies",
       "Maritime Consultancy",
-      "Media Consultancy",
-      "Human Resources Consultancy",
       "Artificial Intelligence Consultancy",
-      "Project Development",
     ],
   };
 }
@@ -215,6 +212,21 @@ export function websiteJsonLd() {
       "@id": `${siteConfig.url}/#organization`,
     },
     inLanguage: siteConfig.language,
+  };
+}
+
+export function faqJsonLd(items: Array<{ question: string; answer: string }>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
   };
 }
 

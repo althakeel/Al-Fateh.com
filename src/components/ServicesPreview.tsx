@@ -1,11 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { services, type ServiceOffering } from "@/data/services";
-import { serviceIcons } from "@/data/sectionIcons";
-import ServiceModal from "./ServiceModal";
+import { servicePath, visibleServices } from "@/data/services";
+import { serviceIconByTitle, serviceIcons } from "@/data/sectionIcons";
 import Reveal from "./Reveal";
 import RevealStagger from "./RevealStagger";
 import IconTile from "./IconTile";
@@ -14,12 +12,11 @@ interface ServicesPreviewProps {
   limit?: number;
 }
 
-export default function ServicesPreview({ limit = 6 }: ServicesPreviewProps) {
-  const [selectedService, setSelectedService] = useState<ServiceOffering | null>(null);
-  const previewServices = services.slice(0, limit);
+export default function ServicesPreview({ limit }: ServicesPreviewProps) {
+  const previewServices = limit ? visibleServices.slice(0, limit) : visibleServices;
 
   return (
-    <section className="section-glass py-20 lg:py-28">
+    <section className="section-glass py-12 lg:py-16">
       <div className="container-x">
         <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
           <Reveal className="max-w-2xl">
@@ -29,7 +26,7 @@ export default function ServicesPreview({ limit = 6 }: ServicesPreviewProps) {
               Our Consultancy Services
             </h2>
             <p className="mt-4 text-base leading-relaxed text-mute sm:text-lg">
-              Comprehensive business consultancy across six strategic disciplines,
+              Comprehensive business consultancy across our strategic disciplines,
               delivered from the heart of the UAE.
             </p>
           </Reveal>
@@ -44,25 +41,17 @@ export default function ServicesPreview({ limit = 6 }: ServicesPreviewProps) {
           </Reveal>
         </div>
 
-        <RevealStagger className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <RevealStagger className="mt-10 grid gap-5 sm:grid-cols-2">
           {previewServices.map((service, index) => {
             const num = String(index + 1).padStart(2, "0");
-            const Icon = serviceIcons[index % serviceIcons.length];
+            const Icon = serviceIconByTitle[service.title] ?? serviceIcons[index % serviceIcons.length];
 
             return (
-              <article
+              <Link
                 key={service.title}
-                role="button"
-                tabIndex={0}
-                onClick={() => setSelectedService(service)}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    setSelectedService(service);
-                  }
-                }}
-                aria-label={`View details for ${service.title}`}
-                className="reveal-child corp-card group relative flex cursor-pointer flex-col overflow-hidden p-6 md:p-8 outline-none transition-transform duration-300 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-accent-500/40"
+                href={servicePath(service.title)}
+                aria-label={`View ${service.title}`}
+                className="reveal-child corp-card group relative flex cursor-pointer flex-col overflow-hidden p-6 outline-none transition-transform duration-300 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-accent-500/40 md:p-8"
               >
                 <span className="ghost-numeral absolute -right-1 -top-2 select-none text-7xl transition-colors duration-500">
                   {num}
@@ -89,15 +78,12 @@ export default function ServicesPreview({ limit = 6 }: ServicesPreviewProps) {
                     {service.description}
                   </p>
                 </div>
-              </article>
+              </Link>
             );
           })}
         </RevealStagger>
       </div>
 
-      {selectedService && (
-        <ServiceModal service={selectedService} onClose={() => setSelectedService(null)} />
-      )}
     </section>
   );
 }

@@ -10,12 +10,12 @@ export default function Expertise() {
         "We help organizations define clear objectives, assess market opportunities, and build actionable roadmaps for sustainable growth across the UAE and wider region.",
     },
     {
-      title: "Sector-Specific Advisory",
+      title: "Sector Specific Advisory",
       description:
         "From maritime operations to media campaigns and AI adoption, our consultants bring deep domain expertise tailored to your industry challenges.",
     },
     {
-      title: "Feasibility & Risk Analysis",
+      title: "Feasibility and Risk Analysis",
       description:
         "Make informed investment decisions with comprehensive feasibility studies, cost-benefit analysis, and risk assessments before you commit resources.",
     },
@@ -30,7 +30,7 @@ export default function Expertise() {
         "Leverage artificial intelligence and emerging technologies to modernize operations, improve decision-making, and stay ahead of industry trends.",
     },
     {
-      title: "UAE Market Insight",
+      title: "U.A.E Market Insight",
       description:
         "Based in Dubai at Al Saqr Business Tower, we understand the local business landscape and regulatory environment, giving your projects a strategic home-ground advantage.",
     },

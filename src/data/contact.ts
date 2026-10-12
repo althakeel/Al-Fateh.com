@@ -2,13 +2,17 @@ export const contact = {
   phone: "+971528046699",
   phoneDisplay: "+971 52 804 6699",
   phoneHref: "tel:+971528046699",
+  phones: [
+    { display: "+971 52 804 6699", href: "tel:+971528046699" },
+    { display: "+971 50 994 0318", href: "tel:+971509940318" },
+  ],
   email: "info@efateh.com",
   emailHref: "mailto:info@efateh.com",
   whatsappHref:
     "https://api.whatsapp.com/send/?phone=%2B971528046699&text&type=phone_number&app_absent=0",
   location: {
     name: "Al Saqr Business Tower",
-    address: "Al Saqr Business Tower, Dubai, UAE",
+    address: "Al Saqr Business Tower, Sheikh Zayed Road, DIFC, Dubai, UAE",
     mapsHref:
       "https://www.google.com/maps/place/Al+Saqr+Business+Tower/@25.213871,55.2764787,17z/data=!4m6!3m5!1s0x3e5f428c4b20d9c1:0xda2a93cfee3dee03!8m2!3d25.2138711!4d55.2780549!16s%2Fg%2F11bccgsncg?entry=tts",
     embedSrc:

@@ -94,7 +94,7 @@ export default function HeroBannerSlideshow() {
             }}
             muted
             playsInline
-            preload={index <= 1 ? "auto" : "metadata"}
+            preload={isActive ? "auto" : "none"}
             poster={slide.poster}
             aria-hidden
             className={`hero-banner-slide absolute inset-0 h-full w-full object-cover object-center ${
