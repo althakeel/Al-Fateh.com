@@ -11,10 +11,10 @@ import {
 import RevealStagger from "./RevealStagger";
 
 const stats: { value: string; label: string; icon: LucideIcon }[] = [
-  { value: "7", label: "Consultancy Areas", icon: LayoutGrid },
+  { value: "4", label: "Service Lines", icon: LayoutGrid },
   { value: "UAE", label: "Based in Dubai", icon: Earth },
-  { value: "Expert", label: "Industry Team", icon: Award },
-  { value: "100%", label: "Client Focused", icon: Users },
+  { value: "Practical", label: "Tailored Support", icon: Award },
+  { value: "Flexible", label: "Agreed Scope", icon: Users },
 ];
 
 export default function StatsStrip() {

@@ -9,12 +9,12 @@ export default function AboutPreview() {
       <div className="container-x">
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal direction="left" className="relative order-2 lg:order-1 lg:col-span-5">
-            <div className="group relative aspect-[4/5] overflow-hidden sm:aspect-[5/4] lg:aspect-[4/5]">
+            <div className="group relative aspect-[3/2] overflow-hidden">
               <Image
-                src="/images/about-office.jpg"
-                alt="Modern professional office interior"
+                src="/images/studio/document-review.jpg"
+                alt="Al FATEH advisors reviewing a client file together"
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 40vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-carbon/40 via-transparent to-transparent" />
@@ -34,16 +34,17 @@ export default function AboutPreview() {
             <p className="eyebrow text-accent-600">About Us</p>
             <div className="accent-bar mt-4" />
             <h2 className="mt-6 text-3xl font-bold leading-[1.1] tracking-tight text-ink sm:text-4xl lg:text-5xl">
-              Your Vision, Our Expertise
+              A practical finance partner for business growth
             </h2>
             <p className="mt-6 text-base leading-relaxed text-mute sm:text-lg">
-              Al FATEH supports growing organizations with bookkeeping, financial
-              statements, VAT, corporate tax, payroll, and advisory that stays
-              tied to the numbers.
+              To help businesses keep more of what they earn through smart
+              Corporate Tax planning, reliable accounting outsourcing and
+              strategic business advisory.
             </p>
             <p className="mt-5 text-base leading-relaxed text-mute sm:text-lg">
-              The practice is based in Dubai and led by specialists who stay with
-              the work from the first briefing through to delivery.
+              Practical, tailored support that helps businesses understand their
+              numbers, manage obligations, control costs and make better
+              decisions.
             </p>
 
             <Link

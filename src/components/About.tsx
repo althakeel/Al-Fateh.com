@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Target, Users } from "lucide-react";
+import { ArrowRight, Handshake, Target, Users } from "lucide-react";
 import PageHero from "./PageHero";
 import Reveal from "./Reveal";
 import RevealStagger from "./RevealStagger";
@@ -8,29 +8,26 @@ import RevealStagger from "./RevealStagger";
 const statements = [
   {
     label: "Our mission",
-    text: "Our mission is to empower businesses and organizations by providing them with strategic insights and innovative solutions that drive growth and success. We believe in the power of knowledge and innovation, and we strive to stay at the forefront of industry trends and developments.",
+    text: "To help businesses keep more of what they earn through smart Corporate Tax planning, reliable accounting outsourcing and strategic business advisory.",
     icon: Target,
   },
   {
-    label: "Our team",
-    text: "Our team comprises industry experts with years of experience in their respective fields. They bring a wealth of knowledge and a diverse set of skills to our company, enabling us to offer a comprehensive suite of services that cater to the unique needs of our clients.",
+    label: "Our vision",
+    text: "To be a trusted UAE business partner, turning financial complexity into clarity and helping companies protect profits, unlock opportunities and grow sustainably.",
     icon: Users,
+  },
+  {
+    label: "Our promise",
+    text: "Practical, tailored support that helps businesses understand their numbers, manage obligations, control costs and make better decisions.",
+    icon: Handshake,
   },
 ];
 
 const values = [
-  {
-    title: "Strategic Insight",
-  },
-  {
-    title: "Industry Experts",
-  },
-  {
-    title: "Client-Centric",
-  },
-  {
-    title: "Excellence",
-  },
+  { title: "Corporate Tax" },
+  { title: "Outsourced Finance" },
+  { title: "Cost Control" },
+  { title: "Business Advisory" },
 ];
 
 export default function About() {
@@ -40,14 +37,12 @@ export default function About() {
         eyebrow="About Us"
         title={
           <>
-            Strategic Insights.
+            Keep More of
             <br />
-            Innovative Solutions.
-            <br />
-            Lasting Success.
+            What You Earn.
           </>
         }
-        description="Expert consultancy in feasibility studies, maritime, media, human resources, artificial intelligence, and project development."
+        description="A practical finance partner for business growth across tax, accounting, cost control and business advisory."
         image="/images/brand-logo-dark.png"
         imageAlt="Al FATEH brand logo"
         imageFit="contain"
@@ -58,12 +53,12 @@ export default function About() {
       <section className="overflow-hidden bg-ivory py-16 lg:py-24">
         <div className="container-x grid items-stretch gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal direction="left" className="lg:col-span-5">
-            <div className="relative h-full min-h-[320px] overflow-hidden lg:min-h-[420px]">
+            <div className="relative aspect-[3/2] overflow-hidden">
               <Image
-                src="/images/about-office.jpg"
-                alt="Al FATEH office"
+                src="/images/studio/document-review.jpg"
+                alt="Al FATEH advisors reviewing a client file together"
                 fill
-                className="about-photo object-cover"
+                className="about-photo object-cover object-center"
                 sizes="(max-width: 1024px) 100vw, 42vw"
               />
             </div>
@@ -72,14 +67,12 @@ export default function About() {
           <div className="flex flex-col justify-center lg:col-span-7">
             <Reveal>
               <h2 className="max-w-xl text-3xl font-bold leading-[1.1] tracking-tight text-brand-900 sm:text-5xl">
-                Your Vision, Our Expertise
+                A practical finance partner for business growth
               </h2>
               <p className="mt-5 max-w-xl text-base leading-relaxed text-slate sm:text-lg">
-                Our mission is to empower businesses and organizations by
-                providing them with strategic insights and innovative solutions
-                that drive growth and success. We believe in the power of
-                knowledge and innovation, and we strive to stay at the forefront
-                of industry trends and developments.
+                Practical, tailored support that helps businesses understand
+                their numbers, manage obligations, control costs and make better
+                decisions.
               </p>
             </Reveal>
 
@@ -95,7 +88,7 @@ export default function About() {
 
       <section className="relative min-h-[520px] overflow-hidden lg:min-h-[560px]">
         <Image
-          src="/images/regional-insight.jpg"
+          src="/images/studio/skyline.jpg"
           alt=""
           fill
           className="object-cover object-center"
@@ -104,7 +97,7 @@ export default function About() {
         <div className="absolute inset-0 bg-brand-900/45" />
         <div className="absolute inset-0 bg-gradient-to-r from-brand-900/55 via-brand-900/25 to-brand-900/40" />
         <div className="container-x relative z-10 flex min-h-[520px] items-center py-16 lg:min-h-[560px] lg:py-24">
-          <div className="grid w-full items-stretch gap-5 md:grid-cols-2 md:gap-6">
+          <div className="grid w-full items-stretch gap-5 md:grid-cols-3 md:gap-6">
             {statements.map((statement) => {
               const Icon = statement.icon;
               return (

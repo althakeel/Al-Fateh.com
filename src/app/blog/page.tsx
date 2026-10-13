@@ -7,16 +7,15 @@ import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = createPageMetadata({
   title: "Blog & Insights",
   description:
-    "Practical insights from Al FATEH on accounting, financial reporting, tax compliance, budgeting, and business decision-making for growing organizations.",
+    "Practical notes from Al FATEH on corporate tax readiness, cost visibility, and market advisory for UAE businesses.",
   path: "/blog",
   image: "/images/blog-banner.png",
   imageAlt: "Al FATEH accounting and business insights",
   keywords: [
-    "Al FATEH blog",
-    "accounting insights",
-    "financial reporting tips",
-    "tax and compliance articles",
-    "business accounting advice",
+    "Al FATEH insights",
+    "corporate tax readiness",
+    "cost visibility",
+    "market advisory",
   ],
 });
 
@@ -32,7 +31,7 @@ export default function BlogPage() {
       <PageHero
         eyebrow="Insights & Perspectives"
         title="Business Insights for Better Decisions"
-        description="Practical insights on feasibility, strategy, and innovation."
+        description="Notes on corporate tax, cost control, and market advisory."
         image="/images/blog-banner.png"
         imageAlt="Workspace desk with laptop, notebook, and coffee — a space for writing and research"
         imagePosition="object-center"

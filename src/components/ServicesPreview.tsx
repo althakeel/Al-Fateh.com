@@ -23,11 +23,12 @@ export default function ServicesPreview({ limit }: ServicesPreviewProps) {
             <p className="eyebrow text-accent-600">At Your Service</p>
             <div className="accent-bar mt-4" />
             <h2 className="mt-3 text-2xl font-bold leading-[1.1] tracking-tight text-ink sm:text-3xl lg:text-4xl">
-              Our Consultancy Services
+              Four core service lines
             </h2>
             <p className="mt-4 text-base leading-relaxed text-mute sm:text-lg">
-              Comprehensive business consultancy across our strategic disciplines,
-              delivered from the heart of the UAE.
+              Corporate tax, outsourced finance, cost control and market advisory
+              sit under Accounting. With them: feasibility studies, maritime
+              consultancy, and innovation.
             </p>
           </Reveal>
           <Reveal delay={120}>

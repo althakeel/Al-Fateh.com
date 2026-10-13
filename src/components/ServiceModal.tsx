@@ -47,23 +47,24 @@ export default function ServiceModal({ service, onClose }: ServiceModalProps) {
 
           <h3 className="eyebrow mt-8 text-accent-600">What We Offer</h3>
           <ul className="mt-4 space-y-3">
-            {service.offerings.map((offering) => {
-              const colonIndex = offering.indexOf(":");
-              const label = colonIndex > -1 ? offering.slice(0, colonIndex) : offering;
-              const detail = colonIndex > -1 ? offering.slice(colonIndex + 1).trim() : "";
-
-              return (
-                <li key={offering} className="corp-card flex gap-3 p-4">
+            {service.offerings.map((offering) => (
+                <li key={offering.label} className="corp-card flex gap-3 p-4">
                   <span className="icon-tile-accent-solid mt-0.5 inline-flex h-6 w-6 shrink-0 rounded-sm">
                     <Check size={14} strokeWidth={2.5} aria-hidden />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-ink">{label}</p>
-                    {detail && <p className="mt-1 text-sm text-mute">{detail}</p>}
+                    <p className="text-sm font-semibold text-ink">{offering.label}</p>
+                    {offering.detail && <p className="mt-1 text-sm text-mute">{offering.detail}</p>}
+                    {offering.points && (
+                      <ul className="mt-2 space-y-1 text-sm text-mute">
+                        {offering.points.map((point) => (
+                          <li key={point}>{point}</li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 </li>
-              );
-            })}
+              ))}
           </ul>
         </div>
       </div>

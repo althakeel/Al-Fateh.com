@@ -1,23 +1,17 @@
 import {
-  ChartColumn,
-  Ship,
-  Cpu,
+  Compass,
+  Lightbulb,
   Receipt,
-  Megaphone,
-  Users,
-  Workflow,
+  Ship,
   type LucideIcon,
 } from "lucide-react";
 import Reveal from "./Reveal";
 
 const items: { label: string; icon: LucideIcon }[] = [
-  { label: "Feasibility Studies", icon: ChartColumn },
-  { label: "Maritime Consultancy", icon: Ship },
-  { label: "AI Innovation", icon: Cpu },
-  { label: "Accounting Services", icon: Receipt },
-  { label: "Media Studies", icon: Megaphone },
-  { label: "Human Resources", icon: Users },
-  { label: "Project Development", icon: Workflow },
+  { label: "Accounting", icon: Receipt },
+  { label: "Feasibility", icon: Compass },
+  { label: "Maritime", icon: Ship },
+  { label: "Innovation", icon: Lightbulb },
 ];
 
 export default function CapabilitiesMarquee() {

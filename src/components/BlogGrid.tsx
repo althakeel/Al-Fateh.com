@@ -17,8 +17,8 @@ export default function BlogGrid() {
             Ideas for informed business decisions
           </h2>
           <p className="mt-4 text-base leading-relaxed text-mute">
-            Practical perspectives on feasibility, market strategy, and innovation
-            from the Al FATEH consultancy team.
+            Notes on corporate tax readiness, cost visibility, and market
+            advisory from the Al FATEH team.
           </p>
         </div>
 

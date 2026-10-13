@@ -5,34 +5,39 @@ import IconTile from "./IconTile";
 export default function Expertise() {
   const areas = [
     {
-      title: "Strategic Planning",
+      title: "Construction & Contracting",
       description:
-        "We help organizations define clear objectives, assess market opportunities, and build actionable roadmaps for sustainable growth across the UAE and wider region.",
+        "Project costing and budget control. Materials, labor and subcontractor costs. Budget-versus-actual monitoring. Project profitability and cost variance analysis.",
     },
     {
-      title: "Sector Specific Advisory",
+      title: "Hospitals & Healthcare Facilities",
       description:
-        "From maritime operations to media campaigns and AI adoption, our consultants bring deep domain expertise tailored to your industry challenges.",
+        "Departmental cost analysis. Operating expense monitoring. Medical supplies and consumables cost control. Service-line profitability analysis.",
     },
     {
-      title: "Feasibility and Risk Analysis",
+      title: "Medical Clinics & Dental Centers",
       description:
-        "Make informed investment decisions with comprehensive feasibility studies, cost-benefit analysis, and risk assessments before you commit resources.",
+        "Cost per consultation and treatment. Consumables and laboratory cost monitoring. Staff and operating cost analysis. Profitability by service or specialty.",
     },
     {
-      title: "Organizational Development",
+      title: "Car Showrooms & Automotive",
       description:
-        "Strengthen your human capital and project management capabilities with structured HR strategies, training programs, and performance systems.",
+        "Vehicle acquisition and landed cost analysis. Profit margin per vehicle. Stock holding and inventory cost monitoring. Sales commissions and operating expense control.",
     },
     {
-      title: "Innovation & Digital Transformation",
+      title: "Restaurants & Hospitality",
       description:
-        "Leverage artificial intelligence and emerging technologies to modernize operations, improve decision-making, and stay ahead of industry trends.",
+        "Food and beverage costing. Recipe costing and wastage analysis. Labor and overhead control. Outlet-level profitability.",
     },
     {
-      title: "U.A.E Market Insight",
+      title: "Trading, Retail & Distribution",
       description:
-        "Based in Dubai at Al Saqr Business Tower, we understand the local business landscape and regulatory environment, giving your projects a strategic home-ground advantage.",
+        "Product costing and gross margins. Inventory and stock movement analysis. Supplier and purchasing cost analysis. Branch and product profitability.",
+    },
+    {
+      title: "Manufacturing & Industrial",
+      description:
+        "Raw material and production costing. Labor and overhead allocation. Waste and variance analysis. Unit cost and product profitability.",
     },
   ];
 
@@ -67,6 +72,13 @@ export default function Expertise() {
             );
           })}
         </RevealStagger>
+        <p className="mx-auto mt-10 max-w-3xl text-center text-base leading-relaxed text-mute">
+          Tailored cost analysis based on each sector’s operational model and
+          available data. From understanding the cost of a treatment to measuring
+          the margin earned on each vehicle. Other suitable sectors may include
+          logistics, facilities management, professional services and other
+          service businesses.
+        </p>
       </div>
     </section>
   );

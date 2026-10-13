@@ -1,95 +1,316 @@
+export interface ServiceSection {
+  label: string;
+  detail?: string;
+  aside?: string;
+  note?: string;
+  points?: string[];
+  groups?: ServiceSection[];
+}
+
 export interface ServiceOffering {
   title: string;
   description: string;
-  offerings: string[];
+  plain?: string;
+  note?: string;
+  offerings: ServiceSection[];
+  industryIntro?: string[];
+  industries?: ServiceSection[];
+  industryNote?: string;
 }
+
+const accountingLines: ServiceOffering[] = [
+  {
+    title: "Corporate Tax & Tax Advisory",
+    description:
+      "Helping businesses understand their obligations and make informed tax decisions under UAE regulations.",
+    note: "All tax work must remain within applicable UAE rules and any required professional authorization.",
+    offerings: [
+      {
+        label: "Compliance & Reporting",
+        points: [
+          "Corporate Tax compliance support",
+          "Tax-related financial reporting",
+          "Record readiness and documentation reviews",
+          "Filing coordination, where within the agreed scope",
+        ],
+      },
+      {
+        label: "Planning & Risk Management",
+        points: [
+          "Corporate Tax impact assessments",
+          "Tax health checks and risk identification",
+          "Business transaction and structure considerations",
+          "Legitimate tax efficiency and after-tax profitability analysis",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Outsourced Finance & Accounting",
+    description:
+      "Flexible finance support for businesses that want professional accounting without carrying the full overhead of an in-house team.",
+    note: "Service scope can range from selected accounting tasks to an agreed outsourced finance function.",
+    offerings: [
+      {
+        label: "Managed Accounting Services",
+        points: [
+          "Day-to-day bookkeeping and transaction recording",
+          "Accounts payable and receivable support",
+          "Bank and balance sheet reconciliations",
+          "Month-end and year-end close support",
+        ],
+      },
+      {
+        label: "Reporting & Finance Operations",
+        points: [
+          "Monthly management accounts and financial reports",
+          "Cash flow tracking and working capital insights",
+          "Finance process and system improvements",
+          "Customized ongoing finance function support",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Cost Accounting & Cost Control",
+    description: "Control Your Costs. Improve Your Profitability.",
+    offerings: [
+      {
+        label: "Understand Costs",
+        detail:
+          "Assess cost structures and calculate costs by product, service, treatment, vehicle or project.",
+      },
+      {
+        label: "Control Spending",
+        detail:
+          "Track actual results against budgets, review variances and identify avoidable costs.",
+      },
+      {
+        label: "Improve Margins",
+        detail:
+          "Analyze pricing, gross margin, break-even points and business-unit profitability.",
+      },
+      {
+        label: "Core service capabilities",
+        points: [
+          "Cost structure assessment and cost allocation",
+          "Budgeting, forecasting and variance analysis",
+          "Cost-control procedures and management reports",
+          "Pricing, margin and break-even analysis",
+        ],
+      },
+    ],
+    industryIntro: [
+      "Tailored cost analysis based on each sector’s operational model and available data.",
+      "From understanding the cost of a treatment to measuring the margin earned on each vehicle.",
+      "An adaptable framework for inventory-heavy, production-based and service-oriented businesses.",
+    ],
+    industries: [
+      {
+        label: "Construction & Contracting",
+        points: [
+          "Project costing and budget control",
+          "Materials, labor and subcontractor costs",
+          "Budget-versus-actual monitoring",
+          "Project profitability and cost variance analysis",
+        ],
+      },
+      {
+        label: "Hospitals & Healthcare Facilities",
+        points: [
+          "Departmental cost analysis",
+          "Operating expense monitoring",
+          "Medical supplies and consumables cost control",
+          "Service-line profitability analysis",
+        ],
+      },
+      {
+        label: "Medical Clinics & Dental Centers",
+        points: [
+          "Cost per consultation and treatment",
+          "Consumables and laboratory cost monitoring",
+          "Staff and operating cost analysis",
+          "Profitability by service or specialty",
+        ],
+      },
+      {
+        label: "Car Showrooms & Automotive",
+        points: [
+          "Vehicle acquisition and landed cost analysis",
+          "Profit margin per vehicle",
+          "Stock holding and inventory cost monitoring",
+          "Sales commissions and operating expense control",
+        ],
+      },
+      {
+        label: "Restaurants & Hospitality",
+        points: [
+          "Food and beverage costing",
+          "Recipe costing and wastage analysis",
+          "Labor and overhead control",
+          "Outlet-level profitability",
+        ],
+      },
+      {
+        label: "Trading, Retail & Distribution",
+        points: [
+          "Product costing and gross margins",
+          "Inventory and stock movement analysis",
+          "Supplier and purchasing cost analysis",
+          "Branch and product profitability",
+        ],
+      },
+      {
+        label: "Manufacturing & Industrial",
+        points: [
+          "Raw material and production costing",
+          "Labor and overhead allocation",
+          "Waste and variance analysis",
+          "Unit cost and product profitability",
+        ],
+      },
+    ],
+    industryNote:
+      "Other suitable sectors may include logistics, facilities management, professional services and other service businesses.",
+  },
+  {
+    title: "Business Strategy & Market Advisory",
+    description:
+      "Helping owners understand their position, assess opportunities and choose a clearer direction for growth.",
+    note: "Research methods and deliverables should be agreed clearly, including whether analysis uses published data, client records or primary research.",
+    offerings: [
+      {
+        label: "Business Assessment & Market Insight",
+        points: [
+          "SWOT analysis and business assessment",
+          "Market and industry research",
+          "Competitor analysis and market positioning",
+          "Customer, product and service performance review",
+        ],
+      },
+      {
+        label: "Planning & Growth Advisory",
+        points: [
+          "Strategic planning and growth priorities",
+          "Business performance and profitability analysis",
+          "Opportunity assessment and decision support",
+          "Practical recommendations aligned to business goals",
+        ],
+      },
+    ],
+  },
+];
+
+const costLine = accountingLines.find((line) => line.title === "Cost Accounting & Cost Control");
 
 export const services: ServiceOffering[] = [
   {
     title: "Accounting Services",
-    description:
-      "Our accounting specialists help organizations maintain accurate financial records, strengthen reporting, manage tax and payroll requirements, and make confident financial decisions.",
-    offerings: [
-      "Bookkeeping Services: Record daily transactions, reconcile accounts, maintain organized financial records, prepare and submit tax filings, support budgeting, and ensure compliance with financial reporting requirements.",
-      "Financial Accounting & Reporting: Maintain accurate financial records, prepare financial statements, and deliver timely reports to support informed business decisions.",
-      "Financial Statement Preparation: Prepare professionally structured balance sheets, income statements, cash flow statements, and other statutory financial reports.",
-      "VAT & Corporate Tax: Prepare VAT and corporate tax returns, ensure regulatory compliance, and provide practical tax planning for UAE businesses.",
-      "Payroll Management: Process employee salaries accurately while managing payroll records, statutory deductions, and compliance requirements.",
-      "Cost Control & Analysis: Track business costs, analyze financial performance, and identify opportunities to improve profitability and operational efficiency.",
-      "Financial Advisory & Management Reporting: Provide management reports, budgeting support, and financial insights that help business owners make confident strategic decisions.",
-      "Account System Setup: Implement and configure accounting systems tailored to your business operations for efficient financial management.",
-    ],
+    description: "Corporate Tax | Accounting | Cost Control | Business Advisory",
+    offerings: accountingLines.map((line) => ({
+      label: line.title,
+      detail: line.description,
+      note: line.note,
+      groups: line.offerings,
+    })),
+    industryIntro: costLine?.industryIntro,
+    industries: costLine?.industries,
+    industryNote: costLine?.industryNote,
   },
   {
     title: "Feasibility Studies Consultancy",
     description:
-      "Our team of expert consultants is dedicated to helping you make informed decisions about your projects. We offer comprehensive feasibility studies that assess the potential for a proposed project from market, business, and economic perspectives.",
+      "Before capital is committed, we test whether a project can stand commercially and financially. The study covers the market, the cost, the risks and the return, and ends with a recommendation to proceed, revise or stop.",
     offerings: [
-      "Market Potential Analysis: Evaluate the market potential for your project, including the target audience and competition.",
-      "Cost-Benefit Analysis: We assess the potential costs and benefits of the project.",
-      "Risk Assessment: We identify any potential risks or challenges that may arise.",
-      "Strategic Advice: In addition to conducting a thorough analysis of your project, we also provide strategic advice to help you plan for the future.",
-      "Result-Oriented Solutions: We are committed to providing results-oriented solutions that help our clients achieve their goals.",
+      {
+        label: "Market Potential Analysis",
+        detail:
+          "We judge demand against the audience you can reach and the competitors already there, so the project is sized to a market that can support it, not to a hopeful total.",
+      },
+      {
+        label: "Cost-Benefit Analysis",
+        detail:
+          "The likely cost is set beside the return the project can reasonably support. Assumptions are written on the page, so you can see what the result depends on.",
+      },
+      {
+        label: "Risk Assessment",
+        detail:
+          "Each material risk is named, with what it would take to reduce it, or with the reason it should stop the plan. Risks are not left as a list at the back of the file.",
+      },
+      {
+        label: "Strategic Advice",
+        detail:
+          "The findings become a short set of priorities: what to do first, what to leave, and how the plan should change if the market or the cost moves.",
+      },
+      {
+        label: "Result-Oriented Solutions",
+        detail:
+          "You receive a position you can defend: the evidence, the assumptions, and a clear recommendation. The study is written so a board can decide.",
+      },
     ],
   },
   {
     title: "Maritime Consultancy",
     description:
-      "Our team of maritime consultants is dedicated to providing high-quality, proven, and innovative maritime services. We offer a full range of maritime solutions, including Maritime Business Strategy, Risk Management & Process Improvement, and Marine Technical Services.",
+      "For owners and operators who need a commercial plan they can run. We work from the trade, the assets and the clients you can serve, then carry that plan into risk, daily operations and how the business is presented.",
     offerings: [
-      "Maritime Business Strategy: We help our clients navigate their challenges and opportunities, achieving success through strategic planning and implementation.",
-      "Risk Management & Process Improvement: We identify potential risks and provide solutions for process improvement to ensure smooth operations.",
-      "Operations and Management: We offer comprehensive operations and management services to help our clients hit their targets from conception and planning through to operations and management.",
-      "Development and Marketing: Our team provides development and marketing services to help our clients reach their business goals.",
-      "Results-Oriented Solutions: We are committed to providing results-oriented solutions that help our clients achieve their goals.",
-    ],
-  },
-  {
-    title: "Media Studies & Consultancy",
-    description:
-      "Our team of experts in media studies and consultancies is dedicated to providing high-quality services in the field of media. We offer a wide range of services from academic research to practical applications.",
-    offerings: [
-      "Media Analysis: We provide in-depth analysis of various forms of media from historical, cultural, and technological perspectives.",
-      "Media Campaign Development: We work with your team to develop effective media campaigns tailored to your specific needs.",
-      "Public Relations Advice: Our consultants can advise on public appearances, helping to craft speeches and presentations that effectively communicate your message.",
-      "Social Media Management: We analyze current trends and manage social media platforms to meet the public's demands and interests.",
-      "Training & Workshops: We offer training sessions and workshops on various aspects of media studies, helping your team stay up-to-date with the latest developments in the field.",
-    ],
-  },
-  {
-    title: "Human Resources Consultancy",
-    description:
-      "Our team of HR consultants is dedicated to helping your organization achieve its goals by maximizing the effectiveness of your human resources. We offer a wide range of HR consulting services, from developing HR strategies to implementing HR programs and practices.",
-    offerings: [
-      "HR Strategy Development: We work with you to develop an effective HR strategy that aligns with your organization's overall goals.",
-      "HR Program Implementation: We conduct comprehensive assessments of your current HR programs and processes to identify strengths and areas for improvement.",
-      "HR Assessments: We craft recruitment & talent acquisition strategies to attract and retain top-tier candidates.",
-      "Training Programs: We help you implement HR programs and practices that enhance the effectiveness of your human resources.",
-      "Recruitment & Talent Acquisition Strategies: We identify skills gaps and develop training programs to enhance the skills of your employees.",
+      {
+        label: "Maritime Business Strategy",
+        detail:
+          "The plan is specific to your trade, vessels or assets, and the clients you can win. It says where to compete, what to decline, and how the commercial result will be judged.",
+      },
+      {
+        label: "Risk Management & Process Improvement",
+        detail:
+          "We identify the risks that delay or expose the operation, then tighten the process so work moves with a clearer response when something goes wrong.",
+      },
+      {
+        label: "Operations and Management",
+        detail:
+          "From the first plan through daily management, targets are set, the work is measured, and corrections are made against the commercial plan rather than left to habit.",
+      },
+      {
+        label: "Development and Marketing",
+        detail:
+          "The offer is described in the terms your clients already use, so the business is easier to place, and the message matches the service you can actually deliver.",
+      },
+      {
+        label: "Results-Oriented Solutions",
+        detail:
+          "A recommendation closes on a decision the management team can put to work: what should change, who owns it, and what good looks like once it is done.",
+      },
     ],
   },
   {
     title: "Innovation & Artificial Intelligence Consultancy",
     description:
-      "Our team of AI consultants is dedicated to helping your organization achieve its goals by maximizing the effectiveness of your innovation strategies with the power of AI. We offer a wide range of AI consulting services, from developing AI strategies to implementing AI programs and practices.",
+      "We begin with the decision the business needs to make, then judge whether artificial intelligence earns a place in it. The work covers where to start, how a programme is introduced, and whether it is worth keeping.",
     offerings: [
-      "AI Strategy Development: We work with you to develop an effective AI strategy that aligns with your organization's overall goals.",
-      "AI Program Implementation: We help you implement AI programs and practices that enhance the effectiveness of your innovation strategies.",
-      "AI Assessments: We conduct comprehensive assessments of your current AI programs and processes to identify strengths and areas for improvement.",
-      "Training Programs: We identify skills gaps and develop training programs to enhance the skills of your employees in AI.",
-      "AI Analytics: We leverage AI analytics to help you make informed decisions about your innovation strategies.",
-    ],
-  },
-  {
-    title: "Project Development Consultancy",
-    description:
-      "Our team of project development consultants is dedicated to helping your organization achieve its goals by maximizing the effectiveness of your project management strategies. We offer a wide range of project development consulting services, from developing project management strategies to implementing project management programs and practices.",
-    offerings: [
-      "Project Management Strategy Development: We work with you to develop an effective project management strategy that aligns with your organization's overall goals.",
-      "Program Implementation: We help you implement project management programs and practices that enhance the effectiveness of your projects.",
-      "Project Assessments: We conduct comprehensive assessments of your current projects and processes to identify strengths and areas for improvement.",
-      "Performance Management System Implementation: We help you implement a robust performance management system to enhance the performance of your employees in project management.",
-      "Project Analytics: We leverage project analytics to help you make informed decisions about your project management strategies.",
+      {
+        label: "AI Strategy Development",
+        detail:
+          "The strategy says where to begin, what to leave, and how success will be judged. It is tied to your priorities, the data you have, and the way teams already work.",
+      },
+      {
+        label: "AI Program Implementation",
+        detail:
+          "A programme is introduced so it fits current operations, rather than sitting beside them. Adoption is part of the work, because a system people do not use has not been implemented.",
+      },
+      {
+        label: "AI Assessments",
+        detail:
+          "We review the work directly: what is sound, what is fragile, and whether the result justifies the effort. The finding is written so leadership can act on it.",
+      },
+      {
+        label: "Training Programs",
+        detail:
+          "Where the skills are missing, training stays with the tasks those teams perform. The aim is a programme that is used, not only installed and demonstrated once.",
+      },
+      {
+        label: "AI Analytics",
+        detail:
+          "The figures are tied back to the original decision, so you can see whether the programme is performing, and what should change if it is not.",
+      },
     ],
   },
 ];

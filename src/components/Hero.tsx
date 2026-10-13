@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import HeroMediaSlideshow from "@/components/HeroMediaSlideshow";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -35,7 +35,7 @@ export default function Hero() {
                 <span className="relative h-1.5 w-1.5 rounded-full bg-accent-500" />
               </span>
               <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-ink">
-                Consultation Services · Dubai · UAE
+                Business Services & Advisory · Dubai · UAE
               </span>
             </div>
 
@@ -44,19 +44,13 @@ export default function Hero() {
                 className="hero-reveal inline-block"
                 style={{ ["--hero-delay" as string]: "0.16s" }}
               >
-                Strategic Insights.
+                Keep More
               </span>{" "}
               <span
                 className="hero-reveal inline-block"
                 style={{ ["--hero-delay" as string]: "0.3s" }}
               >
-                <span className="hero-accent-text">Innovative Solutions.</span>
-              </span>{" "}
-              <span
-                className="hero-reveal inline-block"
-                style={{ ["--hero-delay" as string]: "0.44s" }}
-              >
-                Lasting Success.
+                <span className="hero-accent-text">of What You Earn.</span>
               </span>
             </h1>
 
@@ -64,8 +58,8 @@ export default function Hero() {
               className="hero-reveal mt-5 max-w-lg text-base leading-relaxed text-mute sm:text-lg"
               style={{ ["--hero-delay" as string]: "0.56s" }}
             >
-              Expert consultancy in feasibility studies, maritime, media, human
-              resources, artificial intelligence, and project development.
+              A practical finance partner for business growth across tax,
+              accounting, cost control and business advisory.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -89,9 +83,9 @@ export default function Hero() {
 
             <div className="mt-10 grid max-w-lg grid-cols-3 gap-2.5 sm:gap-3">
               {[
-                { value: "7", label: "Consultancy Areas", icon: LayoutGrid },
+                { value: "4", label: "Service Lines", icon: LayoutGrid },
                 { value: "UAE", label: "Based in Dubai", icon: Earth },
-                { value: "100%", label: "Client Focused", icon: Users },
+                { value: "Practical", label: "Tailored Support", icon: Users },
               ].map((stat, i) => {
                 const Icon = stat.icon;
                 return (
@@ -122,15 +116,7 @@ export default function Hero() {
 
             <div className="hero-media group relative w-full overflow-hidden border border-platinum bg-ivory shadow-luxe lg:w-[115%] xl:w-[125%]">
               <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[5/4] lg:aspect-auto lg:h-[420px] xl:h-[450px]">
-                <Image
-                  src="/images/hero-desk.jpg"
-                  alt="Professional consultancy workspace"
-                  fill
-                  priority
-                  className="hero-media-img object-cover object-center scale-110"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-carbon/25 via-transparent to-transparent" />
+                <HeroMediaSlideshow />
               </div>
 
               <div
@@ -143,7 +129,7 @@ export default function Hero() {
                 >
                   <Zap className="h-3.5 w-3.5 text-accent-500" strokeWidth={2} />
                   <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink">
-                    Consultation Services
+                    Business Services & Advisory
                   </span>
                 </div>
               </div>
@@ -159,16 +145,16 @@ export default function Hero() {
                       strokeWidth={1.75}
                     />
                     <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-accent-400">
-                      Client Focused
+                      Keep More of What You Earn
                     </p>
                   </div>
                   <p className="mt-1.5 text-xs leading-snug text-white/80">
-                    Expert Industry Team
+                    Accounting, Feasibility, Maritime, Innovation
                   </p>
                 </div>
               </div>
 
-              <div className="hero-float absolute bottom-5 left-5 right-5 sm:right-auto sm:max-w-[220px]">
+              <div className="hero-float absolute bottom-5 left-5 max-w-[220px]">
                 <div
                   className="hero-overlay-card-alt"
                   style={{ ["--hero-delay" as string]: "1.2s" }}
@@ -180,32 +166,24 @@ export default function Hero() {
                         
                       </p>
                       <p className="mt-1.5 text-sm font-bold text-ink">
-                        Accounting Services
+                        Four service lines
                       </p>
                       <ul className="mt-2 space-y-1 text-[11px] leading-snug text-mute">
                         <li className="flex gap-2">
                           <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent-500" />
-                          Accurate financial recordkeeping
+                          Accounting Services
                         </li>
                         <li className="flex gap-2">
                           <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent-500" />
-                          Financial reporting
+                          Feasibility Studies Consultancy
                         </li>
                         <li className="flex gap-2">
                           <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent-500" />
-                          Tax submission and compliance
+                          Maritime Consultancy
                         </li>
                         <li className="flex gap-2">
                           <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent-500" />
-                          Payroll management
-                        </li>
-                        <li className="flex gap-2">
-                          <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent-500" />
-                          Budgeting and financial planning
-                        </li>
-                        <li className="flex gap-2">
-                          <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent-500" />
-                          Financial analysis and decision support
+                          Innovation & Artificial Intelligence
                         </li>
                       </ul>
                     </div>

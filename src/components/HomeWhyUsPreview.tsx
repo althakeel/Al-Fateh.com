@@ -7,19 +7,16 @@ import IconTile from "./IconTile";
 
 const reasons = [
   {
-    title: "Multi-Disciplinary Expertise",
-    description:
-      "Seven core consultancy disciplines under one roof — accounting, feasibility, maritime, media, HR, AI, and project development — so you get integrated advice without juggling multiple vendors.",
+    title: "Clear financial records",
+    description: "More reliable accounting information and reconciliations.",
   },
   {
-    title: "Results-Oriented Approach",
-    description:
-      "Every engagement is focused on delivering measurable outcomes. We provide strategic advice backed by thorough analysis, not generic recommendations.",
+    title: "Tax readiness",
+    description: "Organized records and structured support for tax compliance.",
   },
   {
-    title: "UAE-Based, Globally Minded",
-    description:
-      "Headquartered in Dubai, we combine local market knowledge with international best practices to help businesses thrive in the UAE and beyond.",
+    title: "Cost visibility",
+    description: "Better understanding of cost drivers and spending patterns.",
   },
 ];
 
@@ -32,7 +29,7 @@ export default function HomeWhyUsPreview() {
             <p className="eyebrow text-accent-600">Why Al FATEH</p>
             <div className="accent-bar mt-4" />
             <h2 className="mt-6 text-3xl font-bold leading-[1.1] tracking-tight text-ink sm:text-4xl lg:text-5xl">
-              A Trusted Partner for Business Growth
+              What clients can expect
             </h2>
           </Reveal>
           <Reveal delay={120}>

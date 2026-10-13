@@ -11,6 +11,8 @@ interface PageHeroProps {
   /** cover = fill panel; contain = letterbox for logos */
   imageFit?: "cover" | "contain";
   imageBg?: string;
+  /** Desktop height of the split hero. Defaults keep other pages unchanged. */
+  minHeightClass?: string;
 }
 
 export default function PageHero({
@@ -22,6 +24,7 @@ export default function PageHero({
   imagePosition = "object-center",
   imageFit = "cover",
   imageBg = "bg-frost",
+  minHeightClass = "lg:min-h-[280px] xl:min-h-[300px]",
 }: PageHeroProps) {
   const isContain = imageFit === "contain";
   const fitClass = isContain ? "object-contain" : "object-cover";
@@ -32,7 +35,7 @@ export default function PageHero({
       <div
         className={
           hasImage
-            ? "lg:grid lg:min-h-[280px] lg:grid-cols-2 lg:items-stretch xl:min-h-[300px]"
+            ? `lg:grid lg:grid-cols-2 lg:items-stretch ${minHeightClass}`
             : undefined
         }
       >

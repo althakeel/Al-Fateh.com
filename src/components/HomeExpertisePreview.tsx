@@ -7,19 +7,19 @@ import IconTile from "./IconTile";
 
 const areas = [
   {
-    title: "Strategic Planning",
+    title: "Construction & Contracting",
     description:
-      "We help organizations define clear objectives, assess market opportunities, and build actionable roadmaps for sustainable growth across the UAE and wider region.",
+      "Project costing and budget control, including materials, labor, subcontractors, and budget-versus-actual monitoring.",
   },
   {
-    title: "Sector Specific Advisory",
+    title: "Hospitals & Healthcare Facilities",
     description:
-      "From maritime operations to media campaigns and AI adoption, our consultants bring deep domain expertise tailored to your industry challenges.",
+      "Departmental cost analysis, operating expense monitoring, and service-line profitability.",
   },
   {
-    title: "Feasibility and Risk Analysis",
+    title: "Medical Clinics & Dental Centers",
     description:
-      "Make informed investment decisions with comprehensive feasibility studies, cost-benefit analysis, and risk assessments before you commit resources.",
+      "Cost per consultation and treatment, consumables, and profitability by service or specialty.",
   },
 ];
 
@@ -32,7 +32,7 @@ export default function HomeExpertisePreview() {
             <p className="eyebrow text-accent-600">Our Expertise</p>
             <div className="accent-bar mt-4" />
             <h2 className="mt-6 text-3xl font-bold leading-[1.1] tracking-tight text-ink sm:text-4xl lg:text-5xl">
-              Expertise Across Key Sectors
+              Industry Solutions
             </h2>
           </Reveal>
           <Reveal delay={120}>

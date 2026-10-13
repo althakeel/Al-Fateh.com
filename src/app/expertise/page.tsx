@@ -7,15 +7,15 @@ import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = createPageMetadata({
   title: "Our Expertise",
   description:
-    "Discover Al FATEH expertise in accounting, financial reporting, tax compliance, payroll, and strategic consultancy for organizations that need reliable financial and advisory support.",
+    "Industry cost solutions for construction, healthcare, clinics, automotive, hospitality, trading and manufacturing. Tailored to each sector’s operational model and available data.",
   path: "/expertise",
-  image: "/images/regional-insight.jpg",
-  imageAlt: "Strategic accounting and business analysis expertise",
+  image: "/images/studio/banner-expertise.jpg",
+  imageAlt: "Al FATEH advisors working through a business analysis",
   keywords: [
-    "accounting expertise",
-    "financial advisory expertise",
-    "tax and payroll specialists",
-    "strategic accounting consultancy",
+    "construction cost control",
+    "healthcare cost analysis",
+    "hospitality costing",
+    "manufacturing cost accounting",
   ],
 });
 
@@ -30,9 +30,10 @@ export default function ExpertisePage() {
       />
       <PageHero
         eyebrow="Our Expertise"
-        title="Expertise Across Key Sectors"
-        image="/images/regional-insight.jpg"
-        imageAlt="Strategic business analysis and sector expertise"
+        title="Industry Solutions"
+        description="An adaptable framework for inventory-heavy, production-based and service-oriented businesses."
+        image="/images/studio/banner-expertise.jpg"
+        imageAlt="Al FATEH advisors working through a business analysis"
         imagePosition="object-center"
       />
       <Expertise />

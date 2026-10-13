@@ -1,22 +1,83 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, ChevronDown } from "lucide-react";
-import { servicePath, visibleServices, type ServiceOffering } from "@/data/services";
+import { servicePath, visibleServices, type ServiceOffering, type ServiceSection } from "@/data/services";
 import { offeringImages, serviceImages, serviceShortLabels } from "@/data/serviceMedia";
 import { serviceFaqs } from "@/data/serviceFaqs";
+import { expertiseIcons } from "@/data/sectionIcons";
+import IconTile from "./IconTile";
 
 interface ServiceDetailProps {
   service: ServiceOffering;
   index: number;
 }
 
-function offeringParts(offering: string) {
-  const colonIndex = offering.indexOf(":");
-  if (colonIndex === -1) return { label: offering, detail: "" };
-  return {
-    label: offering.slice(0, colonIndex).trim(),
-    detail: offering.slice(colonIndex + 1).trim(),
-  };
+function SectionCopy({ section }: { section: ServiceSection }) {
+  return (
+    <>
+      {section.aside && (
+        <p className="mt-4 text-[15px] leading-8 text-brand-900/80">{section.aside}</p>
+      )}
+      {section.detail && (
+        <p className="mt-4 text-[15px] leading-8 text-brand-900/75">{section.detail}</p>
+      )}
+      {section.note && (
+        <p className="mt-3 text-sm leading-7 text-brand-900/55">{section.note}</p>
+      )}
+      {section.points && section.points.length > 0 && (
+        <ul className="mt-5 space-y-2.5">
+          {section.points.map((point) => (
+            <li key={point} className="flex gap-3 text-sm leading-7 text-brand-900/75 md:text-[15px]">
+              <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500" />
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+      {section.groups && section.groups.length > 0 && (
+        <div className="mt-6 space-y-6 border-t border-brand-900/10 pt-6">
+          {section.groups.map((group) => (
+            <div key={group.label}>
+              <h4 className="text-base font-bold text-brand-900">{group.label}</h4>
+              <SectionCopy section={group} />
+            </div>
+          ))}
+        </div>
+      )}
+    </>
+  );
+}
+
+function GroupCards({ groups }: { groups: ServiceSection[] }) {
+  return (
+    <div className="mt-8 grid gap-4 md:grid-cols-2">
+      {groups.map((group) => (
+        <div
+          key={group.label}
+          className="flex h-full flex-col border border-brand-900/10 bg-white p-6 shadow-[0_12px_30px_-24px_rgba(15,39,68,0.45)] md:p-7"
+        >
+          <h3 className="text-lg font-bold leading-snug text-brand-900">{group.label}</h3>
+          <span className="mt-3 block h-px w-10 bg-accent-500" />
+          {group.aside && (
+            <p className="mt-4 text-sm leading-7 text-brand-900/80">{group.aside}</p>
+          )}
+          {group.detail && (
+            <p className="mt-3 text-sm leading-7 text-brand-900/70">{group.detail}</p>
+          )}
+          {group.points && group.points.length > 0 && (
+            <ul className="mt-4 space-y-2.5">
+              {group.points.map((point) => (
+                <li key={point} className="flex gap-3 text-sm leading-6 text-brand-900/75">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500" />
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ))}
+    </div>
+  );
 }
 
 function offeringId(label: string) {
@@ -34,23 +95,23 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
   const previous = visibleServices[(index + visibleServices.length - 1) % visibleServices.length];
   const next = visibleServices[(index + 1) % visibleServices.length];
   const offerings = service.offerings.map((offering, itemIndex) => {
-    const parts = offeringParts(offering);
-    const scopedImage =
-      service.title === "Maritime Consultancy" && parts.label === "Results-Oriented Solutions"
-        ? offeringImages["Maritime results"]
-        : service.title === "Human Resources Consultancy" && parts.label === "Training Programs"
-          ? offeringImages["HR training"]
-          : offeringImages[parts.label];
+    const scopedImage = offeringImages[offering.label];
     return {
-      ...parts,
-      id: offeringId(parts.label),
+      ...offering,
+      id: offeringId(offering.label),
       number: String(itemIndex + 1).padStart(2, "0"),
       image: scopedImage ?? image,
     };
   });
+  const industries = (service.industries ?? []).map((industry, itemIndex) => ({
+    ...industry,
+    id: offeringId(industry.label),
+    number: String(itemIndex + 1).padStart(2, "0"),
+  }));
   const featured = offerings[0];
   const rest = offerings.slice(1);
   const faqs = serviceFaqs[service.title] ?? [];
+  const grouped = offerings.some((item) => (item.groups?.length ?? 0) > 0);
 
   return (
     <>
@@ -80,6 +141,14 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
             <p className="mt-4 max-w-2xl text-sm leading-7 text-white/75 md:text-[15px]">
               {service.description}
             </p>
+            {service.plain && (
+              <p className="mt-3 max-w-2xl text-sm leading-7 text-white/85 md:text-[15px]">
+                {service.plain}
+              </p>
+            )}
+            {service.note && (
+              <p className="mt-3 max-w-2xl text-sm leading-7 text-white/60">{service.note}</p>
+            )}
           </div>
           <div className="flex flex-col gap-3 sm:flex-row lg:col-span-4 lg:justify-end">
             <Link href="/contact" className="btn-primary">
@@ -104,6 +173,14 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
               {item.label}
             </a>
           ))}
+          {industries.length > 0 && (
+            <a
+              href="#industry-solutions"
+              className="shrink-0 rounded-full border border-transparent bg-white/80 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-900/70 transition-colors hover:border-accent-500/35 hover:bg-white hover:text-accent-700"
+            >
+              Industry solutions
+            </a>
+          )}
           {faqs.length > 0 && (
             <a
               href="#faq"
@@ -115,7 +192,64 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
         </div>
       </div>
 
-      {featured && (
+      {grouped ? (
+        <section className="bg-frost py-14 md:py-16">
+          <div className="container-x flex flex-col gap-16 md:gap-20">
+            {offerings.map((item, itemIndex) => {
+              const imageFirst = itemIndex % 2 === 0;
+              return (
+                <article
+                  key={item.id}
+                  id={item.id}
+                  className="scroll-mt-44 border-t border-brand-900/10 pt-12 first:border-t-0 first:pt-0 md:pt-14"
+                >
+                  <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
+                    <div className={imageFirst ? "lg:col-span-7" : "lg:order-2 lg:col-span-7"}>
+                      <div className="mb-4 flex items-center gap-3">
+                        <span className="text-sm font-semibold tracking-[0.14em] text-accent-600">
+                          {item.number}
+                        </span>
+                        <span className="h-px w-10 bg-accent-500" />
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-600">
+                          {label}
+                        </p>
+                      </div>
+                      <h2 className="text-2xl font-bold leading-tight text-brand-900 md:text-3xl">
+                        {item.label}
+                      </h2>
+                      {item.aside && (
+                        <p className="mt-4 max-w-xl text-[15px] leading-8 text-brand-900/80">{item.aside}</p>
+                      )}
+                      {item.detail && (
+                        <p className="mt-3 max-w-xl text-[15px] leading-8 text-brand-900/70">{item.detail}</p>
+                      )}
+                      {item.note && (
+                        <p className="mt-3 max-w-xl text-sm leading-7 text-brand-900/55">{item.note}</p>
+                      )}
+                    </div>
+                    <div
+                      className={`relative aspect-[4/3] overflow-hidden bg-brand-900/5 lg:col-span-5 ${
+                        imageFirst ? "" : "lg:order-1"
+                      }`}
+                    >
+                      {item.image && (
+                        <Image
+                          src={item.image.src}
+                          alt={item.image.alt}
+                          fill
+                          className="object-cover object-center"
+                          sizes="(max-width: 1024px) 100vw, 40vw"
+                        />
+                      )}
+                    </div>
+                  </div>
+                  {item.groups && item.groups.length > 0 && <GroupCards groups={item.groups} />}
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      ) : featured && (
         <section id={featured.id} className="scroll-mt-44 bg-frost py-12 md:py-14">
           <div className="container-x">
             <div className="overflow-hidden rounded-[22px] border border-accent-500/30 bg-white shadow-[0_18px_40px_rgba(15,39,68,0.08)]">
@@ -144,9 +278,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
                   <h2 className="text-2xl font-bold leading-tight text-brand-900 md:text-3xl lg:text-4xl">
                     {featured.label}
                   </h2>
-                  {featured.detail && (
-                    <p className="mt-4 text-[15px] leading-8 text-brand-900/75">{featured.detail}</p>
-                  )}
+                  <SectionCopy section={featured} />
                 </div>
               </div>
             </div>
@@ -154,6 +286,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
         </section>
       )}
 
+      {!grouped && (
       <section id="scope" className="scroll-mt-44 bg-ivory py-14 md:py-16">
         <div className="container-x">
           <div className="mb-10 flex flex-col gap-4 border-b border-accent-500/15 pb-8 md:flex-row md:items-end md:justify-between">
@@ -165,12 +298,9 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
                 </p>
               </div>
               <h2 className="text-3xl font-bold text-brand-900 md:text-4xl">
-                Full scope of this practice
+                {service.title}
               </h2>
             </div>
-            <p className="max-w-md text-sm leading-6 text-brand-900/55">
-              {String(offerings.length).padStart(2, "0")} areas of work covered in this engagement.
-            </p>
           </div>
 
           <div className="flex flex-col gap-12 md:gap-14 lg:gap-16">
@@ -206,11 +336,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
                     <div className="min-w-0 flex-1">
                       <h3 className="text-xl font-bold text-brand-900 md:text-2xl">{item.label}</h3>
                       <span className="mt-3 block h-px w-12 bg-accent-500/55" />
-                      {item.detail && (
-                        <p className="mt-4 text-sm leading-7 text-brand-900/70 md:text-[15px]">
-                          {item.detail}
-                        </p>
-                      )}
+                      <SectionCopy section={item} />
                     </div>
                   </div>
                 </article>
@@ -219,6 +345,114 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
           </div>
         </div>
       </section>
+      )}
+
+      {industries.length > 0 && (
+        <section id="industry-solutions" className="scroll-mt-44 border-t border-brand-900/10 bg-ivory py-16 md:py-20">
+          <div className="container-x">
+            <div className="grid items-end gap-8 border-b border-brand-900/10 pb-10 lg:grid-cols-12 lg:gap-12">
+              <div className="lg:col-span-5">
+                <div className="mb-3 flex items-center gap-3">
+                  <span className="h-px w-8 bg-accent-500" />
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent-600">
+                    Cost control
+                  </p>
+                </div>
+                <h2 className="text-3xl font-bold tracking-tight text-brand-900 md:text-4xl">
+                  Industry solutions
+                </h2>
+              </div>
+              <ol className="space-y-4 lg:col-span-7 lg:border-s lg:border-brand-900/10 lg:ps-10">
+                {service.industryIntro?.map((line, lineIndex) => (
+                  <li key={line} className="grid grid-cols-[2.25rem_1fr] gap-3">
+                    <span className="pt-0.5 text-[11px] font-semibold tracking-[0.16em] text-accent-600">
+                      {String(lineIndex + 1).padStart(2, "0")}
+                    </span>
+                    <p className="text-sm leading-7 text-brand-900/75 md:text-[15px]">{line}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {industries.slice(0, 6).map((industry, industryIndex) => (
+                <article
+                  key={industry.id}
+                  id={industry.id}
+                  className="corp-card group relative flex h-full scroll-mt-44 flex-col overflow-hidden p-6 shadow-luxe md:p-7"
+                >
+                  <span className="ghost-numeral pointer-events-none absolute -right-1 -top-3 select-none text-7xl">
+                    {industry.number}
+                  </span>
+                  <div className="relative flex items-center justify-between gap-4">
+                    <IconTile icon={expertiseIcons[industryIndex]} size="md" variant="solid" />
+                    <span className="text-[11px] font-semibold tracking-[0.18em] text-accent-600">
+                      {industry.number}
+                    </span>
+                  </div>
+                  <h3 className="relative mt-5 text-lg font-bold tracking-tight text-brand-900">
+                    {industry.label}
+                  </h3>
+                  <span className="relative mt-3 block h-px w-10 bg-accent-500" />
+                  {industry.points && (
+                    <ul className="relative mt-4 space-y-2.5">
+                      {industry.points.map((point) => (
+                        <li key={point} className="flex gap-3 text-sm leading-6 text-brand-900/70">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500" />
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </article>
+              ))}
+            </div>
+
+            {industries[6] && (
+              <div className="mt-4 grid gap-4 lg:grid-cols-12">
+                <article
+                  id={industries[6].id}
+                  className="corp-card group relative flex scroll-mt-44 flex-col overflow-hidden p-6 shadow-luxe md:p-7 lg:col-span-7"
+                >
+                  <span className="ghost-numeral pointer-events-none absolute -right-1 -top-3 select-none text-7xl">
+                    {industries[6].number}
+                  </span>
+                  <div className="relative flex items-center justify-between gap-4">
+                    <IconTile icon={expertiseIcons[6]} size="md" variant="solid" />
+                    <span className="text-[11px] font-semibold tracking-[0.18em] text-accent-600">
+                      {industries[6].number}
+                    </span>
+                  </div>
+                  <h3 className="relative mt-5 text-lg font-bold tracking-tight text-brand-900">
+                    {industries[6].label}
+                  </h3>
+                  <span className="relative mt-3 block h-px w-10 bg-accent-500" />
+                  {industries[6].points && (
+                    <ul className="relative mt-4 grid gap-2.5 sm:grid-cols-2">
+                      {industries[6].points.map((point) => (
+                        <li key={point} className="flex gap-3 text-sm leading-6 text-brand-900/70">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500" />
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </article>
+                {service.industryNote && (
+                  <aside className="flex flex-col justify-between bg-brand-900 px-6 py-7 text-white md:px-8 md:py-8 lg:col-span-5">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent-400">
+                      Other sectors
+                    </p>
+                    <p className="mt-4 text-lg font-semibold leading-8 text-white/90">
+                      {service.industryNote}
+                    </p>
+                  </aside>
+                )}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       {faqs.length > 0 && (
         <section id="faq" className="scroll-mt-44 border-t border-platinum bg-frost py-14 md:py-16">

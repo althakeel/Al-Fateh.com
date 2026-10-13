@@ -4,12 +4,10 @@ import {
   HeartHandshake,
   Award,
   ChartColumn,
-  Ship,
-  Megaphone,
-  Cpu,
   Workflow,
   Receipt,
   Compass,
+  Ship,
   Building2,
   ShieldCheck,
   LayoutGrid,
@@ -26,31 +24,26 @@ export const valueIcons: LucideIcon[] = [
 
 export const serviceIcons: LucideIcon[] = [
   Receipt,
-  ChartColumn,
+  Compass,
   Ship,
-  Megaphone,
-  Users,
-  Cpu,
-  Workflow,
+  Lightbulb,
 ];
 
 export const serviceIconByTitle: Record<string, LucideIcon> = {
   "Accounting Services": Receipt,
-  "Feasibility Studies Consultancy": ChartColumn,
+  "Feasibility Studies Consultancy": Compass,
   "Maritime Consultancy": Ship,
-  "Media Studies & Consultancy": Megaphone,
-  "Human Resources Consultancy": Users,
-  "Innovation & Artificial Intelligence Consultancy": Cpu,
-  "Project Development Consultancy": Workflow,
+  "Innovation & Artificial Intelligence Consultancy": Lightbulb,
 };
 
 export const expertiseIcons: LucideIcon[] = [
-  Compass,
   Building2,
   ShieldCheck,
-  Users,
-  Cpu,
-  Earth,
+  HeartHandshake,
+  Award,
+  ChartColumn,
+  LayoutGrid,
+  Workflow,
 ];
 
 export const whyUsIcons: LucideIcon[] = [

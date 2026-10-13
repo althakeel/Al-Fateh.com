@@ -11,13 +11,13 @@ import Reveal from "./Reveal";
 const chipIcons = [ShieldCheck, Users, Compass];
 
 const trustPoints = [
-  { title: "Trusted expertise", text: "Specialists who stay with the work" },
-  { title: "Practical advice", text: "Recommendations you can use" },
-  { title: "UAE practice", text: "Reporting, tax, and payroll in Dubai" },
+  { title: "Tax readiness", text: "Organized records and structured support for tax compliance" },
+  { title: "Cost visibility", text: "A clearer view of cost drivers and spending patterns" },
+  { title: "Flexible support", text: "Project-based work or recurring support where agreed" },
 ];
 
-function chipLabel(offering: string) {
-  return offering.split(":")[0].trim();
+function chipLabel(offering: { label: string }) {
+  return offering.label;
 }
 
 export default function Services() {
@@ -27,14 +27,15 @@ export default function Services() {
     <>
       <section className="relative flex min-h-[620px] items-end overflow-hidden lg:min-h-[700px]">
         <Image
-          src="/images/hero-boardroom.jpg"
-          alt="Professional consultancy team in a boardroom meeting"
+          src="/images/studio/boardroom.jpg"
+          alt="The Al FATEH team in a boardroom meeting"
           fill
           priority
+          quality={90}
           className="object-cover object-center"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-900/92 via-brand-900/72 to-brand-900/35" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-900/82 via-brand-900/45 to-brand-900/15" />
         <div className="container-x relative z-10 pb-14 pt-32 lg:pb-20 lg:pt-36">
           <div className="animate-fade-up mb-5 flex items-center gap-3">
             <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-accent-500">
@@ -43,10 +44,15 @@ export default function Services() {
             <span className="h-px w-10 bg-accent-500" />
           </div>
           <h1 className="animate-fade-up-delay-1 max-w-3xl text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
-            At your Service
+            Four core
             <br />
-            <span className="text-accent-500">Our Consultancy</span> Services
+            <span className="text-accent-500">service</span> lines
           </h1>
+          <p className="animate-fade-up-delay-2 mt-5 max-w-xl text-base leading-8 text-white/75">
+            Accounting services cover tax, finance, cost control and market
+            advisory. With them: feasibility studies, maritime consultancy, and
+            innovation and artificial intelligence.
+          </p>
           <div className="animate-fade-up-delay-3 mt-8 flex flex-col gap-3 sm:flex-row">
             <Link href="/contact" className="btn-primary">
               Contact Us
@@ -91,7 +97,8 @@ export default function Services() {
         const lead = words.slice(0, -1).join(" ");
         const accent = words[words.length - 1];
         const number = String(index + 1).padStart(2, "0");
-        const highlights = service.offerings.slice(0, 3);
+        const highlights =
+          service.offerings.length <= 4 ? service.offerings : service.offerings.slice(0, 3);
 
         return (
           <section
@@ -157,12 +164,19 @@ export default function Services() {
                   {lead} <span className="text-accent-500">{accent}</span>
                 </h2>
                 <p className="mt-5 max-w-xl text-base leading-8 text-slate">{service.description}</p>
-                <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-5 sm:grid-cols-3">
+                {service.plain && (
+                  <p className="mt-3 max-w-xl text-base leading-8 text-slate/80">{service.plain}</p>
+                )}
+                <div
+                  className={`mt-8 grid grid-cols-2 gap-x-4 gap-y-5 ${
+                    highlights.length === 4 ? "" : "sm:grid-cols-3"
+                  }`}
+                >
                   {highlights.map((offering, chipIndex) => {
                     const Icon = chipIcons[chipIndex % chipIcons.length];
                     return (
                       <div
-                        key={offering}
+                        key={offering.label}
                         className={chipIndex > 0 ? "sm:border-s sm:border-brand-900/15 sm:ps-5" : undefined}
                       >
                         <span className="flex h-11 w-11 items-center justify-center rounded-full bg-accent-500/15 text-accent-600">
@@ -198,11 +212,11 @@ export default function Services() {
               <span className="h-px w-12 bg-accent-500" />
             </div>
             <h2 className="mt-5 max-w-xl text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
-              Ready to Discuss Your <span className="text-accent-500">Requirements?</span>
+              Ready to keep more of <span className="text-accent-500">what you earn?</span>
             </h2>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-white/75">
-              Our advisors are ready to look at your accounts, projects, and the
-              decisions in front of you.
+              Practical, tailored support across accounting, feasibility
+              studies, maritime consultancy, and innovation.
             </p>
             <Link href="/contact" className="btn-primary mt-8">
               Get a Consultation

@@ -26,9 +26,8 @@ export default function Footer() {
                 Begin a conversation with the Al FATEH advisory team.
               </h2>
               <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/65 sm:text-lg">
-                Professional accounting and consultation services — bookkeeping,
-                financial reporting, tax compliance, payroll, and practical
-                financial advisory for growing organizations.
+                A practical finance partner for business growth across corporate
+                tax, outsourced accounting, cost control and business advisory.
               </p>
             </div>
 
@@ -48,7 +47,7 @@ export default function Footer() {
             {[
               { title: "Response", value: "Within 1 business day" },
               { title: "Confidentiality", value: "NDA on request" },
-              { title: "Focus", value: "Accounting & Advisory" },
+              { title: "Focus", value: "Business Services & Advisory" },
               { title: "Engagement", value: "Senior-led team" },
             ].map((item) => (
               <div
@@ -90,12 +89,14 @@ export default function Footer() {
           <div>
             <h3 className="eyebrow text-accent-400/80">Contact</h3>
             <ul className="mt-4 space-y-2.5 text-sm text-white/60">
-              <li>
-                <a href={contact.phoneHref} className="inline-flex items-center gap-2 hover:text-accent-400">
-                  <Phone className="h-3.5 w-3.5" />
-                  {contact.phoneDisplay}
-                </a>
-              </li>
+              {contact.phones.map((phone) => (
+                <li key={phone.href}>
+                  <a href={phone.href} className="inline-flex items-center gap-2 hover:text-accent-400">
+                    <Phone className="h-3.5 w-3.5" />
+                    {phone.display}
+                  </a>
+                </li>
+              ))}
               <li>
                 <a href={contact.emailHref} className="inline-flex items-center gap-2 hover:text-accent-400">
                   <Mail className="h-3.5 w-3.5" />

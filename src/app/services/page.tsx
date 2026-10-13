@@ -4,19 +4,19 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Accounting & Consultancy Services",
+  title: "Business Services & Advisory",
   description:
-    "Explore Al FATEH accounting services: bookkeeping, financial reporting, VAT and corporate tax, payroll, budgeting, and financial advisory — plus feasibility, maritime, and AI consultancy.",
+    "Four practices: accounting services, feasibility studies, maritime consultancy, and innovation and artificial intelligence.",
   path: "/services",
-  image: "/images/hero-boardroom.jpg",
-  imageAlt: "Professional accounting and consultancy team in a boardroom meeting",
+  image: "/images/studio/boardroom.jpg",
+  imageAlt: "The Al FATEH team in a boardroom meeting",
   keywords: [
-    "accounting services",
-    "bookkeeping services",
-    "VAT and tax compliance",
-    "payroll services",
-    "financial reporting services",
-    "accounting consultancy",
+    "corporate tax advisory",
+    "outsourced finance",
+    "cost accounting",
+    "feasibility studies",
+    "maritime consultancy",
+    "artificial intelligence consultancy",
   ],
 });
 

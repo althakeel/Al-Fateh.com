@@ -26,8 +26,8 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.legalName, url: siteConfig.url }],
   creator: siteConfig.legalName,
   publisher: siteConfig.legalName,
-  category: "Accounting Services",
-  classification: "Accounting & Professional Services",
+  category: "Business Services & Advisory",
+  classification: "Business Services & Advisory",
   referrer: "origin-when-cross-origin",
   formatDetection: {
     email: false,

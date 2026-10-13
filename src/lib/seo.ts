@@ -43,8 +43,8 @@ export function createPageMetadata({
     authors: [{ name: siteConfig.legalName, url: siteConfig.url }],
     creator: siteConfig.legalName,
     publisher: siteConfig.legalName,
-    category: "Accounting Services",
-    classification: "Accounting & Professional Services",
+    category: "Business Services & Advisory",
+    classification: "Business Services & Advisory",
     referrer: "origin-when-cross-origin",
     formatDetection: {
       email: false,
@@ -136,7 +136,7 @@ export function createPageMetadata({
       "og:email": siteConfig.email,
       "og:phone_number": siteConfig.phone,
       "article:publisher": siteConfig.legalName,
-      "service:type": "Accounting Services",
+      "service:type": "Business Services & Advisory",
     },
   };
 }
@@ -158,16 +158,10 @@ export function organizationJsonLd() {
     description: siteConfig.description,
     email: siteConfig.email,
     telephone: siteConfig.phone,
-    areaServed: [
-      {
-        "@type": "Country",
-        name: "United Arab Emirates",
-      },
-      {
-        "@type": "AdministrativeArea",
-        name: "GCC",
-      },
-    ],
+    areaServed: {
+      "@type": "Country",
+      name: "United Arab Emirates",
+    },
     address: {
       "@type": "PostalAddress",
       streetAddress: siteConfig.address.street,
@@ -188,14 +182,13 @@ export function organizationJsonLd() {
     sameAs: [contact.whatsappHref],
     knowsAbout: [
       "Accounting Services",
-      "Bookkeeping",
-      "Financial Reporting",
-      "VAT and Corporate Tax",
-      "Payroll Management",
-      "Financial Advisory",
-      "Feasibility Studies",
+      "Corporate Tax & Tax Advisory",
+      "Outsourced Finance & Accounting",
+      "Cost Accounting & Cost Control",
+      "Business Strategy & Market Advisory",
+      "Feasibility Studies Consultancy",
       "Maritime Consultancy",
-      "Artificial Intelligence Consultancy",
+      "Innovation & Artificial Intelligence Consultancy",
     ],
   };
 }

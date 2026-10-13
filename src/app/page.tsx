@@ -17,15 +17,15 @@ export const metadata: Metadata = createPageMetadata({
   title: siteConfig.title,
   description: siteConfig.description,
   path: "/",
-  image: "/images/hero-desk.jpg",
-  imageAlt: "Al FATEH professional accounting and consultancy workspace",
+  image: "/images/studio/team.jpg",
+  imageAlt: "The Al FATEH team",
   keywords: [
-    "professional accounting services",
-    "bookkeeping and payroll",
-    "VAT and corporate tax filing",
-    "financial statements preparation",
-    "Al FATEH accounting services",
-    "business accounting consultancy",
+    "corporate tax advisory Dubai",
+    "outsourced finance UAE",
+    "cost control advisory",
+    "business strategy advisory",
+    "Al FATEH business services",
+    "keep more of what you earn",
   ],
 });
 

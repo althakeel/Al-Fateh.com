@@ -31,11 +31,11 @@ export default function Team() {
       <div className="pointer-events-none absolute inset-0 pattern-nodes opacity-20" />
 
       <div className="container-x relative">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <Reveal className="max-w-xl">
+        <div className="flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
+          <Reveal>
             <p className="eyebrow text-accent-600">Our Team</p>
             <div className="accent-bar mt-4" />
-            <h2 className="mt-5 text-3xl font-bold leading-[1.08] tracking-tight text-ink sm:text-4xl lg:text-5xl">
+            <h2 className="mt-5 whitespace-nowrap text-[clamp(1rem,4.4vw,3rem)] font-bold leading-none tracking-tight text-ink">
               The Experts Behind Al FATEH
             </h2>
           </Reveal>

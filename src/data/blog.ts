@@ -17,115 +17,92 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
-    slug: "building-a-decision-ready-feasibility-study",
-    title: "Building a Decision-Ready Feasibility Study",
+    slug: "corporate-tax-readiness",
+    title: "What Corporate Tax Readiness Looks Like",
     excerpt:
-      "A practical feasibility study does more than validate an idea. It gives decision-makers a structured view of demand, risk, investment, and execution.",
-    category: "Feasibility Studies",
-    readTime: "5 min read",
-    image: "/images/hero-boardroom.jpg",
-    imageAlt: "Consultants reviewing a business feasibility study",
+      "Tax readiness starts with organized records and a clear view of the obligation, before filing is coordinated within the agreed scope.",
+    category: "Corporate Tax",
+    readTime: "4 min read",
+    image: "/images/services/accounting-books.jpg",
+    imageAlt: "Financial records prepared for a corporate tax review",
     sections: [
       {
-        heading: "Start with the decision",
+        heading: "Start with the records",
         paragraphs: [
-          "The most useful studies begin with a clearly defined decision. Whether the question is to invest, expand, launch, or pause, the analysis should be designed around the evidence needed to make that choice.",
-          "A precise scope keeps research focused and helps stakeholders distinguish essential findings from background information.",
+          "Corporate tax work depends on records that can be reviewed. Readiness means the documentation is in order before compliance support, tax-related reporting, or filing coordination begins.",
+          "All tax work remains within applicable UAE rules and any required professional authorization.",
         ],
       },
       {
-        heading: "Connect the market and financial views",
+        heading: "Separate compliance from planning",
         paragraphs: [
-          "Market demand and financial performance should not be assessed separately. Customer segments, pricing, expected adoption, and competitive pressure all influence revenue assumptions and operating requirements.",
+          "Compliance support and tax-related financial reporting answer what is due. Planning looks at impact, risk, and whether a transaction or structure changes the after-tax result.",
         ],
         points: [
-          "Define the target market and realistic demand scenarios.",
-          "Test pricing against customer value and competitive alternatives.",
-          "Model capital needs, operating costs, cash flow, and break-even points.",
-          "Compare base, downside, and upside cases.",
-        ],
-      },
-      {
-        heading: "Make risks actionable",
-        paragraphs: [
-          "A risk register is most valuable when each risk has an owner, an impact assessment, and a practical response. This turns uncertainty into a manageable part of the implementation plan.",
-          "The final recommendation should state the conditions under which the opportunity is viable and identify the next steps required before capital is committed.",
+          "Corporate Tax compliance support and filing coordination, where within the agreed scope.",
+          "Record readiness and documentation reviews.",
+          "Tax health checks and risk identification.",
+          "Legitimate tax efficiency and after-tax profitability analysis.",
         ],
       },
     ],
   },
   {
-    slug: "planning-for-uae-market-entry",
-    title: "What UAE Market Entry Planning Should Cover",
+    slug: "cost-visibility-and-margin",
+    title: "From Cost Visibility to a Clearer Margin",
     excerpt:
-      "Successful market entry depends on more than demand. A robust plan connects commercial opportunity with regulation, operating structure, and local execution.",
-    category: "Market Strategy",
-    readTime: "6 min read",
-    image: "/images/regional-insight.jpg",
-    imageAlt: "Dubai skyline representing UAE market opportunities",
+      "Cost control is the work of seeing what a product, treatment, vehicle or project actually costs, then comparing that with the budget and the margin.",
+    category: "Cost Control",
+    readTime: "5 min read",
+    image: "/images/services/accounting-costs.jpg",
+    imageAlt: "Cost and margin figures under review",
     sections: [
       {
-        heading: "Define where the opportunity is",
+        heading: "Understand the cost first",
         paragraphs: [
-          "The UAE is a connected but diverse market. Customer needs, competitive intensity, operating costs, and licensing requirements can vary by emirate, sector, and business model.",
-          "Market sizing should therefore identify the specific customer groups and locations that can support a sustainable entry strategy.",
+          "The starting point is the cost structure: what it costs to deliver a product, a service, a treatment, a vehicle or a project. Without that, a budget variance is only a number.",
         ],
       },
       {
-        heading: "Align the operating model",
+        heading: "Then control the spend",
         paragraphs: [
-          "The legal and operating structure should support how the business plans to sell, hire, partner, and deliver. These choices affect cost, control, speed to market, and future scalability.",
+          "Tracking actual results against the budget shows which costs were planned and which can be avoided. Margin work then looks at pricing, gross margin, break-even and business-unit profitability.",
         ],
         points: [
-          "Map licensing and regulatory requirements early.",
-          "Compare direct entry, partnership, and distribution models.",
-          "Validate staffing, supply chain, and delivery capabilities.",
-          "Set measurable milestones for a phased launch.",
-        ],
-      },
-      {
-        heading: "Plan for evidence-led adaptation",
-        paragraphs: [
-          "An entry plan should include clear assumptions and early indicators that show whether the strategy is working. Customer feedback, conversion, unit economics, and delivery performance can guide changes before expansion.",
-          "A phased approach gives leadership the flexibility to learn while protecting capital and maintaining strategic control.",
+          "Cost structure assessment and cost allocation.",
+          "Budgeting, forecasting and variance analysis.",
+          "Pricing, margin and break-even analysis.",
+          "A method matched to the sector and the data available.",
         ],
       },
     ],
   },
   {
-    slug: "turning-ai-ambition-into-a-practical-roadmap",
-    title: "Turning AI Ambition into a Practical Business Roadmap",
+    slug: "agreeing-a-market-advisory-brief",
+    title: "Agree the Market Advisory Brief Before the Research",
     excerpt:
-      "AI initiatives create value when they address a defined business problem, use dependable data, and fit the way teams actually work.",
-    category: "AI & Innovation",
-    readTime: "5 min read",
-    image: "/images/network-metric.webp",
-    imageAlt: "Connected digital network illustrating business AI",
+      "A useful market and strategy engagement states how the analysis will be done, and what the business will receive, before the work starts.",
+    category: "Market Advisory",
+    readTime: "4 min read",
+    image: "/images/studio/skyline.jpg",
+    imageAlt: "Advisors in discussion with the Dubai skyline behind them",
     sections: [
       {
-        heading: "Choose the problem before the technology",
+        heading: "Name the question",
         paragraphs: [
-          "A strong AI roadmap begins with business priorities rather than tools. The first task is to identify processes where better prediction, faster analysis, or targeted automation can produce a measurable outcome.",
-          "Use cases should be compared by potential value, implementation complexity, data readiness, and operational risk.",
+          "Owners use this work to understand their position, assess an opportunity, and choose a clearer direction. The brief should say which of those questions the engagement is answering.",
         ],
       },
       {
-        heading: "Assess readiness honestly",
+        heading: "Agree the evidence",
         paragraphs: [
-          "Reliable outcomes depend on data quality, governance, technical integration, and user adoption. A readiness review makes these dependencies visible before a pilot begins.",
+          "Research methods and deliverables should be agreed clearly, including whether the analysis uses published data, client records or primary research.",
         ],
         points: [
-          "Confirm that relevant data is available, usable, and appropriately governed.",
-          "Identify integration and security requirements.",
-          "Define human oversight for important decisions.",
-          "Set outcome metrics before selecting a solution.",
-        ],
-      },
-      {
-        heading: "Scale from measured results",
-        paragraphs: [
-          "A focused pilot should test both technical performance and operational fit. Teams need to understand how the solution changes responsibilities, approvals, and customer interactions.",
-          "Scaling should follow demonstrated value, with governance and monitoring strengthened as the impact of the system grows.",
+          "SWOT analysis and business assessment.",
+          "Market, industry and competitor research.",
+          "Customer, product and service performance.",
+          "Recommendations aligned to the business goals.",
         ],
       },
     ],

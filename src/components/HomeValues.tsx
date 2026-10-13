@@ -6,23 +6,19 @@ import { valueIcons } from "@/data/sectionIcons";
 
 const values = [
   {
-    title: "Strategic Insight",
-    description: "",
+    title: "Corporate Tax",
     icon: Lightbulb,
   },
   {
-    title: "Industry Experts",
-    description: "",
+    title: "Outsourced Finance",
     icon: Users,
   },
   {
-    title: "Client-Centric",
-    description: "",
+    title: "Cost Control",
     icon: HeartHandshake,
   },
   {
-    title: "Excellence",
-    description: "",
+    title: "Business Advisory",
     icon: Award,
   },
 ];
@@ -35,9 +31,9 @@ export default function HomeValues() {
           <p className="eyebrow text-accent-600">Our Approach</p>
           <div className="accent-bar mt-4" />
           <p className="mt-6 text-base leading-relaxed text-mute sm:text-lg">
-            Our mission is to empower businesses and organizations by providing
-            them with strategic insights and innovative solutions that drive
-            growth and success.
+            To help businesses keep more of what they earn through smart
+            Corporate Tax planning, reliable accounting outsourcing and
+            strategic business advisory.
           </p>
         </Reveal>
 

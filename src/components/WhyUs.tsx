@@ -8,34 +8,28 @@ import IconTile from "./IconTile";
 export default function WhyUs() {
   const reasons = [
     {
-      title: "Multi-Disciplinary Expertise",
-      description:
-        "Seven core consultancy disciplines under one roof — accounting, feasibility, maritime, media, HR, AI, and project development — so you get integrated advice without juggling multiple vendors.",
+      title: "Clear financial records",
+      description: "More reliable accounting information and reconciliations.",
     },
     {
-      title: "Results-Oriented Approach",
-      description:
-        "Every engagement is focused on delivering measurable outcomes. We provide strategic advice backed by thorough analysis, not generic recommendations.",
+      title: "Tax readiness",
+      description: "Organized records and structured support for tax compliance.",
     },
     {
-      title: "Client-Centric Partnership",
-      description:
-        "We work closely with your team to understand your unique challenges, culture, and goals. Your success is our benchmark for excellence.",
+      title: "Cost visibility",
+      description: "Better understanding of cost drivers and spending patterns.",
     },
     {
-      title: "UAE-Based, Globally Minded",
-      description:
-        "Headquartered in Dubai, we combine local market knowledge with international best practices to help businesses thrive in the UAE and beyond.",
+      title: "Management reporting",
+      description: "Useful reports for decisions on cash, costs and performance.",
     },
     {
-      title: "Integrity & Collaboration",
-      description:
-        "We value transparency, ethical practice, and open communication. Our consultants become trusted advisors on your journey toward lasting success.",
+      title: "Strategic insight",
+      description: "Market and business analysis to help evaluate opportunities.",
     },
     {
-      title: "Premium Consultancy Standards",
-      description:
-        "From initial consultation to project delivery, we maintain the highest professional standards expected of a leading UAE business consultancy.",
+      title: "Flexible support",
+      description: "Project-based work or recurring support where agreed.",
     },
   ];
 
@@ -73,11 +67,11 @@ export default function WhyUs() {
           <div className="footer-network-glow absolute inset-0" />
           <div className="relative text-center">
             <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
-              Ready to Partner with Al FATEH?
+              Ready to keep more of what you earn?
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-white/60">
-              Let our consultants help you navigate challenges, seize opportunities,
-              and build a foundation for lasting success.
+              Engagement outputs are tailored to the agreed scope and client
+              requirements.
             </p>
             <Link href="/contact" className="btn-primary glow-accent group mt-8">
               Get a Consultation
