@@ -27,12 +27,12 @@ export default function Services() {
     <>
       <section className="relative flex min-h-[620px] items-end overflow-hidden lg:min-h-[700px]">
         <Image
-          src="/images/studio/boardroom.jpg"
-          alt="The Al FATEH team in a boardroom meeting"
+          src="/images/studio/services-banner.jpg"
+          alt="Advisors in a professional meeting"
           fill
           priority
           quality={90}
-          className="object-cover object-center"
+          className="object-cover object-[center_30%]"
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-brand-900/82 via-brand-900/45 to-brand-900/15" />

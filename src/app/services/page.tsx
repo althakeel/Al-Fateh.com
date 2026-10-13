@@ -8,8 +8,8 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "Four practices: accounting services, feasibility studies, maritime consultancy, and innovation and artificial intelligence.",
   path: "/services",
-  image: "/images/studio/boardroom.jpg",
-  imageAlt: "The Al FATEH team in a boardroom meeting",
+  image: "/images/studio/services-banner.jpg",
+  imageAlt: "Advisors in a professional meeting",
   keywords: [
     "corporate tax advisory",
     "outsourced finance",
