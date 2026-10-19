@@ -1,19 +1,19 @@
 export const serviceImages: Record<string, { src: string; alt: string }> = {
   "Accounting Services": {
-    src: "/images/studio/document-review.jpg",
-    alt: "Al FATEH advisors reviewing documents together",
+    src: "/images/studio/Accounting Services.jpg",
+    alt: "Accountant working through financial reports",
   },
   "Feasibility Studies Consultancy": {
-    src: "/images/studio/feasibility-meeting.jpg",
-    alt: "The team reviewing a feasibility study",
+    src: "/images/studio/Feasibility Study.jpg",
+    alt: "Business advisor discussing a feasibility study",
   },
   "Maritime Consultancy": {
     src: "/images/services/maritime-ship.jpg",
     alt: "Container ship alongside cranes at a commercial port",
   },
   "Innovation & Artificial Intelligence Consultancy": {
-    src: "/images/services/ai-hero.jpg",
-    alt: "Specialists working through a technology programme",
+    src: "/images/studio/AI services.jpg",
+    alt: "Technology team working at a computer",
   },
 };
 

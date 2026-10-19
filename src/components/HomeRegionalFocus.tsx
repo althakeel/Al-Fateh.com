@@ -11,8 +11,8 @@ export default function HomeRegionalFocus() {
           <Reveal direction="left" className="relative lg:col-span-6">
             <div className="group relative aspect-[16/10] overflow-hidden shadow-[0_24px_60px_rgba(17,19,21,0.12)]">
               <Image
-                src="/images/studio/Home_New.jpg"
-                alt="Al FATEH advisors meeting in the office"
+                src="/images/studio/Home_page(2).jpg"
+                alt="Advisors discussing business plans"
                 fill
                 className="animate-ken-burns object-cover object-center"
                 sizes="(max-width: 1024px) 100vw, 50vw"

@@ -9,8 +9,8 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "Industry cost solutions for construction, healthcare, clinics, automotive, hospitality, trading and manufacturing. Tailored to each sector’s operational model and available data.",
   path: "/expertise",
-  image: "/images/studio/banner-expertise.jpg",
-  imageAlt: "Al FATEH advisors working through a business analysis",
+  image: "/images/studio/Industry Solution.jpg",
+  imageAlt: "Advisor meeting with a business owner",
   keywords: [
     "construction cost control",
     "healthcare cost analysis",
@@ -32,8 +32,8 @@ export default function ExpertisePage() {
         eyebrow="Our Expertise"
         title="Industry Solutions"
         description="An adaptable framework for inventory-heavy, production-based and service-oriented businesses."
-        image="/images/studio/banner-expertise.jpg"
-        imageAlt="Al FATEH advisors working through a business analysis"
+        image="/images/studio/Industry Solution.jpg"
+        imageAlt="Advisor meeting with a business owner"
         imagePosition="object-center"
       />
       <Expertise />

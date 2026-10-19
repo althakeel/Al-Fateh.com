@@ -11,8 +11,8 @@ export default function AboutPreview() {
           <Reveal direction="left" className="relative order-2 lg:order-1 lg:col-span-5">
             <div className="group relative aspect-[3/2] overflow-hidden">
               <Image
-                src="/images/studio/document-review.jpg"
-                alt="Al FATEH advisors reviewing a client file together"
+                src="/images/studio/Home_page(3).jpg"
+                alt="Financial charts reviewed on a laptop"
                 fill
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 40vw"

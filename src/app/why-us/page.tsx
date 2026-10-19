@@ -9,8 +9,8 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "What clients can expect: clear financial records, tax readiness, cost visibility, management reporting, strategic insight and flexible support, tailored to the agreed scope.",
   path: "/why-us",
-  image: "/images/studio/banner-why-us.jpg",
-  imageAlt: "Al FATEH advisors marking the start of an engagement",
+  image: "/images/studio/Why us.jpg",
+  imageAlt: "Colleagues meeting around a table",
   keywords: [
     "why choose Al FATEH",
     "tax readiness",
@@ -32,8 +32,8 @@ export default function WhyUsPage() {
         eyebrow="Why Al FATEH"
         title="What Clients Can Expect"
         description="Engagement outputs are tailored to the agreed scope and client requirements."
-        image="/images/studio/banner-why-us.jpg"
-        imageAlt="Al FATEH advisors marking the start of an engagement"
+        image="/images/studio/Why us.jpg"
+        imageAlt="Colleagues meeting around a table"
         imagePosition="object-center"
       />
       <WhyUs />

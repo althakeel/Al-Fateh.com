@@ -99,6 +99,7 @@ export default function Services() {
         const number = String(index + 1).padStart(2, "0");
         const highlights =
           service.offerings.length <= 4 ? service.offerings : service.offerings.slice(0, 3);
+        const isAccounting = service.title === "Accounting Services";
 
         return (
           <section
@@ -168,8 +169,10 @@ export default function Services() {
                   <p className="mt-3 max-w-xl text-base leading-8 text-slate/80">{service.plain}</p>
                 )}
                 <div
-                  className={`mt-8 grid grid-cols-2 gap-x-4 gap-y-5 ${
-                    highlights.length === 4 ? "" : "sm:grid-cols-3"
+                  className={`mt-8 grid grid-cols-2 ${
+                    isAccounting
+                      ? "gap-x-6 gap-y-6"
+                      : `gap-x-4 gap-y-5 ${highlights.length === 4 ? "" : "sm:grid-cols-3"}`
                   }`}
                 >
                   {highlights.map((offering, chipIndex) => {
@@ -177,7 +180,13 @@ export default function Services() {
                     return (
                       <div
                         key={offering.label}
-                        className={chipIndex > 0 ? "sm:border-s sm:border-brand-900/15 sm:ps-5" : undefined}
+                        className={
+                          isAccounting
+                            ? `h-full ${chipIndex % 2 === 1 ? "border-s border-brand-900/15 ps-5" : ""}`
+                            : chipIndex > 0
+                              ? "sm:border-s sm:border-brand-900/15 sm:ps-5"
+                              : undefined
+                        }
                       >
                         <span className="flex h-11 w-11 items-center justify-center rounded-full bg-accent-500/15 text-accent-600">
                           <Icon className="h-5 w-5" strokeWidth={1.75} aria-hidden />

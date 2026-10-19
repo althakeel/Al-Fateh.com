@@ -55,8 +55,8 @@ export default function About() {
           <Reveal direction="left" className="lg:col-span-5">
             <div className="relative aspect-[3/2] overflow-hidden">
               <Image
-                src="/images/studio/document-review.jpg"
-                alt="Al FATEH advisors reviewing a client file together"
+                src="/images/studio/About(1).jpg"
+                alt="Advisors reviewing financial charts together"
                 fill
                 className="about-photo object-cover object-center"
                 sizes="(max-width: 1024px) 100vw, 42vw"
@@ -88,7 +88,7 @@ export default function About() {
 
       <section className="relative min-h-[520px] overflow-hidden lg:min-h-[560px]">
         <Image
-          src="/images/studio/skyline.jpg"
+          src="/images/studio/BG (About).jpg"
           alt=""
           fill
           className="object-cover object-center"
