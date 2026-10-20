@@ -5,13 +5,13 @@ import Image from "next/image";
 
 const SLIDES = [
   {
-    src: "/images/studio/Home_page(1).jpg",
-    alt: "Business partners reviewing a document",
+    src: "/images/studio/practical finance partner (new ) homepage.png",
+    alt: "Business partners shaking hands beside financial technology",
     position: "object-center",
   },
   {
-    src: "/images/studio/Home_page(2).jpg",
-    alt: "Advisors discussing business plans",
+    src: "/images/studio/Home page(new).png",
+    alt: "Business partners collaborating across finance and technology",
     position: "object-center",
   },
 ] as const;

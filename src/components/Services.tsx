@@ -27,8 +27,8 @@ export default function Services() {
     <>
       <section className="relative flex min-h-[620px] items-end overflow-hidden lg:min-h-[700px]">
         <Image
-          src="/images/studio/services-banner.jpg"
-          alt="Advisors in a professional meeting"
+          src="/images/studio/Cost Accounting & Cost Control(new).jpg"
+          alt="Cost and sales charts used to review business performance"
           fill
           priority
           quality={90}
@@ -147,7 +147,11 @@ export default function Services() {
                           src={image.src}
                           alt={image.alt}
                           fill
-                          className="object-cover object-center scale-110 transition-transform duration-700 ease-out group-hover:scale-100"
+                          className={`${
+                            image.fit === "contain"
+                              ? "bg-white object-contain"
+                              : "object-cover object-center scale-110 transition-transform duration-700 ease-out group-hover:scale-100"
+                          }`}
                           sizes="(max-width: 1024px) 100vw, 50vw"
                         />
                       )}

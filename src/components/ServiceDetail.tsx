@@ -122,7 +122,11 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
             alt={image.alt}
             fill
             priority
-            className="object-cover object-center"
+            className={
+              image.fit === "contain"
+                ? "bg-white object-contain"
+                : "object-cover object-center"
+            }
             sizes="100vw"
           />
         )}

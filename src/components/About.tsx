@@ -43,10 +43,8 @@ export default function About() {
           </>
         }
         description="A practical finance partner for business growth across tax, accounting, cost control and business advisory."
-        image="/images/brand-logo-dark.png"
-        imageAlt="Al FATEH brand logo"
-        imageFit="contain"
-        imageBg="bg-frost"
+        image="/images/studio/Corporate Tax (bg) new.jpg"
+        imageAlt="Corporate tax documents and financial records on a desk"
         imagePosition="object-center"
       />
 
@@ -55,8 +53,8 @@ export default function About() {
           <Reveal direction="left" className="lg:col-span-5">
             <div className="relative aspect-[3/2] overflow-hidden">
               <Image
-                src="/images/studio/About(1).jpg"
-                alt="Advisors reviewing financial charts together"
+                src="/images/studio/finance partner(new).jpg"
+                alt="Business partners reviewing financial information together"
                 fill
                 className="about-photo object-cover object-center"
                 sizes="(max-width: 1024px) 100vw, 42vw"

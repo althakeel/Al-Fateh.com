@@ -9,8 +9,8 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "Contact Al FATEH for corporate tax, outsourced finance and accounting, cost control, and business strategy and market advisory.",
   path: "/contact",
-  image: "/images/studio/banner-contact.jpg",
-  imageAlt: "A document handed across the office reception",
+  image: "/images/studio/Corporate Tax (bg) new.jpg",
+  imageAlt: "Corporate tax documents and financial records on a desk",
   keywords: [
     "contact Al FATEH",
     "corporate tax enquiry",
@@ -31,8 +31,8 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact Us"
         title="Lets Get In Touch!"
-        image="/images/studio/banner-contact.jpg"
-        imageAlt="A document handed across the office reception"
+        image="/images/studio/Corporate Tax (bg) new.jpg"
+        imageAlt="Corporate tax documents and financial records on a desk"
         imagePosition="object-center"
         minHeightClass="lg:min-h-[340px] xl:min-h-[370px]"
       />

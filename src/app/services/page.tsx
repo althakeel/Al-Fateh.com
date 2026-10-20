@@ -8,8 +8,8 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "Four practices: accounting services, feasibility studies, maritime consultancy, and innovation and artificial intelligence.",
   path: "/services",
-  image: "/images/studio/services-banner.jpg",
-  imageAlt: "Advisors in a professional meeting",
+  image: "/images/studio/Cost Accounting & Cost Control(new).jpg",
+  imageAlt: "Cost and sales charts used to review business performance",
   keywords: [
     "corporate tax advisory",
     "outsourced finance",

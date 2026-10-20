@@ -24,8 +24,8 @@ export const siteConfig = {
   },
   favicon: "/images/favicon.png",
   iconPng: "/icon.png",
-  ogImage: "/images/studio/team.jpg",
-  ogImageAlt: "The Al FATEH team",
+  ogImage: "/images/studio/Home page(new).png",
+  ogImageAlt: "Business partners collaborating across finance and technology",
   themeColor: "#0b3d4a",
   keywords: [
     "Al FATEH",

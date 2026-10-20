@@ -17,8 +17,8 @@ export const metadata: Metadata = createPageMetadata({
   title: siteConfig.title,
   description: siteConfig.description,
   path: "/",
-  image: "/images/studio/team.jpg",
-  imageAlt: "The Al FATEH team",
+  image: "/images/studio/Home page(new).png",
+  imageAlt: "Business partners collaborating across finance and technology",
   keywords: [
     "corporate tax advisory Dubai",
     "outsourced finance UAE",

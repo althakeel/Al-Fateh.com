@@ -9,8 +9,8 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "Al FATEH is a practical finance partner for business growth, helping UAE businesses keep more of what they earn through corporate tax, outsourced accounting, cost control and business advisory.",
   path: "/about",
-  image: "/images/brand-logo-dark.png", 
-  imageAlt: "Al FATEH brand logo",
+  image: "/images/studio/Corporate Tax (bg) new.jpg",
+  imageAlt: "Corporate tax documents and financial records on a desk",
   keywords: [
     "about Al FATEH",
     "UAE business partner",

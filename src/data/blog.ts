@@ -23,8 +23,8 @@ export const blogPosts: BlogPost[] = [
       "Tax readiness starts with organized records and a clear view of the obligation, before filing is coordinated within the agreed scope.",
     category: "Corporate Tax",
     readTime: "4 min read",
-    image: "/images/services/accounting-books.jpg",
-    imageAlt: "Financial records prepared for a corporate tax review",
+    image: "/images/studio/Corporate Tax (bg) new.jpg",
+    imageAlt: "Corporate tax documents and financial records on a desk",
     sections: [
       {
         heading: "Start with the records",
@@ -54,8 +54,8 @@ export const blogPosts: BlogPost[] = [
       "Cost control is the work of seeing what a product, treatment, vehicle or project actually costs, then comparing that with the budget and the margin.",
     category: "Cost Control",
     readTime: "5 min read",
-    image: "/images/services/accounting-costs.jpg",
-    imageAlt: "Cost and margin figures under review",
+    image: "/images/studio/Cost Accounting & Cost Control(new).jpg",
+    imageAlt: "Cost and sales charts used to review business margins",
     sections: [
       {
         heading: "Understand the cost first",
@@ -84,8 +84,8 @@ export const blogPosts: BlogPost[] = [
       "A useful market and strategy engagement states how the analysis will be done, and what the business will receive, before the work starts.",
     category: "Market Advisory",
     readTime: "4 min read",
-    image: "/images/studio/Home_page(2).jpg",
-    imageAlt: "Advisors discussing a business opportunity",
+    image: "/images/studio/Business Strategy & Market Advisory(new).jpg",
+    imageAlt: "Market and financial charts reviewed during business planning",
     sections: [
       {
         heading: "Name the question",
