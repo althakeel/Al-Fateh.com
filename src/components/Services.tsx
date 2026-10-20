@@ -27,7 +27,7 @@ export default function Services() {
     <>
       <section className="relative flex min-h-[620px] items-end overflow-hidden lg:min-h-[700px]">
         <Image
-          src="/images/studio/services(bg) new.jpg"
+          src="/images/studio/services(bg) new.png"
           alt="Al FATEH business services"
           fill
           priority
