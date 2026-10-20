@@ -1,6 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Handshake, Target, Users } from "lucide-react";
+import {
+  ArrowRight,
+  Calculator,
+  ChartColumn,
+  Compass,
+  Handshake,
+  Receipt,
+  Target,
+  Users,
+} from "lucide-react";
 import PageHero from "./PageHero";
 import Reveal from "./Reveal";
 import RevealStagger from "./RevealStagger";
@@ -24,10 +33,26 @@ const statements = [
 ];
 
 const values = [
-  { title: "Corporate Tax" },
-  { title: "Outsourced Finance" },
-  { title: "Cost Control" },
-  { title: "Business Advisory" },
+  {
+    title: "Corporate Tax",
+    description: "Tax obligations, planning and compliance support.",
+    icon: Receipt,
+  },
+  {
+    title: "Outsourced Finance",
+    description: "Accounting and structured financial reporting.",
+    icon: Calculator,
+  },
+  {
+    title: "Cost Control",
+    description: "Clearer visibility into costs and performance.",
+    icon: ChartColumn,
+  },
+  {
+    title: "Business Advisory",
+    description: "Business analysis and decision support.",
+    icon: Compass,
+  },
 ];
 
 export default function About() {
@@ -119,13 +144,28 @@ export default function About() {
 
       <section className="bg-brand-900 py-16 text-white lg:py-20">
         <div className="container-x">
-          <RevealStagger className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-            {values.map((value) => (
-              <article key={value.title} className="reveal-child">
-                <h3 className="text-xl font-bold tracking-tight">{value.title}</h3>
-                <span className="mt-4 block h-px w-10 bg-accent-500" />
-              </article>
-            ))}
+          <RevealStagger className="grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+            {values.map((value) => {
+              const Icon = value.icon;
+
+              return (
+                <article
+                  key={value.title}
+                  className="reveal-child flex h-full min-h-[220px] flex-col border border-white/15 bg-white/[0.04] p-6 shadow-[0_18px_40px_rgba(0,0,0,0.18)] transition-colors duration-300 hover:border-accent-500/60 hover:bg-white/[0.07] sm:p-7"
+                >
+                  <span className="mb-6 flex h-12 w-12 items-center justify-center border border-accent-500/45 bg-accent-500/10 text-accent-400">
+                    <Icon className="h-5 w-5" strokeWidth={1.75} aria-hidden />
+                  </span>
+                  <h3 className="text-lg font-bold tracking-tight text-white sm:text-xl">
+                    {value.title}
+                  </h3>
+                  <span className="mt-3 block h-px w-10 bg-accent-500" />
+                  <p className="mt-4 text-sm leading-6 text-white/70">
+                    {value.description}
+                  </p>
+                </article>
+              );
+            })}
           </RevealStagger>
         </div>
       </section>
