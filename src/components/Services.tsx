@@ -27,8 +27,8 @@ export default function Services() {
     <>
       <section className="relative flex min-h-[620px] items-end overflow-hidden lg:min-h-[700px]">
         <Image
-          src="/images/studio/Cost Accounting & Cost Control(new).jpg"
-          alt="Cost and sales charts used to review business performance"
+          src="/images/studio/services(bg) new.jpg"
+          alt="Al FATEH business services"
           fill
           priority
           quality={90}
