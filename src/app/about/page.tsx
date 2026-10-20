@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import About from "@/components/About";
-import Team from "@/components/Team";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 
@@ -30,7 +29,6 @@ export default function AboutPage() {
         ])}
       />
       <About />
-      <Team />
     </>
   );
 }
