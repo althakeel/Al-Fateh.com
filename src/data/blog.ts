@@ -84,8 +84,8 @@ export const blogPosts: BlogPost[] = [
       "A useful market and strategy engagement states how the analysis will be done, and what the business will receive, before the work starts.",
     category: "Market Advisory",
     readTime: "4 min read",
-    image: "/images/studio/skyline.jpg",
-    imageAlt: "Advisors in discussion with the Dubai skyline behind them",
+    image: "/images/studio/Home_page(2).jpg",
+    imageAlt: "Advisors discussing a business opportunity",
     sections: [
       {
         heading: "Name the question",

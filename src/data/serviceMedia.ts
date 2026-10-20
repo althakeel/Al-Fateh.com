@@ -19,40 +19,40 @@ export const serviceImages: Record<string, { src: string; alt: string }> = {
 
 export const offeringImages: Record<string, { src: string; alt: string }> = {
   "Corporate Tax & Tax Advisory": {
-    src: "/images/studio/document-review.jpg",
-    alt: "Al FATEH advisors reviewing documents together",
+    src: "/images/studio/Home_page(1).jpg",
+    alt: "Business partners reviewing tax documents",
   },
   "Outsourced Finance & Accounting": {
-    src: "/images/studio/finance-operations.jpg",
-    alt: "The finance team reviewing accounts on screen",
+    src: "/images/studio/Accounting Services.jpg",
+    alt: "Accountant reviewing financial reports on a laptop",
   },
   "Cost Accounting & Cost Control": {
-    src: "/images/studio/whiteboard.jpg",
-    alt: "Advisors working through figures on a whiteboard",
+    src: "/images/studio/Home_page(3).jpg",
+    alt: "Reviewing financial charts on a laptop",
   },
   "Business Strategy & Market Advisory": {
-    src: "/images/studio/skyline.jpg",
-    alt: "Advisors in discussion with the Dubai skyline behind them",
+    src: "/images/studio/Home_page(2).jpg",
+    alt: "Advisors discussing business plans",
   },
   "Market Potential Analysis": {
-    src: "/images/studio/skyline.jpg",
-    alt: "Advisors in discussion with the Dubai skyline behind them",
+    src: "/images/studio/Home_page(2).jpg",
+    alt: "Business team assessing an opportunity together",
   },
   "Cost-Benefit Analysis": {
-    src: "/images/studio/feasibility-meeting.jpg",
-    alt: "The team reviewing a feasibility study",
+    src: "/images/studio/Feasibility Study.jpg",
+    alt: "Advisor discussing a feasibility study with a client",
   },
   "Risk Assessment": {
-    src: "/images/studio/consultation.jpg",
-    alt: "Two advisors reviewing a brief in front of the world map",
+    src: "/images/studio/Home_page(1).jpg",
+    alt: "Business partners reviewing documents",
   },
   "Strategic Advice": {
-    src: "/images/studio/strategic-advice.jpg",
-    alt: "The team setting priorities around the boardroom table",
+    src: "/images/studio/About(1).jpg",
+    alt: "Advisors discussing financial charts together",
   },
   "Result-Oriented Solutions": {
-    src: "/images/studio/team-home.jpg",
-    alt: "The Al FATEH team ready to close on a recommendation",
+    src: "/images/studio/Why us.jpg",
+    alt: "Business client speaking with an advisor",
   },
   "Results-Oriented Solutions": {
     src: "/images/services/maritime-results.jpg",
