@@ -9,7 +9,7 @@ export const contact = {
   email: "info@efateh.com",
   emailHref: "mailto:info@efateh.com",
   whatsappHref:
-    "https://api.whatsapp.com/send/?phone=%2B971528046699&text&type=phone_number&app_absent=0",
+    "https://api.whatsapp.com/send/?phone=971509940318&text&type=phone_number&app_absent=0",
   location: {
     name: "Al FATEH Consultation Services",
     address:
@@ -19,4 +19,4 @@ export const contact = {
       "https://www.google.com/maps?q=Al+FATEH+Consultation+Services%2C+25.2139552%2C55.278056&z=17&output=embed",
   },
   website: "https://efateh.com",
-} as const;
+} as const; 
