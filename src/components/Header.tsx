@@ -53,19 +53,24 @@ export default function Header() {
             : "border-b border-transparent bg-[#f7f6f3]/90 backdrop-blur-md"
       }`}
     >
-      <div className="container-x relative grid grid-cols-[1fr_auto] items-center py-4 lg:grid-cols-[1fr_auto_1fr] lg:py-5">
-        <div className="justify-self-start">
-          <Logo priority variant="default" />
+      <div className="container-x relative flex items-center justify-between gap-4 py-4 lg:py-5 xl:gap-8">
+        <div className="shrink-0 xl:mr-10">
+          <Logo
+            priority
+            variant="default"
+            name="AL FATEH ADVISORY"
+            subtitle="ACCOUNTING & BOOKKEEPING L.L.C"
+          />
         </div>
 
-        <nav className="hidden items-center gap-1.5 justify-self-center lg:flex">
+        <nav className="hidden min-w-0 items-center gap-1 whitespace-nowrap xl:flex 2xl:gap-2">
           {navLinks.map((link, index) => {
             const Icon = navIcons[index];
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`inline-flex items-center gap-2 rounded-[2px] px-3.5 py-2.5 text-[14px] font-medium transition-colors ${
+                className={`inline-flex items-center gap-2 rounded-[2px] px-3 py-2.5 text-sm font-medium transition-colors 2xl:px-4 2xl:text-[15px] ${
                   isActive(link.href)
                     ? "bg-accent-500/15 text-ink"
                     : "text-mute hover:text-ink"
@@ -78,21 +83,19 @@ export default function Header() {
           })}
         </nav>
 
-        <div className="justify-self-end">
-          <button
-            type="button"
-            className="flex h-11 w-11 items-center justify-center rounded-[2px] border border-platinum text-ink lg:hidden"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-            aria-expanded={menuOpen}
-          >
-            {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
+        <button
+          type="button"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[2px] border border-platinum text-ink xl:hidden"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+        >
+          {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
       </div>
 
       {menuOpen && (
-        <nav className="animate-fade-in border-t border-platinum bg-ivory px-5 py-4 lg:hidden">
+        <nav className="animate-fade-in border-t border-platinum bg-ivory px-5 py-4 xl:hidden">
           <div className="flex flex-col gap-1">
             {navLinks.map((link, index) => {
               const Icon = navIcons[index];

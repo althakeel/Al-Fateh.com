@@ -7,10 +7,10 @@ function absoluteUrl(path: string) {
   return new URL(normalized, siteConfig.url).toString();
 }
 
-export function createPageMetadata({
+export function createPageMetadata({ 
   title,
   description,
-  path,
+  path, 
   keywords = [],
   image = siteConfig.ogImage,
   imageAlt = siteConfig.ogImageAlt,
@@ -31,7 +31,7 @@ export function createPageMetadata({
       ? "image/webp"
       : "image/jpeg";
 
-  return {
+  return {  
     title: isHome
       ? {
           absolute: siteConfig.title,
@@ -47,19 +47,19 @@ export function createPageMetadata({
     classification: "Business Services & Advisory",
     referrer: "origin-when-cross-origin",
     formatDetection: {
-      email: false,
+      email: false,  
       address: false,
       telephone: false,
     },
     metadataBase: new URL(siteConfig.url),
     alternates: {
-      canonical: url,
+      canonical: url,     
     },
     robots: noIndex
       ? {
           index: false,
           follow: false,
-          googleBot: {
+          googleBot: { 
             index: false,
             follow: false,
           },

@@ -10,7 +10,7 @@ import { siteConfig } from "@/data/site";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
 const poppins = Poppins({
-  variable: "--font-poppins",
+  variable: "--font-poppins", 
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
 });
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title: {
     default: siteConfig.title,
     template: `%s | ${siteConfig.name}`,
-  },
+  }, 
   description: siteConfig.description,
   keywords: [...siteConfig.keywords],
   applicationName: siteConfig.name,
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  icons: {
+  icons: {   
     icon: [
       { url: "/images/favicon.png", type: "image/png", sizes: "32x32" },
       { url: "/icon.png", type: "image/png", sizes: "32x32" },
@@ -104,14 +104,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${poppins.variable} font-sans antialiased`}>
+      <body className={`${poppins.variable} font-sans antialiased`}>  
         <Script id="google-ads-tag" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){window.dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'AW-18514851490');
-          `}
+          `} 
         </Script>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-18514851490"

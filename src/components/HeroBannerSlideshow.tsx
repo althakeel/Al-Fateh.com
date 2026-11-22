@@ -45,10 +45,10 @@ export default function HeroBannerSlideshow() {
     return () => motionQuery.removeEventListener("change", updateMode);
   }, []);
 
-  useEffect(() => {
+  useEffect(() => {  
     if (useStatic) return;
 
-    videoRefs.current.forEach((video, index) => {
+    videoRefs.current.forEach((video, index) => { 
       if (!video) return;
       if (index === active) {
         video.currentTime = 0;
@@ -56,7 +56,7 @@ export default function HeroBannerSlideshow() {
       } else {
         video.pause();
       }
-    });
+    }); 
   }, [active, useStatic]);
 
   useEffect(() => {
@@ -77,8 +77,9 @@ export default function HeroBannerSlideshow() {
           priority
           className="object-cover object-center"
           sizes="100vw"
-        />
-      </div>
+        /> 
+      </div> 
+      
     );
   }
 
@@ -101,7 +102,7 @@ export default function HeroBannerSlideshow() {
               isActive ? "hero-banner-slide-active" : ""
             }`}
           >
-            <source src={slide.src} type="video/mp4" />
+            <source src={slide.src} type="video/mp4" />  /.  
           </video>
         );
       })}
@@ -121,7 +122,7 @@ export default function HeroBannerSlideshow() {
                   : "h-1.5 w-1.5 bg-white/45 hover:bg-white/70"
               }`}
             />
-          ))}
+          ))} 
         </div>
         <span className="hidden text-[10px] font-semibold uppercase tracking-[0.14em] text-white/60 sm:inline">
           {String(active + 1).padStart(2, "0")} / {String(SLIDES.length).padStart(2, "0")}

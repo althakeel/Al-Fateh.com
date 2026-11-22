@@ -63,8 +63,8 @@ export default function Footer() {
           </div>
         </Reveal>
 
-        <div className="grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
-          <div>
+        <div className="grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-[minmax(300px,1.6fr)_repeat(3,minmax(0,1fr))] lg:gap-12">
+          <div className="min-w-0">
             <Logo variant="light" />
             <p className="mt-5 text-sm leading-relaxed text-white/55">
               Structured accounting, clear reporting, and advisory support built
@@ -72,7 +72,7 @@ export default function Footer() {
             </p>
           </div>
 
-          <div>
+          <div className="min-w-0">
             <h3 className="eyebrow text-accent-400/80">Quick Links</h3>
             <ul className="mt-4 space-y-2.5">
               {navLinks.map((link) => (
@@ -86,7 +86,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="min-w-0">
             <h3 className="eyebrow text-accent-400/80">Contact</h3>
             <ul className="mt-4 space-y-2.5 text-sm text-white/60">
               {contact.phones.map((phone) => (
@@ -112,7 +112,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="min-w-0">
             <h3 className="eyebrow text-accent-400/80">Location</h3>
             <a href={contact.location.mapsHref} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-start gap-2 text-sm text-white/60 hover:text-accent-400">
               <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0" />

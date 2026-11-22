@@ -15,7 +15,7 @@ export const metadata: Metadata = createPageMetadata({
     "UAE business partner",
     "corporate tax planning",
     "outsourced accounting",
-    "business advisory Dubai",
+    "business advisory Dubai", 
   ],
 });
 
