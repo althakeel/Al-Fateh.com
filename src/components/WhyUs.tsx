@@ -1,3 +1,5 @@
+import { getLocalizedPathname, type Locale } from "@/lib/i18n";
+import { translate } from "@/lib/translations";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { whyUsIcons } from "@/data/sectionIcons";
@@ -5,7 +7,7 @@ import Reveal from "./Reveal";
 import RevealStagger from "./RevealStagger";
 import IconTile from "./IconTile";
 
-export default function WhyUs() {
+export default function WhyUs({ locale = "en" }: { locale?: Locale }) {
   const reasons = [
     {
       title: "Clear financial records",
@@ -52,10 +54,10 @@ export default function WhyUs() {
                   </span>
                 </div>
                 <h3 className="mt-5 text-lg font-bold tracking-tight text-ink">
-                  {reason.title}
+                  {translate(locale, reason.title)}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-mute">
-                  {reason.description}
+                  {translate(locale, reason.description)}
                 </p>
               </div>
             );
@@ -67,15 +69,14 @@ export default function WhyUs() {
           <div className="footer-network-glow absolute inset-0" />
           <div className="relative text-center">
             <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
-              Ready to keep more of what you earn?
+              {translate(locale, "Ready to keep more of what you earn?")}
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-white/60">
-              Engagement outputs are tailored to the agreed scope and client
-              requirements.
+              {translate(locale, "Engagement outputs are tailored to the agreed scope and client requirements.")}
             </p>
-            <Link href="/contact" className="btn-primary glow-accent group mt-8">
-              Get a Consultation
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            <Link href={getLocalizedPathname("/contact", locale)} className="btn-primary glow-accent group mt-8">
+              {translate(locale, "Get a Consultation")}
+              <ArrowRight className="rtl:rotate-180 h-4 w-4 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
             </Link>
           </div>
         </Reveal>

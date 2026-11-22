@@ -7,3 +7,5 @@ export const navLinks = [
   { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];
+
+export const navKeys = ["home", "about", "services", "expertise", "whyUs", "blog", "contact"] as const;

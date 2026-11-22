@@ -1,5 +1,8 @@
 "use client";
 
+import { getLocalizedPathname, type Locale } from "@/lib/i18n";
+import { translate } from "@/lib/translations";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Compass, ShieldCheck, Users } from "lucide-react";
@@ -16,11 +19,7 @@ const trustPoints = [
   { title: "Flexible support", text: "Project-based work or recurring support where agreed" },
 ];
 
-function chipLabel(offering: { label: string }) {
-  return offering.label;
-}
-
-export default function Services() {
+export default function Services({ locale = "en" }: { locale?: Locale }) {
   const firstId = serviceSlug(visibleServices[0]?.title ?? "services");
 
   return (
@@ -28,38 +27,36 @@ export default function Services() {
       <section className="relative flex min-h-[620px] items-end overflow-hidden lg:min-h-[700px]">
         <Image
           src="/images/studio/services(bg) new.png"
-          alt="Al FATEH business services"
+          alt={translate(locale, "Al FATEH business services")}
           fill
           priority
           quality={90}
           className="object-cover object-[center_30%]"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-900/82 via-brand-900/45 to-brand-900/15" />
+        <div className="absolute inset-0 bg-gradient-to-r rtl:bg-gradient-to-l from-brand-900/82 via-brand-900/45 to-brand-900/15" />
         <div className="container-x relative z-10 pb-14 pt-32 lg:pb-20 lg:pt-36">
           <div className="animate-fade-up mb-5 flex items-center gap-3">
             <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-accent-500">
-              Al FATEH
+              {translate(locale, "Al FATEH")}
             </span>
             <span className="h-px w-10 bg-accent-500" />
           </div>
           <h1 className="animate-fade-up-delay-1 max-w-3xl text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Four core
+            {translate(locale, "Four core")}
             <br />
-            <span className="text-accent-500">service</span> lines
+            <span className="text-accent-500">{translate(locale, "service")}</span> {translate(locale, "lines")}
           </h1>
           <p className="animate-fade-up-delay-2 mt-5 max-w-xl text-base leading-8 text-white/75">
-            Accounting services cover tax, finance, cost control and market
-            advisory. With them: feasibility studies, maritime consultancy, and
-            innovation and artificial intelligence.
+            {translate(locale, "Accounting services cover tax, finance, cost control and market advisory. With them: feasibility studies, maritime consultancy, and innovation and artificial intelligence.")}
           </p>
           <div className="animate-fade-up-delay-3 mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link href="/contact" className="btn-primary">
-              Contact Us
-              <ArrowRight className="h-4 w-4" />
+            <Link href={getLocalizedPathname("/contact", locale)} className="btn-primary">
+              {translate(locale, "Contact Us")}
+              <ArrowRight className="rtl:rotate-180 h-4 w-4" />
             </Link>
             <a href={`#${firstId}`} className="btn-outline-light">
-              Explore Services
+              {translate(locale, "Explore Services")}
             </a>
           </div>
         </div>
@@ -73,7 +70,7 @@ export default function Services() {
             return (
               <Link
                 key={service.title}
-                href={servicePath(service.title)}
+                href={getLocalizedPathname(servicePath(service.title), locale)}
                 className={`group flex items-center justify-center gap-2 border-brand-900/10 px-3 py-4 text-center lg:flex-1 ${
                   index % 2 === 0 && index < visibleServices.length - 1 ? "border-e" : ""
                 } ${index < mobileLastRow ? "border-b lg:border-b-0" : ""} ${
@@ -82,7 +79,7 @@ export default function Services() {
               >
                 {Icon && <Icon className="h-4 w-4 shrink-0 text-accent-500" strokeWidth={1.75} aria-hidden />}
                 <span className="text-[10px] font-bold uppercase tracking-[0.06em] text-brand-900/80 transition-colors group-hover:text-accent-600 lg:text-[11px]">
-                  {serviceShortLabels[service.title] ?? service.title}
+                  {translate(locale, serviceShortLabels[service.title] ?? service.title)}
                 </span>
               </Link>
             );
@@ -93,7 +90,7 @@ export default function Services() {
       {visibleServices.map((service, index) => {
         const image = serviceImages[service.title];
         const imageFirst = index % 2 === 0;
-        const words = service.title.toUpperCase().split(" ");
+        const words = translate(locale, service.title).toUpperCase().split(" ");
         const lead = words.slice(0, -1).join(" ");
         const accent = words[words.length - 1];
         const number = String(index + 1).padStart(2, "0");
@@ -145,7 +142,7 @@ export default function Services() {
                       {image && (
                         <Image
                           src={image.src}
-                          alt={image.alt}
+                          alt={translate(locale, image.alt)}
                           fill
                           className={`${
                             image.fit === "contain"
@@ -168,9 +165,9 @@ export default function Services() {
                 <h2 className="mt-5 text-3xl font-bold uppercase leading-tight tracking-[0.03em] text-brand-900 md:text-4xl">
                   {lead} <span className="text-accent-500">{accent}</span>
                 </h2>
-                <p className="mt-5 max-w-xl text-base leading-8 text-slate">{service.description}</p>
+                <p className="mt-5 max-w-xl text-base leading-8 text-slate">{translate(locale, service.description)}</p>
                 {service.plain && (
-                  <p className="mt-3 max-w-xl text-base leading-8 text-slate/80">{service.plain}</p>
+                  <p className="mt-3 max-w-xl text-base leading-8 text-slate/80">{translate(locale, service.plain)}</p>
                 )}
                 <div
                   className={`mt-8 grid grid-cols-2 ${
@@ -196,18 +193,18 @@ export default function Services() {
                           <Icon className="h-5 w-5" strokeWidth={1.75} aria-hidden />
                         </span>
                         <p className="mt-3 text-sm font-bold leading-snug text-brand-900">
-                          {chipLabel(offering)}
+                          {translate(locale, offering.label)}
                         </p>
                       </div>
                     );
                   })}
                 </div>
                 <Link
-                  href={servicePath(service.title)}
+                  href={getLocalizedPathname(servicePath(service.title), locale)}
                   className="mt-8 inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.08em] text-accent-700 transition-colors hover:text-brand-900"
                 >
-                  View full scope
-                  <ArrowRight className="h-4 w-4" />
+                  {translate(locale, "View full scope")}
+                  <ArrowRight className="rtl:rotate-180 h-4 w-4" />
                 </Link>
               </Reveal>
             </div>
@@ -220,20 +217,19 @@ export default function Services() {
           <Reveal>
             <div className="flex items-center gap-3">
               <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent-500">
-                Get in touch
+                {translate(locale, "Get in touch")}
               </span>
               <span className="h-px w-12 bg-accent-500" />
             </div>
             <h2 className="mt-5 max-w-xl text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
-              Ready to keep more of <span className="text-accent-500">what you earn?</span>
+              {translate(locale, "Ready to keep more of")} <span className="text-accent-500">{translate(locale, "what you earn?")}</span>
             </h2>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-white/75">
-              Practical, tailored support across accounting, feasibility
-              studies, maritime consultancy, and innovation.
+              {translate(locale, "Practical, tailored support across accounting, feasibility studies, maritime consultancy, and innovation.")}
             </p>
-            <Link href="/contact" className="btn-primary mt-8">
-              Get a Consultation
-              <ArrowRight className="h-4 w-4" />
+            <Link href={getLocalizedPathname("/contact", locale)} className="btn-primary mt-8">
+              {translate(locale, "Get a Consultation")}
+              <ArrowRight className="rtl:rotate-180 h-4 w-4" />
             </Link>
           </Reveal>
           <div className="grid gap-6 sm:grid-cols-3 lg:grid-cols-1 lg:gap-8">
@@ -243,8 +239,8 @@ export default function Services() {
                   <ShieldCheck className="h-5 w-5" strokeWidth={1.75} aria-hidden />
                 </span>
                 <div>
-                  <p className="font-semibold text-white">{point.title}</p>
-                  <p className="mt-1 text-sm leading-relaxed text-white/65">{point.text}</p>
+                  <p className="font-semibold text-white">{translate(locale, point.title)}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-white/65">{translate(locale, point.text)}</p>
                 </div>
               </div>
             ))}

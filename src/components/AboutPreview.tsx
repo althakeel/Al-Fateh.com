@@ -1,9 +1,11 @@
+import { getLocalizedPathname, type Locale } from "@/lib/i18n";
+import { translate } from "@/lib/translations";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Sparkles, MapPin } from "lucide-react";
 import Reveal from "./Reveal";
 
-export default function AboutPreview() {
+export default function AboutPreview({ locale = "en" }: { locale?: Locale }) {
   return (
     <section className="section-glass py-12 lg:py-16">
       <div className="container-x">
@@ -12,7 +14,7 @@ export default function AboutPreview() {
             <div className="group relative aspect-[3/2] overflow-hidden">
               <Image
                 src="/images/studio/finance partner(new).jpg"
-                alt="Business partners reviewing financial information together"
+                alt={translate(locale, "Business partners reviewing financial information together")}
                 fill
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 40vw"
@@ -23,37 +25,33 @@ export default function AboutPreview() {
               <span className="icon-tile-accent-solid mb-3 inline-flex h-9 w-9 rounded-sm">
                 <MapPin size={16} strokeWidth={1.75} aria-hidden />
               </span>
-              <p className="text-2xl font-bold tracking-tight text-brand-700">UAE</p>
+              <p className="text-2xl font-bold tracking-tight text-brand-700">{translate(locale, "UAE")}</p>
               <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-mute">
-                Based in Dubai
+                {translate(locale, "Based in Dubai")}
               </p>
             </div>
           </Reveal>
 
           <Reveal direction="right" delay={120} className="order-1 lg:order-2 lg:col-span-7">
-            <p className="eyebrow text-accent-600">About Us</p>
+            <p className="eyebrow text-accent-600">{translate(locale, "About Us")}</p>
             <div className="accent-bar mt-4" />
             <h2 className="mt-6 text-3xl font-bold leading-[1.1] tracking-tight text-ink sm:text-4xl lg:text-5xl">
-              A practical finance partner for business growth
+              {translate(locale, "A practical finance partner for business growth")}
             </h2>
             <p className="mt-6 text-base leading-relaxed text-mute sm:text-lg">
-              To help businesses keep more of what they earn through smart
-              Corporate Tax planning, reliable accounting outsourcing and
-              strategic business advisory.
+              {translate(locale, "To help businesses keep more of what they earn through smart Corporate Tax planning, reliable accounting outsourcing and strategic business advisory.")}
             </p>
             <p className="mt-5 text-base leading-relaxed text-mute sm:text-lg">
-              Practical, tailored support that helps businesses understand their
-              numbers, manage obligations, control costs and make better
-              decisions.
+              {translate(locale, "Practical, tailored support that helps businesses understand their numbers, manage obligations, control costs and make better decisions.")}
             </p>
 
             <Link
-              href="/about"
+              href={getLocalizedPathname("/about", locale)}
               className="group mt-8 inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.04em] text-ink transition-colors hover:text-accent-600"
             >
               <Sparkles className="h-4 w-4 text-accent-500" />
-              Learn more about us
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              {translate(locale, "Learn more about us")}
+              <ArrowRight className="rtl:rotate-180 h-4 w-4 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
             </Link>
           </Reveal>
         </div>

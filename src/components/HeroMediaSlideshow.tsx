@@ -1,5 +1,8 @@
 "use client";
 
+import { type Locale } from "@/lib/i18n";
+import { translate } from "@/lib/translations";
+
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 
@@ -18,7 +21,7 @@ const SLIDES = [
 
 const INTERVAL_MS = 10000;
 
-export default function HeroMediaSlideshow() {
+export default function HeroMediaSlideshow({ locale = "en" }: { locale?: Locale }) {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
 
@@ -51,8 +54,8 @@ export default function HeroMediaSlideshow() {
           setPaused(false);
         }
       }}
-      aria-roledescription="carousel"
-      aria-label="Al FATEH"
+      aria-roledescription={locale === "ar" ? "عرض شرائح" : "carousel"}
+      aria-label={translate(locale, "Al FATEH")}
     >
       {SLIDES.map((slide, index) => (
         <div
@@ -63,7 +66,7 @@ export default function HeroMediaSlideshow() {
         >
           <Image
             src={slide.src}
-            alt={index === active ? slide.alt : ""}
+            alt={index === active ? translate(locale, slide.alt) : ""}
             fill
             priority={index === 0}
             className={`object-cover ${slide.position} ${index === active ? "hero-media-img" : ""}`}
@@ -79,7 +82,9 @@ export default function HeroMediaSlideshow() {
           <button
             key={slide.src}
             type="button"
-            aria-label={`Show photo ${index + 1} of ${SLIDES.length}`}
+            aria-label={locale === "ar"
+              ? `اعرض الصورة ${index + 1} من ${SLIDES.length}`
+              : `Show photo ${index + 1} of ${SLIDES.length}`}
             aria-current={index === active ? "true" : undefined}
             onClick={() => goTo(index)}
             className={`rounded-full transition-all duration-500 ${

@@ -1,5 +1,8 @@
 "use client";
 
+import { getLocalizedPathname, type Locale } from "@/lib/i18n";
+import { translate } from "@/lib/translations";
+
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { servicePath, visibleServices } from "@/data/services";
@@ -10,9 +13,10 @@ import IconTile from "./IconTile";
 
 interface ServicesPreviewProps {
   limit?: number;
+  locale?: Locale;
 }
 
-export default function ServicesPreview({ limit }: ServicesPreviewProps) {
+export default function ServicesPreview({ limit, locale = "en" }: ServicesPreviewProps) {
   const previewServices = limit ? visibleServices.slice(0, limit) : visibleServices;
 
   return (
@@ -20,24 +24,22 @@ export default function ServicesPreview({ limit }: ServicesPreviewProps) {
       <div className="container-x">
         <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
           <Reveal className="max-w-2xl">
-            <p className="eyebrow text-accent-600">At Your Service</p>
+            <p className="eyebrow text-accent-600">{translate(locale, "At Your Service")}</p>
             <div className="accent-bar mt-4" />
             <h2 className="mt-3 text-2xl font-bold leading-[1.1] tracking-tight text-ink sm:text-3xl lg:text-4xl">
-              Four core service lines
+              {translate(locale, "Four core service lines")}
             </h2>
             <p className="mt-4 text-base leading-relaxed text-mute sm:text-lg">
-              Corporate tax, outsourced finance, cost control and market advisory
-              sit under Accounting. With them: feasibility studies, maritime
-              consultancy, and innovation.
+              {translate(locale, "Corporate tax, outsourced finance, cost control and market advisory sit under Accounting. With them: feasibility studies, maritime consultancy, and innovation.")}
             </p>
           </Reveal>
           <Reveal delay={120}>
             <Link
-              href="/services"
+              href={getLocalizedPathname("/services", locale)}
               className="group inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.04em] text-ink hover:text-accent-600"
             >
-              View all services
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              {translate(locale, "View all services")}
+              <ArrowRight className="rtl:rotate-180 h-4 w-4 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
             </Link>
           </Reveal>
         </div>
@@ -50,8 +52,8 @@ export default function ServicesPreview({ limit }: ServicesPreviewProps) {
             return (
               <Link
                 key={service.title}
-                href={servicePath(service.title)}
-                aria-label={`View ${service.title}`}
+                href={getLocalizedPathname(servicePath(service.title), locale)}
+                aria-label={locale === "ar" ? `عرض: ${translate(locale, service.title)}` : `View ${service.title}`}
                 className="reveal-child corp-card group relative flex cursor-pointer flex-col overflow-hidden p-6 outline-none transition-transform duration-300 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-accent-500/40 md:p-8"
               >
                 <span className="ghost-numeral absolute -right-1 -top-2 select-none text-7xl transition-colors duration-500">
@@ -70,13 +72,13 @@ export default function ServicesPreview({ limit }: ServicesPreviewProps) {
 
                 <div className="relative mt-6 flex flex-1 flex-col">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-mute">
-                    Practice / {num}
+                    {translate(locale, "Practice /")} {num}
                   </p>
                   <h3 className="mt-4 text-lg font-bold tracking-tight text-ink">
-                    {service.title}
+                    {translate(locale, service.title)}
                   </h3>
                   <p className="mt-3 line-clamp-3 flex-1 text-sm leading-relaxed text-mute">
-                    {service.description}
+                    {translate(locale, service.description)}
                   </p>
                 </div>
               </Link>

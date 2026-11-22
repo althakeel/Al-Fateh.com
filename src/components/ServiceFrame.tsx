@@ -1,5 +1,8 @@
 "use client";
 
+import { getLocalizedPathname, getLocaleFromPathname, type Locale } from "@/lib/i18n";
+import { translate } from "@/lib/translations";
+
 import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -37,8 +40,9 @@ function enterClass(pathname: string) {
   return backward ? "service-enter-back" : "service-enter-forward";
 }
 
-export default function ServiceFrame({ children }: { children: ReactNode }) {
-  const pathname = usePathname();
+export default function ServiceFrame({ children, locale }: { children: ReactNode; locale: Locale }) {
+  const localizedPath = usePathname();
+  const pathname = localizedPath.slice(getLocaleFromPathname(localizedPath) ? locale.length + 1 : 0);
   const activeIndex = Math.max(
     0,
     serviceLinks.findIndex((service) => service.href === pathname)
@@ -77,13 +81,13 @@ export default function ServiceFrame({ children }: { children: ReactNode }) {
 
   return (
     <div className="bg-ivory pt-28">
-      <nav aria-label="Services" className="sticky top-28 z-40 border-b border-brand-900/10 bg-ivory">
+      <nav aria-label={translate(locale, "Services")} className="sticky top-28 z-40 border-b border-brand-900/10 bg-ivory">
         <div className="container-x lg:overflow-x-auto [scrollbar-width:none] lg:[&::-webkit-scrollbar]:hidden">
         <div ref={navRef} className="relative">
           {indicator && (
             <span
               aria-hidden
-              className="service-indicator pointer-events-none absolute z-0 bg-accent-500/10"
+              className="service-indicator pointer-events-none absolute left-0 top-0 z-0 bg-accent-500/10"
               style={{
                 width: indicator.width,
                 height: indicator.height,
@@ -103,7 +107,7 @@ export default function ServiceFrame({ children }: { children: ReactNode }) {
               return (
                 <Link
                   key={service.href}
-                  href={service.href}
+                  href={getLocalizedPathname(service.href, locale)}
                   ref={(node) => {
                     itemRefs.current[index] = node;
                   }}
@@ -116,7 +120,7 @@ export default function ServiceFrame({ children }: { children: ReactNode }) {
                 >
                   {Icon && <Icon className="h-4 w-4 shrink-0 text-accent-500" strokeWidth={1.75} aria-hidden />}
                   <span className="text-[10px] font-bold uppercase tracking-[0.06em] lg:text-[11px]">
-                    {service.label}
+                    {translate(locale, service.label)}
                   </span>
                 </Link>
               );

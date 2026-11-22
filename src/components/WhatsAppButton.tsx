@@ -1,12 +1,14 @@
+import { type Locale } from "@/lib/i18n";
+import { translate } from "@/lib/translations";
 import { contact } from "@/data/contact";
 
-export default function WhatsAppButton() {
+export default function WhatsAppButton({ locale = "en" }: { locale?: Locale }) {
   return (
     <a
       href={contact.whatsappHref}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Chat on WhatsApp"
+      aria-label={translate(locale, "Chat on WhatsApp")}
       className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-[2px] bg-[#25D366] text-white shadow-lg shadow-[#25D366]/30 transition-transform hover:scale-105"
     >
       <span className="absolute inset-0 animate-pulse-ring rounded-[2px] bg-[#25D366]" aria-hidden />

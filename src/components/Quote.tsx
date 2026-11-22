@@ -1,8 +1,10 @@
+import { getLocalizedPathname, type Locale } from "@/lib/i18n";
+import { translate } from "@/lib/translations";
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "./Reveal";
 
-export default function Quote() {
+export default function Quote({ locale = "en" }: { locale?: Locale }) {
   return (
     <section className="relative overflow-hidden bg-carbon py-20 lg:py-28">
       <Image
@@ -17,21 +19,20 @@ export default function Quote() {
 
       <div className="container-x relative text-center">
         <Reveal direction="scale" className="mx-auto max-w-2xl">
-          <p className="eyebrow text-accent-400">Ready to Get Started?</p>
+          <p className="eyebrow text-accent-400">{translate(locale, "Ready to Get Started?")}</p>
           <div className="accent-bar mx-auto mt-4" />
           <h2 className="mt-6 text-3xl font-bold leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-5xl">
-            Get Your Quote Today!
+            {translate(locale, "Get Your Quote Today!")}
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/65 sm:text-lg">
-            Let us help you turn your vision into reality. Reach out today for a
-            personalized consultation tailored to your organization&apos;s needs.
+            {locale === "ar" ? translate(locale, "Let us help you turn your vision into reality. Reach out today for a personalized consultation tailored to your organization&apos;s needs.") : "Let us help you turn your vision into reality. Reach out today for a personalized consultation tailored to your organization's needs."}
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link href="/contact" className="btn-primary">
-              Get a Consultation
+            <Link href={getLocalizedPathname("/contact", locale)} className="btn-primary">
+              {translate(locale, "Get a Consultation")}
             </Link>
-            <Link href="/services" className="btn-outline-light">
-              Our Services
+            <Link href={getLocalizedPathname("/services", locale)} className="btn-outline-light">
+              {translate(locale, "Our Services")}
             </Link>
           </div>
         </Reveal>

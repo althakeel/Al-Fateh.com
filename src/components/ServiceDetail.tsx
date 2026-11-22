@@ -1,3 +1,5 @@
+import { getLocalizedPathname, type Locale } from "@/lib/i18n";
+import { translate } from "@/lib/translations";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, ChevronDown } from "lucide-react";
@@ -8,28 +10,29 @@ import { expertiseIcons } from "@/data/sectionIcons";
 import IconTile from "./IconTile";
 
 interface ServiceDetailProps {
+  locale: Locale;
   service: ServiceOffering;
   index: number;
 }
 
-function SectionCopy({ section }: { section: ServiceSection }) {
+function SectionCopy({ section, locale }: { section: ServiceSection; locale: Locale }) {
   return (
     <>
       {section.aside && (
-        <p className="mt-4 text-[15px] leading-8 text-brand-900/80">{section.aside}</p>
+        <p className="mt-4 text-[15px] leading-8 text-brand-900/80">{translate(locale, section.aside)}</p>
       )}
       {section.detail && (
-        <p className="mt-4 text-[15px] leading-8 text-brand-900/75">{section.detail}</p>
+        <p className="mt-4 text-[15px] leading-8 text-brand-900/75">{translate(locale, section.detail)}</p>
       )}
       {section.note && (
-        <p className="mt-3 text-sm leading-7 text-brand-900/55">{section.note}</p>
+        <p className="mt-3 text-sm leading-7 text-brand-900/55">{translate(locale, section.note)}</p>
       )}
       {section.points && section.points.length > 0 && (
         <ul className="mt-5 space-y-2.5">
           {section.points.map((point) => (
             <li key={point} className="flex gap-3 text-sm leading-7 text-brand-900/75 md:text-[15px]">
               <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500" />
-              <span>{point}</span>
+              <span>{translate(locale, point)}</span>
             </li>
           ))}
         </ul>
@@ -38,8 +41,8 @@ function SectionCopy({ section }: { section: ServiceSection }) {
         <div className="mt-6 space-y-6 border-t border-brand-900/10 pt-6">
           {section.groups.map((group) => (
             <div key={group.label}>
-              <h4 className="text-base font-bold text-brand-900">{group.label}</h4>
-              <SectionCopy section={group} />
+              <h4 className="text-base font-bold text-brand-900">{translate(locale, group.label)}</h4>
+              <SectionCopy locale={locale} section={group} />
             </div>
           ))}
         </div>
@@ -48,7 +51,7 @@ function SectionCopy({ section }: { section: ServiceSection }) {
   );
 }
 
-function GroupCards({ groups }: { groups: ServiceSection[] }) {
+function GroupCards({ groups, locale }: { groups: ServiceSection[]; locale: Locale }) {
   return (
     <div className="mt-8 grid gap-4 md:grid-cols-2">
       {groups.map((group) => (
@@ -56,20 +59,20 @@ function GroupCards({ groups }: { groups: ServiceSection[] }) {
           key={group.label}
           className="flex h-full flex-col border border-brand-900/10 bg-white p-6 shadow-[0_12px_30px_-24px_rgba(15,39,68,0.45)] md:p-7"
         >
-          <h3 className="text-lg font-bold leading-snug text-brand-900">{group.label}</h3>
+          <h3 className="text-lg font-bold leading-snug text-brand-900">{translate(locale, group.label)}</h3>
           <span className="mt-3 block h-px w-10 bg-accent-500" />
           {group.aside && (
-            <p className="mt-4 text-sm leading-7 text-brand-900/80">{group.aside}</p>
+            <p className="mt-4 text-sm leading-7 text-brand-900/80">{translate(locale, group.aside)}</p>
           )}
           {group.detail && (
-            <p className="mt-3 text-sm leading-7 text-brand-900/70">{group.detail}</p>
+            <p className="mt-3 text-sm leading-7 text-brand-900/70">{translate(locale, group.detail)}</p>
           )}
           {group.points && group.points.length > 0 && (
             <ul className="mt-4 space-y-2.5">
               {group.points.map((point) => (
                 <li key={point} className="flex gap-3 text-sm leading-6 text-brand-900/75">
                   <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500" />
-                  <span>{point}</span>
+                  <span>{translate(locale, point)}</span>
                 </li>
               ))}
             </ul>
@@ -88,7 +91,7 @@ function offeringId(label: string) {
     .replace(/(^-|-$)/g, "");
 }
 
-export default function ServiceDetail({ service, index }: ServiceDetailProps) {
+export default function ServiceDetail({ service, index, locale }: ServiceDetailProps) {
   const image = serviceImages[service.title];
   const number = String(index + 1).padStart(2, "0");
   const label = serviceShortLabels[service.title] ?? service.title;
@@ -119,7 +122,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
         {image && (
           <Image
             src={image.src}
-            alt={image.alt}
+            alt={translate(locale, image.alt)}
             fill
             priority
             className={
@@ -130,37 +133,37 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
             sizes="100vw"
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-900/92 via-brand-900/78 to-brand-900/25" />
+        <div className="absolute inset-0 bg-gradient-to-r rtl:bg-gradient-to-l from-brand-900/92 via-brand-900/78 to-brand-900/25" />
         <div className="container-x relative z-10 grid items-end gap-10 pb-14 pt-8 lg:grid-cols-12 lg:pb-16 lg:pt-10">
           <div className="lg:col-span-8">
             <div className="mb-5 flex items-center gap-3">
               <span className="h-px w-8 shrink-0 bg-accent-500" />
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent-500">
-                Al FATEH · {label}
+                {translate(locale, "Al FATEH ·")} {translate(locale, label)}
               </p>
             </div>
             <h1 className="max-w-3xl text-3xl font-bold leading-[1.08] text-white md:text-4xl lg:text-5xl">
-              {service.title}
+              {translate(locale, service.title)}
             </h1>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-white/75 md:text-[15px]">
-              {service.description}
+              {translate(locale, service.description)}
             </p>
             {service.plain && (
               <p className="mt-3 max-w-2xl text-sm leading-7 text-white/85 md:text-[15px]">
-                {service.plain}
+                {translate(locale, service.plain)}
               </p>
             )}
             {service.note && (
-              <p className="mt-3 max-w-2xl text-sm leading-7 text-white/60">{service.note}</p>
+              <p className="mt-3 max-w-2xl text-sm leading-7 text-white/60">{translate(locale, service.note)}</p>
             )}
           </div>
           <div className="flex flex-col gap-3 sm:flex-row lg:col-span-4 lg:justify-end">
-            <Link href="/contact" className="btn-primary">
-              Get a Consultation
-              <ArrowRight className="h-4 w-4" />
+            <Link href={getLocalizedPathname("/contact", locale)} className="btn-primary">
+              {translate(locale, "Get a Consultation")}
+              <ArrowRight className="rtl:rotate-180 h-4 w-4" />
             </Link>
             <a href="#scope" className="btn-outline-light">
-              Full scope
+              {translate(locale, "Full scope")}
             </a>
           </div>
         </div>
@@ -174,7 +177,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
               href={`#${item.id}`}
               className="shrink-0 rounded-full border border-transparent bg-white/80 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-900/70 transition-colors hover:border-accent-500/35 hover:bg-white hover:text-accent-700"
             >
-              {item.label}
+              {translate(locale, item.label)}
             </a>
           ))}
           {industries.length > 0 && (
@@ -182,7 +185,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
               href="#industry-solutions"
               className="shrink-0 rounded-full border border-transparent bg-white/80 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-900/70 transition-colors hover:border-accent-500/35 hover:bg-white hover:text-accent-700"
             >
-              Industry solutions
+              {translate(locale, "Industry solutions")}
             </a>
           )}
           {faqs.length > 0 && (
@@ -190,7 +193,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
               href="#faq"
               className="shrink-0 rounded-full border border-transparent bg-white/80 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-900/70 transition-colors hover:border-accent-500/35 hover:bg-white hover:text-accent-700"
             >
-              Questions
+              {translate(locale, "Questions")}
             </a>
           )}
         </div>
@@ -215,20 +218,20 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
                         </span>
                         <span className="h-px w-10 bg-accent-500" />
                         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-600">
-                          {label}
+                          {translate(locale, label)}
                         </p>
                       </div>
                       <h2 className="text-2xl font-bold leading-tight text-brand-900 md:text-3xl">
-                        {item.label}
+                        {translate(locale, item.label)}
                       </h2>
                       {item.aside && (
-                        <p className="mt-4 max-w-xl text-[15px] leading-8 text-brand-900/80">{item.aside}</p>
+                        <p className="mt-4 max-w-xl text-[15px] leading-8 text-brand-900/80">{translate(locale, item.aside)}</p>
                       )}
                       {item.detail && (
-                        <p className="mt-3 max-w-xl text-[15px] leading-8 text-brand-900/70">{item.detail}</p>
+                        <p className="mt-3 max-w-xl text-[15px] leading-8 text-brand-900/70">{translate(locale, item.detail)}</p>
                       )}
                       {item.note && (
-                        <p className="mt-3 max-w-xl text-sm leading-7 text-brand-900/55">{item.note}</p>
+                        <p className="mt-3 max-w-xl text-sm leading-7 text-brand-900/55">{translate(locale, item.note)}</p>
                       )}
                     </div>
                     <div
@@ -239,7 +242,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
                       {item.image && (
                         <Image
                           src={item.image.src}
-                          alt={item.image.alt}
+                          alt={translate(locale, item.image.alt)}
                           fill
                           className="object-cover object-center"
                           sizes="(max-width: 1024px) 100vw, 40vw"
@@ -247,7 +250,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
                       )}
                     </div>
                   </div>
-                  {item.groups && item.groups.length > 0 && <GroupCards groups={item.groups} />}
+                  {item.groups && item.groups.length > 0 && <GroupCards locale={locale} groups={item.groups} />}
                 </article>
               );
             })}
@@ -262,7 +265,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
                   {featured.image && (
                     <Image
                       src={featured.image.src}
-                      alt={featured.image.alt}
+                      alt={translate(locale, featured.image.alt)}
                       fill
                       className="object-cover object-center"
                       sizes="(max-width: 1024px) 100vw, 50vw"
@@ -276,13 +279,13 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
                   <div className="mb-4 flex items-center gap-3">
                     <span className="h-px w-8 bg-accent-500" />
                     <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent-600">
-                      {number} / {label}
+                      {number} / {translate(locale, label)}
                     </p>
                   </div>
                   <h2 className="text-2xl font-bold leading-tight text-brand-900 md:text-3xl lg:text-4xl">
-                    {featured.label}
+                    {translate(locale, featured.label)}
                   </h2>
-                  <SectionCopy section={featured} />
+                  <SectionCopy locale={locale} section={featured} />
                 </div>
               </div>
             </div>
@@ -298,11 +301,11 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
               <div className="mb-3 flex items-center gap-3">
                 <span className="h-px w-8 bg-accent-500" />
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent-600">
-                  {label}
+                  {translate(locale, label)}
                 </p>
               </div>
               <h2 className="text-3xl font-bold text-brand-900 md:text-4xl">
-                {service.title}
+                {translate(locale, service.title)}
               </h2>
             </div>
           </div>
@@ -326,7 +329,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
                         {item.image && (
                           <Image
                             src={item.image.src}
-                            alt={item.image.alt}
+                            alt={translate(locale, item.image.alt)}
                             fill
                             className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.04]"
                             sizes="(max-width: 1024px) 100vw, 46vw"
@@ -338,9 +341,9 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
                       </div>
                     </div>
                     <div className="min-w-0 flex-1">
-                      <h3 className="text-xl font-bold text-brand-900 md:text-2xl">{item.label}</h3>
+                      <h3 className="text-xl font-bold text-brand-900 md:text-2xl">{translate(locale, item.label)}</h3>
                       <span className="mt-3 block h-px w-12 bg-accent-500/55" />
-                      <SectionCopy section={item} />
+                      <SectionCopy locale={locale} section={item} />
                     </div>
                   </div>
                 </article>
@@ -359,11 +362,11 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
                 <div className="mb-3 flex items-center gap-3">
                   <span className="h-px w-8 bg-accent-500" />
                   <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent-600">
-                    Cost control
+                    {translate(locale, "Cost control")}
                   </p>
                 </div>
                 <h2 className="text-3xl font-bold tracking-tight text-brand-900 md:text-4xl">
-                  Industry solutions
+                  {translate(locale, "Industry solutions")}
                 </h2>
               </div>
               <ol className="space-y-4 lg:col-span-7 lg:border-s lg:border-brand-900/10 lg:ps-10">
@@ -372,7 +375,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
                     <span className="pt-0.5 text-[11px] font-semibold tracking-[0.16em] text-accent-600">
                       {String(lineIndex + 1).padStart(2, "0")}
                     </span>
-                    <p className="text-sm leading-7 text-brand-900/75 md:text-[15px]">{line}</p>
+                    <p className="text-sm leading-7 text-brand-900/75 md:text-[15px]">{translate(locale, line)}</p>
                   </li>
                 ))}
               </ol>
@@ -395,7 +398,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
                     </span>
                   </div>
                   <h3 className="relative mt-5 text-lg font-bold tracking-tight text-brand-900">
-                    {industry.label}
+                    {translate(locale, industry.label)}
                   </h3>
                   <span className="relative mt-3 block h-px w-10 bg-accent-500" />
                   {industry.points && (
@@ -403,7 +406,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
                       {industry.points.map((point) => (
                         <li key={point} className="flex gap-3 text-sm leading-6 text-brand-900/70">
                           <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500" />
-                          <span>{point}</span>
+                          <span>{translate(locale, point)}</span>
                         </li>
                       ))}
                     </ul>
@@ -428,7 +431,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
                     </span>
                   </div>
                   <h3 className="relative mt-5 text-lg font-bold tracking-tight text-brand-900">
-                    {industries[6].label}
+                    {translate(locale, industries[6].label)}
                   </h3>
                   <span className="relative mt-3 block h-px w-10 bg-accent-500" />
                   {industries[6].points && (
@@ -436,7 +439,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
                       {industries[6].points.map((point) => (
                         <li key={point} className="flex gap-3 text-sm leading-6 text-brand-900/70">
                           <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500" />
-                          <span>{point}</span>
+                          <span>{translate(locale, point)}</span>
                         </li>
                       ))}
                     </ul>
@@ -445,10 +448,10 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
                 {service.industryNote && (
                   <aside className="flex flex-col justify-between bg-brand-900 px-6 py-7 text-white md:px-8 md:py-8 lg:col-span-5">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent-400">
-                      Other sectors
+                      {translate(locale, "Other sectors")}
                     </p>
                     <p className="mt-4 text-lg font-semibold leading-8 text-white/90">
-                      {service.industryNote}
+                      {translate(locale, service.industryNote)}
                     </p>
                   </aside>
                 )}
@@ -465,11 +468,11 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
               <div className="mb-3 flex items-center gap-3">
                 <span className="h-px w-8 bg-accent-500" />
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent-600">
-                  {label}
+                  {translate(locale, label)}
                 </p>
               </div>
               <h2 className="text-3xl font-bold text-brand-900 md:text-4xl">
-                Frequently asked questions
+                {translate(locale, "Frequently asked questions")}
               </h2>
             </div>
             <div className="overflow-hidden rounded-[22px] border border-accent-500/25 bg-white">
@@ -481,7 +484,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
                 >
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-6 px-6 py-5 md:px-8 [&::-webkit-details-marker]:hidden">
                     <span className="text-base font-semibold text-brand-900 md:text-lg">
-                      {item.question}
+                      {translate(locale, item.question)}
                     </span>
                     <ChevronDown
                       className="h-5 w-5 shrink-0 text-accent-600 transition-transform duration-300 group-open:rotate-180"
@@ -489,7 +492,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
                     />
                   </summary>
                   <p className="max-w-3xl px-6 pb-6 text-sm leading-7 text-brand-900/70 md:px-8 md:text-[15px]">
-                    {item.answer}
+                    {translate(locale, item.answer)}
                   </p>
                 </details>
               ))}
@@ -498,35 +501,35 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
         </section>
       )}
 
-      <nav aria-label="More services" className="border-t border-platinum bg-frost">
+      <nav aria-label={translate(locale, "More services")} className="border-t border-platinum bg-frost">
         <div className="container-x grid sm:grid-cols-2">
           <Link
-            href={servicePath(previous.title)}
+            href={getLocalizedPathname(servicePath(previous.title), locale)}
             className="group flex items-center gap-4 border-b border-platinum py-8 sm:border-b-0 sm:border-e sm:pe-8"
           >
-            <ArrowLeft className="h-5 w-5 text-accent-600 transition-transform duration-300 group-hover:-translate-x-1" aria-hidden />
+            <ArrowLeft className="rtl:rotate-180 h-5 w-5 text-accent-600 transition-transform duration-300 group-hover:-translate-x-1" aria-hidden />
             <span>
               <span className="block text-[11px] font-semibold uppercase tracking-[0.16em] text-mute">
-                Previous
+                {translate(locale, "Previous")}
               </span>
               <span className="mt-1 block font-semibold text-brand-900">
-                {serviceShortLabels[previous.title]}
+                {translate(locale, serviceShortLabels[previous.title])}
               </span>
             </span>
           </Link>
           <Link
-            href={servicePath(next.title)}
+            href={getLocalizedPathname(servicePath(next.title), locale)}
             className="group flex items-center justify-end gap-4 py-8 text-end sm:ps-8"
           >
             <span>
               <span className="block text-[11px] font-semibold uppercase tracking-[0.16em] text-mute">
-                Next
+                {translate(locale, "Next")}
               </span>
               <span className="mt-1 block font-semibold text-brand-900">
-                {serviceShortLabels[next.title]}
+                {translate(locale, serviceShortLabels[next.title])}
               </span>
             </span>
-            <ArrowRight className="h-5 w-5 text-accent-600 transition-transform duration-300 group-hover:translate-x-1" aria-hidden />
+            <ArrowRight className="rtl:rotate-180 h-5 w-5 text-accent-600 transition-transform duration-300 group-hover:translate-x-1 rtl:group-hover:-translate-x-1" aria-hidden />
           </Link>
         </div>
       </nav>

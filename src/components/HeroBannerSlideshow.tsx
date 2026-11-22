@@ -1,5 +1,8 @@
 "use client";
 
+import { type Locale } from "@/lib/i18n";
+import { translate } from "@/lib/translations";
+
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
@@ -28,7 +31,7 @@ const SLIDES = [
 
 const SLIDE_DURATION_MS = 8000;
 
-export default function HeroBannerSlideshow() {
+export default function HeroBannerSlideshow({ locale = "en" }: { locale?: Locale }) {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const [active, setActive] = useState(0);
   const [useStatic, setUseStatic] = useState(false);
@@ -113,7 +116,7 @@ export default function HeroBannerSlideshow() {
             <button
               key={slide.src}
               type="button"
-              aria-label={`Show ${slide.label}`}
+            aria-label={locale === "ar" ? `اعرض: ${translate(locale, slide.label)}` : `Show ${slide.label}`}
               aria-current={index === active ? "true" : undefined}
               onClick={() => goToSlide(index)}
               className={`hero-banner-dot rounded-full transition-all duration-500 ${

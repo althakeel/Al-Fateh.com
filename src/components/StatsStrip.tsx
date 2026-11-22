@@ -1,5 +1,8 @@
 "use client";
 
+import { type Locale } from "@/lib/i18n";
+import { translate } from "@/lib/translations";
+
 import Image from "next/image";
 import {
   LayoutGrid,
@@ -17,7 +20,7 @@ const stats: { value: string; label: string; icon: LucideIcon }[] = [
   { value: "Flexible", label: "Agreed Scope", icon: Users },
 ];
 
-export default function StatsStrip() {
+export default function StatsStrip({ locale = "en" }: { locale?: Locale }) {
   return (
     <section className="metric-band relative overflow-hidden text-white">
       <Image
@@ -41,16 +44,16 @@ export default function StatsStrip() {
             return (
               <div
                 key={stat.label}
-                className="metric-item reveal-child group relative border-l-2 border-accent-500 pl-5 sm:pl-6"
+                className="metric-item reveal-child group relative border-s-2 border-accent-500 ps-5 sm:ps-6"
               >
                 <span className="absolute -top-1 left-3 text-accent-500 transition-transform duration-500 group-hover:-translate-y-0.5 sm:left-3.5">
                   <Icon size={16} strokeWidth={2} aria-hidden />
                 </span>
                 <div className="mt-7 text-[2.75rem] font-bold leading-none tracking-tight text-white tabular-nums sm:text-5xl md:text-6xl">
-                  {stat.value}
+                  {translate(locale, stat.value)}
                 </div>
                 <div className="mt-3.5 max-w-[11rem] text-[10px] font-medium uppercase leading-relaxed tracking-[0.18em] text-white/72 sm:mt-4 sm:text-[11px]">
-                  {stat.label}
+                  {translate(locale, stat.label)}
                 </div>
               </div>
             );

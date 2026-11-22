@@ -1,3 +1,5 @@
+import { getLocalizedPathname, type Locale } from "@/lib/i18n";
+import { translate } from "@/lib/translations";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { whyUsIcons } from "@/data/sectionIcons";
@@ -20,25 +22,25 @@ const reasons = [
   },
 ];
 
-export default function HomeWhyUsPreview() {
+export default function HomeWhyUsPreview({ locale = "en" }: { locale?: Locale }) {
   return (
     <section className="py-12 lg:py-16">
       <div className="container-x">
         <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
           <Reveal className="max-w-2xl">
-            <p className="eyebrow text-accent-600">Why Al FATEH</p>
+            <p className="eyebrow text-accent-600">{translate(locale, "Why Al FATEH")}</p>
             <div className="accent-bar mt-4" />
             <h2 className="mt-6 text-3xl font-bold leading-[1.1] tracking-tight text-ink sm:text-4xl lg:text-5xl">
-              What clients can expect
+              {translate(locale, "What clients can expect")}
             </h2>
           </Reveal>
           <Reveal delay={120}>
             <Link
-              href="/why-us"
+              href={getLocalizedPathname("/why-us", locale)}
               className="group inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.04em] text-ink hover:text-accent-600"
             >
-              Why choose us
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              {translate(locale, "Why choose us")}
+              <ArrowRight className="rtl:rotate-180 h-4 w-4 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
             </Link>
           </Reveal>
         </div>
@@ -58,8 +60,8 @@ export default function HomeWhyUsPreview() {
                     {num}
                   </span>
                 </div>
-                <h3 className="mt-5 text-lg font-bold text-ink">{reason.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-mute">{reason.description}</p>
+                <h3 className="mt-5 text-lg font-bold text-ink">{translate(locale, reason.title)}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-mute">{translate(locale, reason.description)}</p>
               </div>
             );
           })}

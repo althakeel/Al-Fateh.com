@@ -1,3 +1,5 @@
+import { getLocalizedPathname, type Locale } from "@/lib/i18n";
+import { translate } from "@/lib/translations";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -55,21 +57,21 @@ const values = [
   },
 ];
 
-export default function About() {
+export default function About({ locale = "en" }: { locale?: Locale }) {
   return (
     <>
       <PageHero
-        eyebrow="About Us"
+        eyebrow={translate(locale, "About Us")}
         title={
           <>
-            Keep More of
+            {translate(locale, "Keep More of")}
             <br />
-            What You Earn.
+            {translate(locale, "What You Earn.")}
           </>
         }
-        description="A practical finance partner for business growth across tax, accounting, cost control and business advisory."
+        description={translate(locale, "A practical finance partner for business growth across tax, accounting, cost control and business advisory.")}
         image="/images/studio/Corporate Tax (bg) new.jpg"
-        imageAlt="Corporate tax documents and financial records on a desk"
+        imageAlt={translate(locale, "Corporate tax documents and financial records on a desk")}
         imagePosition="object-center"
       />
 
@@ -79,7 +81,7 @@ export default function About() {
             <div className="relative aspect-[3/2] overflow-hidden">
               <Image
                 src="/images/studio/finance partner(new).jpg"
-                alt="Business partners reviewing financial information together"
+                alt={translate(locale, "Business partners reviewing financial information together")}
                 fill
                 className="about-photo object-cover object-center"
                 sizes="(max-width: 1024px) 100vw, 42vw"
@@ -90,18 +92,16 @@ export default function About() {
           <div className="flex flex-col justify-center lg:col-span-7">
             <Reveal>
               <h2 className="max-w-xl text-3xl font-bold leading-[1.1] tracking-tight text-brand-900 sm:text-5xl">
-                A practical finance partner for business growth
+                {translate(locale, "A practical finance partner for business growth")}
               </h2>
               <p className="mt-5 max-w-xl text-base leading-relaxed text-slate sm:text-lg">
-                Practical, tailored support that helps businesses understand
-                their numbers, manage obligations, control costs and make better
-                decisions.
+                {translate(locale, "Practical, tailored support that helps businesses understand their numbers, manage obligations, control costs and make better decisions.")}
               </p>
             </Reveal>
 
             <Reveal delay={120}>
-              <Link href="/contact" className="btn-primary glow-accent group mt-10">
-                Get a Consultation
+              <Link href={getLocalizedPathname("/contact", locale)} className="btn-primary glow-accent group mt-10">
+                {translate(locale, "Get a Consultation")}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Reveal>
@@ -118,7 +118,7 @@ export default function About() {
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-brand-900/45" />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-900/55 via-brand-900/25 to-brand-900/40" />
+        <div className="absolute inset-0 bg-gradient-to-r rtl:bg-gradient-to-l from-brand-900/55 via-brand-900/25 to-brand-900/40" />
         <div className="container-x relative z-10 flex min-h-[520px] items-center py-16 lg:min-h-[560px] lg:py-24">
           <div className="grid w-full items-stretch gap-5 md:grid-cols-3 md:gap-6">
             {statements.map((statement) => {
@@ -132,9 +132,9 @@ export default function About() {
                     <span className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-accent-500/55 bg-accent-500/20 text-accent-400">
                       <Icon className="h-6 w-6" strokeWidth={1.75} aria-hidden />
                     </span>
-                    <h3 className="text-2xl font-bold leading-none text-white">{statement.label}</h3>
+                    <h3 className="text-2xl font-bold leading-none text-white">{translate(locale, statement.label)}</h3>
                   </div>
-                  <p className="text-base leading-8 text-white/80 sm:text-[17px]">{statement.text}</p>
+                  <p className="text-base leading-8 text-white/80 sm:text-[17px]">{translate(locale, statement.text)}</p>
                 </article>
               );
             })}
@@ -157,11 +157,11 @@ export default function About() {
                     <Icon className="h-5 w-5" strokeWidth={1.75} aria-hidden />
                   </span>
                   <h3 className="text-lg font-bold tracking-tight text-white sm:text-xl">
-                    {value.title}
+                    {translate(locale, value.title)}
                   </h3>
                   <span className="mt-3 block h-px w-10 bg-accent-500" />
                   <p className="mt-4 text-sm leading-6 text-white/70">
-                    {value.description}
+                    {translate(locale, value.description)}
                   </p>
                 </article>
               );

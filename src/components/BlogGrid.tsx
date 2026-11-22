@@ -1,37 +1,38 @@
+import { getLocalizedPathname, type Locale } from "@/lib/i18n";
+import { translate } from "@/lib/translations";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Clock3 } from "lucide-react";
-import { blogPosts } from "@/data/blog";
+import { getBlogPosts } from "@/data/blog";
 import RevealStagger from "./RevealStagger";
 
-export default function BlogGrid() {
+export default function BlogGrid({ locale = "en" }: { locale?: Locale }) {
   return (
     <section className="bg-frost py-16 lg:py-24">
       <div className="container-x">
         <div className="mb-10 max-w-2xl">
           <div className="flex items-center gap-3">
             <span className="accent-bar" />
-            <p className="eyebrow text-accent-600">Latest Perspectives</p>
+            <p className="eyebrow text-accent-600">{translate(locale, "Latest Perspectives")}</p>
           </div>
           <h2 className="mt-4 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-            Ideas for informed business decisions
+            {translate(locale, "Ideas for informed business decisions")}
           </h2>
           <p className="mt-4 text-base leading-relaxed text-mute">
-            Notes on corporate tax readiness, cost visibility, and market
-            advisory from the Al FATEH team.
+            {translate(locale, "Notes on corporate tax readiness, cost visibility, and market advisory from the Al FATEH team.")}
           </p>
         </div>
 
         <RevealStagger className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {blogPosts.map((post) => (
+          {getBlogPosts(locale).map((post) => (
             <article
               key={post.slug}
               className="reveal-child corp-card group flex min-h-full flex-col overflow-hidden shadow-luxe"
             >
               <Link
-                href={`/blog/${post.slug}`}
+                href={getLocalizedPathname(`/blog/${post.slug}`, locale)}
                 className="relative block aspect-[16/10] overflow-hidden bg-brand-900"
-                aria-label={`Read ${post.title}`}
+                aria-label={locale === "ar" ? `اقرأ: ${post.title}` : `Read ${post.title}`}
               >
                 <Image
                   src={post.image}
@@ -56,7 +57,7 @@ export default function BlogGrid() {
 
                 <h3 className="mt-4 text-xl font-bold leading-snug tracking-tight text-ink">
                   <Link
-                    href={`/blog/${post.slug}`}
+                    href={getLocalizedPathname(`/blog/${post.slug}`, locale)}
                     className="transition-colors hover:text-brand-600"
                   >
                     {post.title}
@@ -67,11 +68,11 @@ export default function BlogGrid() {
                 </p>
 
                 <Link
-                  href={`/blog/${post.slug}`}
+                  href={getLocalizedPathname(`/blog/${post.slug}`, locale)}
                   className="mt-6 inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.06em] text-accent-600 transition-colors hover:text-accent-500"
                 >
-                  Read Article
-                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                  {translate(locale, "Read Article")}
+                  <ArrowRight className="rtl:rotate-180 h-3.5 w-3.5 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
                 </Link>
               </div>
             </article>

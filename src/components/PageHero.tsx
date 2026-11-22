@@ -41,12 +41,12 @@ export default function PageHero({
       >
         <div
           className={`container-x flex items-center py-6 sm:py-8 lg:py-10 xl:py-12 ${
-            hasImage ? "lg:pl-16 lg:pr-10 xl:pl-24 xl:pr-14" : ""
+            hasImage ? "lg:ps-16 lg:pe-10 xl:ps-24 xl:pe-14" : ""
           }`}
         >
           <div
             className={`w-full max-w-xl ${
-              hasImage ? "lg:ml-auto lg:max-w-lg xl:max-w-xl" : ""
+              hasImage ? "lg:ms-auto lg:max-w-lg xl:max-w-xl" : ""
             }`}
           >
             {eyebrow && (

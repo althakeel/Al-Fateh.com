@@ -1,16 +1,20 @@
 "use client";
 
+import { type Locale } from "@/lib/i18n";
+import { translate } from "@/lib/translations";
+
 import { useEffect } from "react";
 import { Check, X } from "lucide-react";
 import type { ServiceOffering } from "@/data/services";
 import Logo from "@/components/Logo";
 
 interface ServiceModalProps {
+  locale?: Locale;
   service: ServiceOffering;
   onClose: () => void;
 }
 
-export default function ServiceModal({ service, onClose }: ServiceModalProps) {
+export default function ServiceModal({ service, onClose, locale = "en" }: ServiceModalProps) {
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -25,16 +29,16 @@ export default function ServiceModal({ service, onClose }: ServiceModalProps) {
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" role="dialog" aria-modal="true">
-      <button type="button" className="animate-fade-in absolute inset-0 bg-carbon/70 backdrop-blur-sm" onClick={onClose} aria-label="Close modal" />
+      <button type="button" className="animate-fade-in absolute inset-0 bg-carbon/70 backdrop-blur-sm" onClick={onClose} aria-label={translate(locale, "Close modal")} />
 
       <div className="animate-scale-in relative max-h-[85vh] w-full max-w-2xl overflow-y-auto border border-platinum bg-ivory shadow-2xl">
         <div className="sticky top-0 flex items-center justify-between border-b border-platinum bg-ivory/95 px-6 py-4 backdrop-blur-md">
-          <Logo linked={false} variant="default" />
+          <Logo locale={locale} linked={false} variant="default" />
           <button
             type="button"
             onClick={onClose}
             className="flex h-9 w-9 items-center justify-center rounded-[2px] border border-platinum text-mute transition-colors hover:border-ink hover:text-ink"
-            aria-label="Close"
+            aria-label={translate(locale, "Close")}
           >
             <X className="h-4 w-4" />
           </button>
@@ -42,10 +46,10 @@ export default function ServiceModal({ service, onClose }: ServiceModalProps) {
 
         <div className="px-6 py-6">
           <div className="accent-bar" />
-          <h2 className="mt-4 text-xl font-bold text-ink">{service.title}</h2>
-          <p className="mt-4 leading-relaxed text-mute">{service.description}</p>
+          <h2 className="mt-4 text-xl font-bold text-ink">{translate(locale, service.title)}</h2>
+          <p className="mt-4 leading-relaxed text-mute">{translate(locale, service.description)}</p>
 
-          <h3 className="eyebrow mt-8 text-accent-600">What We Offer</h3>
+          <h3 className="eyebrow mt-8 text-accent-600">{translate(locale, "What We Offer")}</h3>
           <ul className="mt-4 space-y-3">
             {service.offerings.map((offering) => (
                 <li key={offering.label} className="corp-card flex gap-3 p-4">
@@ -53,12 +57,12 @@ export default function ServiceModal({ service, onClose }: ServiceModalProps) {
                     <Check size={14} strokeWidth={2.5} aria-hidden />
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-ink">{offering.label}</p>
-                    {offering.detail && <p className="mt-1 text-sm text-mute">{offering.detail}</p>}
+                    <p className="text-sm font-semibold text-ink">{translate(locale, offering.label)}</p>
+                    {offering.detail && <p className="mt-1 text-sm text-mute">{translate(locale, offering.detail)}</p>}
                     {offering.points && (
                       <ul className="mt-2 space-y-1 text-sm text-mute">
                         {offering.points.map((point) => (
-                          <li key={point}>{point}</li>
+                          <li key={point}>{translate(locale, point)}</li>
                         ))}
                       </ul>
                     )}

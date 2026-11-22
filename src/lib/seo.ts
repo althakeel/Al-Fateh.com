@@ -1,3 +1,5 @@
+import { getLocalizedPathname, type Locale } from "@/lib/i18n";
+import { getTranslations, translate } from "@/lib/translations";
 import type { Metadata } from "next";
 import { contact } from "@/data/contact";
 import { siteConfig, type PageSeoInput } from "@/data/site";
@@ -141,7 +143,7 @@ export function createPageMetadata({
   };
 }
 
-export function organizationJsonLd() {
+export function organizationJsonLd(locale: Locale = "en") {
   return {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
@@ -155,7 +157,7 @@ export function organizationJsonLd() {
       absoluteUrl(siteConfig.ogImage),
       absoluteUrl(siteConfig.favicon),
     ],
-    description: siteConfig.description,
+    description: translate(locale, siteConfig.description),
     email: siteConfig.email,
     telephone: siteConfig.phone,
     areaServed: {
@@ -193,18 +195,19 @@ export function organizationJsonLd() {
   };
 }
 
-export function websiteJsonLd() {
+export function websiteJsonLd(locale: Locale = "en") {
+  const url = absoluteUrl(getLocalizedPathname("/", locale));
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": `${siteConfig.url}/#website`,
-    url: siteConfig.url,
+    "@id": `${url}#website`,
+    url,
     name: siteConfig.name,
-    description: siteConfig.description,
+    description: translate(locale, siteConfig.description),
     publisher: {
       "@id": `${siteConfig.url}/#organization`,
     },
-    inLanguage: siteConfig.language,
+    inLanguage: locale,
   };
 }
 
@@ -223,8 +226,16 @@ export function faqJsonLd(items: Array<{ question: string; answer: string }>) {
   };
 }
 
+function localizeNavigationName(name: string, locale: Locale) {
+  const { nav } = getTranslations(locale);
+  const english = getTranslations("en").nav;
+  const key = (Object.keys(english) as (keyof typeof english)[]).find((key) => english[key] === name);
+  return key ? nav[key] : translate(locale, name);
+}
+
 export function breadcrumbJsonLd(
-  items: Array<{ name: string; path: string }>
+  items: Array<{ name: string; path: string }>,
+  locale: Locale = "en"
 ) {
   return {
     "@context": "https://schema.org",
@@ -232,8 +243,8 @@ export function breadcrumbJsonLd(
     itemListElement: items.map((item, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      name: item.name,
-      item: absoluteUrl(item.path),
+      name: localizeNavigationName(item.name, locale),
+      item: absoluteUrl(getLocalizedPathname(item.path, locale)),
     })),
   };
 }
@@ -243,17 +254,19 @@ export function articleJsonLd({
   description,
   path,
   image,
+  locale = "en",
 }: {
   title: string;
   description: string;
   path: string;
   image: string;
+  locale?: Locale;
 }) {
   return {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: title,
-    description,
+    headline: translate(locale, title),
+    description: translate(locale, description),
     image: [absoluteUrl(image), absoluteUrl(siteConfig.favicon)],
     author: {
       "@type": "Organization",
@@ -268,7 +281,8 @@ export function articleJsonLd({
         url: absoluteUrl(siteConfig.iconPng),
       },
     },
-    mainEntityOfPage: absoluteUrl(path),
-    url: absoluteUrl(path),
+    inLanguage: locale,
+    mainEntityOfPage: absoluteUrl(getLocalizedPathname(path, locale)),
+    url: absoluteUrl(getLocalizedPathname(path, locale)),
   };
 }

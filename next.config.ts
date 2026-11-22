@@ -16,7 +16,7 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["lucide-react"],
   },
   async redirects() {
-    return [
+    const legacyRedirects = [
       { source: "/services/corporate-tax-and-tax-advisory", destination: "/services/accounting-services", permanent: true },
       { source: "/services/outsourced-finance-and-accounting", destination: "/services/accounting-services", permanent: true },
       { source: "/services/cost-accounting-and-cost-control", destination: "/services/accounting-services", permanent: true },
@@ -28,6 +28,10 @@ const nextConfig: NextConfig = {
       { source: "/blog/planning-for-uae-market-entry", destination: "/blog/agreeing-a-market-advisory-brief", permanent: true },
       { source: "/blog/turning-ai-ambition-into-a-practical-roadmap", destination: "/blog", permanent: true },
     ];
+    return legacyRedirects.flatMap(({ source, destination, permanent }) => [
+      { source, destination: `/en${destination}`, permanent },
+      { source: `/:locale(en|ar)${source}`, destination: `/:locale${destination}`, permanent },
+    ]);
   },
 };
 

@@ -1,3 +1,7 @@
+import { translate } from "@/lib/translations";
+import { getLocalizedPathname } from "@/lib/i18n";
+import { createLocalizedMetadata } from "@/lib/localized-seo";
+import { requireLocale } from "@/lib/route-locale";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check, Clock3 } from "lucide-react";
@@ -8,11 +12,10 @@ import { blogPosts, getBlogPost } from "@/data/blog";
 import {
   articleJsonLd,
   breadcrumbJsonLd,
-  createPageMetadata,
 } from "@/lib/seo";
 
 interface BlogPostPageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }
 
 export function generateStaticParams() {
@@ -22,14 +25,16 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: BlogPostPageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const post = getBlogPost(slug);
+  const { slug, locale: requestedLocale } = await params;
+  const locale = requireLocale(requestedLocale);
+  const post = getBlogPost(slug, locale);
 
   if (!post) {
     return { title: "Article Not Found", robots: { index: false, follow: false } };
   }
 
-  return createPageMetadata({
+  return createLocalizedMetadata({
+    locale,
     title: post.title,
     description: post.excerpt,
     path: `/blog/${post.slug}`,
@@ -46,8 +51,9 @@ export async function generateMetadata({
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { slug } = await params;
-  const post = getBlogPost(slug);
+  const { slug, locale: requestedLocale } = await params;
+  const locale = requireLocale(requestedLocale);
+  const post = getBlogPost(slug, locale);
 
   if (!post) {
     notFound();
@@ -61,12 +67,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             { name: "Home", path: "/" },
             { name: "Blog", path: "/blog" },
             { name: post.title, path: `/blog/${post.slug}` },
-          ]),
+          ], locale),
           articleJsonLd({
             title: post.title,
             description: post.excerpt,
             path: `/blog/${post.slug}`,
             image: post.image,
+            locale,
           }),
         ]}
       />
@@ -84,11 +91,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <div className="mx-auto max-w-3xl">
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-platinum pb-6">
               <Link
-                href="/blog"
+                href={getLocalizedPathname("/blog", locale)}
                 className="inline-flex items-center gap-2 text-sm font-medium text-brand-700 transition-colors hover:text-accent-600"
               >
-                <ArrowLeft className="h-4 w-4" aria-hidden />
-                Back to all insights
+                <ArrowLeft className="rtl:rotate-180 h-4 w-4" aria-hidden />
+                {translate(locale, "Back to all insights")}
               </Link>
               <span className="inline-flex items-center gap-2 text-sm text-mute">
                 <Clock3 className="h-4 w-4 text-accent-500" aria-hidden />
@@ -114,7 +121,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   </div>
 
                   {section.points && (
-                    <ul className="mt-6 space-y-3 border-l-2 border-accent-500 bg-frost p-5 sm:p-6">
+                    <ul className="mt-6 space-y-3 border-s-2 border-accent-500 bg-frost p-5 sm:p-6">
                       {section.points.map((point) => (
                         <li
                           key={point}
@@ -133,17 +140,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
 
             <aside className="mt-14 border border-platinum bg-brand-900 p-7 text-white shadow-luxe sm:p-9">
-              <p className="eyebrow text-accent-400">Discuss Your Next Step</p>
+              <p className="eyebrow text-accent-400">{translate(locale, "Discuss Your Next Step")}</p>
               <h2 className="mt-3 text-2xl font-bold tracking-tight">
-                Put these insights into practice.
+                {translate(locale, "Put these insights into practice.")}
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-white/70 sm:text-base">
-                Speak with the Al FATEH team about the decisions, risks, and
-                opportunities shaping your organization.
+                {translate(locale, "Speak with the Al FATEH team about the decisions, risks, and opportunities shaping your organization.")}
               </p>
-              <Link href="/contact" className="btn-primary mt-6 group">
-                Request Consultation
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <Link href={getLocalizedPathname("/contact", locale)} className="btn-primary mt-6 group">
+                {translate(locale, "Request Consultation")}
+                <ArrowRight className="rtl:rotate-180 h-4 w-4 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
               </Link>
             </aside>
           </div>

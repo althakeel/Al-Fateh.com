@@ -1,3 +1,5 @@
+import { type Locale } from "@/lib/i18n";
+import { translate } from "@/lib/translations";
 import {
   Compass,
   Lightbulb,
@@ -14,7 +16,7 @@ const items: { label: string; icon: LucideIcon }[] = [
   { label: "Innovation", icon: Lightbulb },
 ];
 
-export default function CapabilitiesMarquee() {
+export default function CapabilitiesMarquee({ locale = "en" }: { locale?: Locale }) {
   const loop = [...items, ...items];
 
   return (
@@ -22,7 +24,7 @@ export default function CapabilitiesMarquee() {
       <div className="container-x relative">
         <div className="mb-5 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.32em] text-mute">
           <span className="h-[2px] w-8 shrink-0 bg-accent-500" />
-          Service Capabilities
+          {translate(locale, "Service Capabilities")}
         </div>
 
         <div className="marquee capabilities-marquee">
@@ -40,7 +42,7 @@ export default function CapabilitiesMarquee() {
                     className="shrink-0 text-accent-500"
                     aria-hidden
                   />
-                  {item.label}
+                  {translate(locale, item.label)}
                 </span>
               );
             })}

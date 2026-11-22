@@ -1325,7 +1325,7 @@ body::-webkit-scrollbar-thumb {
 
   .page-hero-media__fade {
     background: linear-gradient(
-      90deg,
+      var(--page-hero-fade-angle, 90deg),
       var(--color-ivory) 0%,
       color-mix(in srgb, var(--color-ivory) 75%, transparent) 18%,
       transparent 36%
@@ -1391,4 +1391,70 @@ body::-webkit-scrollbar-thumb {
   .service-indicator {
     transition: none;
   }
+} 
+
+
+/* ========================================
+   AL FATEH — LANGUAGE / RTL SUPPORT
+======================================== */
+
+/* Arabic typography */
+html[lang="ar"] body {
+  font-family: var(--font-cairo), sans-serif;
 }
+
+/* English typography */
+html[lang="en"] body {
+  font-family: var(--font-poppins), sans-serif;
+}
+
+/* Arabic text direction */
+html[dir="rtl"] {
+  direction: rtl;
+  --page-hero-fade-angle: 270deg;
+}
+
+/* Arabic heading spacing */
+html[lang="ar"] h1,
+html[lang="ar"] h2,
+html[lang="ar"] h3,
+html[lang="ar"] h4 {
+  letter-spacing: normal;
+}
+
+/* Arabic eyebrow text */
+html[lang="ar"] .eyebrow {
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+/* Arabic buttons */
+html[lang="ar"] .btn-primary,
+html[lang="ar"] .btn-outline-light {
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+/* Keep numeric and international contact data readable */
+.phone-ltr,
+.email-ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+/* Logical positioning helpers */
+.rtl-text-start {
+  text-align: start;
+}
+
+.rtl-text-end {
+  text-align: end;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+

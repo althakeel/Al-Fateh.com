@@ -1,5 +1,8 @@
 "use client";
 
+import { type Locale } from "@/lib/i18n";
+import { translate } from "@/lib/translations";
+
 import {
   forwardRef,
   useMemo,
@@ -22,6 +25,7 @@ import PhoneInput, {
   type Value,
 } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import arabicPhoneLabels from "react-phone-number-input/locale/ar";
 
 import {
   Check,
@@ -197,7 +201,7 @@ const PhoneTextInput = forwardRef<HTMLInputElement, PhoneTextInputProps>(
   }
 );
 
-export default function ContactForm() {
+export default function ContactForm({ locale = "en" }: { locale?: Locale }) {
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
@@ -270,7 +274,9 @@ export default function ContactForm() {
       if (nationalDigits.length < 7) {
         errors.phone = "Phone number is too short.";
       } else if (nationalDigits.length > maxNationalDigits) {
-        errors.phone = `Phone number cannot exceed ${maxNationalDigits} digits for the selected country.`;
+        errors.phone = locale === "ar"
+          ? `لا يمكن أن يتجاوز رقم الهاتف ${maxNationalDigits} رقماً للدولة المحددة.`
+          : `Phone number cannot exceed ${maxNationalDigits} digits for the selected country.`;
       } else if (!isValidPhoneNumber(formData.phone, phoneCountry)) {
         errors.phone =
           "Please enter a valid phone number for the selected country.";
@@ -377,11 +383,11 @@ export default function ContactForm() {
                   </span>
 
                   <h3 className="text-2xl font-bold text-ink">
-                    Thank you for contacting us
+                    {translate(locale, "Thank you for contacting us")}
                   </h3>
 
                   <p className="mt-2 text-mute">
-                    We&apos;ll reach out to you soon.
+                    {locale === "ar" ? translate(locale, "We&apos;ll reach out to you soon.") : "We'll reach out to you soon."}
                   </p>
 
                   <button
@@ -393,7 +399,7 @@ export default function ContactForm() {
                     }}
                     className="mt-6 text-[13px] font-semibold uppercase tracking-[0.04em] text-accent-600 hover:text-accent-700"
                   >
-                    Send another message
+                    {translate(locale, "Send another message")}
                   </button>
                 </div>
               ) : (
@@ -405,7 +411,7 @@ export default function ContactForm() {
                   <div className="grid gap-5 sm:grid-cols-2">
                     <div>
                       <label htmlFor="name" className={labelClass}>
-                        Full Name{" "}
+                        {translate(locale, "Full Name")}{" "}
                         <span className="text-red-600">*</span>
                       </label>
 
@@ -422,7 +428,7 @@ export default function ContactForm() {
                         className={`${inputClass} ${
                           fieldErrors.name ? invalidInputClass : ""
                         }`}
-                        placeholder="Your full name"
+                        placeholder={translate(locale, "Your full name")}
                         autoComplete="name"
                         maxLength={100}
                         aria-invalid={Boolean(fieldErrors.name)}
@@ -437,14 +443,14 @@ export default function ContactForm() {
                           className={errorMessageClass}
                           role="alert"
                         >
-                          {fieldErrors.name}
+                          {translate(locale, fieldErrors.name ?? "")}
                         </p>
                       )}
                     </div>
 
                     <div>
                       <label htmlFor="company" className={labelClass}>
-                        Company
+                        {translate(locale, "Company")}
                       </label>
 
                       <input
@@ -459,7 +465,7 @@ export default function ContactForm() {
                         className={`${inputClass} ${
                           fieldErrors.company ? invalidInputClass : ""
                         }`}
-                        placeholder="Company name"
+                        placeholder={translate(locale, "Company name")}
                         autoComplete="organization"
                         maxLength={150}
                         aria-invalid={Boolean(fieldErrors.company)}
@@ -476,7 +482,7 @@ export default function ContactForm() {
                           className={errorMessageClass}
                           role="alert"
                         >
-                          {fieldErrors.company}
+                          {translate(locale, fieldErrors.company ?? "")}
                         </p>
                       )}
                     </div>
@@ -485,7 +491,7 @@ export default function ContactForm() {
                   <div className="grid gap-5 sm:grid-cols-2">
                     <div>
                       <label htmlFor="email" className={labelClass}>
-                        Email <span className="text-red-600">*</span>
+                        {translate(locale, "Email")} <span className="text-red-600">*</span>
                       </label>
 
                       <input
@@ -521,21 +527,22 @@ export default function ContactForm() {
                           className={errorMessageClass}
                           role="alert"
                         >
-                          {fieldErrors.email}
+                          {translate(locale, fieldErrors.email ?? "")}
                         </p>
                       )}
                     </div>
 
                     <div>
                       <label htmlFor="phone" className={labelClass}>
-                        Mobile Phone{" "}
+                        {translate(locale, "Mobile Phone")}{" "}
                         <span className="text-red-600">*</span>
                       </label>
 
-                      <PhoneInput
+                      <PhoneInput dir="ltr"
                         international
                         country={phoneCountry}
                         defaultCountry={DEFAULT_COUNTRY}
+                        labels={locale === "ar" ? arabicPhoneLabels : undefined}
                         countryCallingCodeEditable={false}
                         value={formData.phone || undefined}
                         onCountryChange={(country) => {
@@ -597,15 +604,14 @@ export default function ContactForm() {
                               className={errorMessageClass}
                               role="alert"
                             >
-                              {fieldErrors.phone}
+                              {translate(locale, fieldErrors.phone ?? "")}
                             </p>
                           ) : (
                             <p
                               id="phone-limit"
                               className="text-xs text-mute"
                             >
-                              Max {maxNationalDigits} digits for selected
-                              country
+                              {translate(locale, "Max")} {maxNationalDigits} {translate(locale, "digits for selected country")}
                             </p>
                           )}
                         </div>
@@ -618,7 +624,7 @@ export default function ContactForm() {
 
                   <div>
                     <label htmlFor="service" className={labelClass}>
-                      Service Required{" "}
+                      {translate(locale, "Service Required")}{" "}
                       <span className="text-red-600">*</span>
                     </label>
 
@@ -631,7 +637,7 @@ export default function ContactForm() {
                       onChange={(event) =>
                         updateField("service", event.target.value)
                       }
-                      className={`${inputClass} appearance-none bg-[length:12px] bg-[right_1rem_center] bg-no-repeat pr-10 ${
+                      className={`${inputClass} appearance-none bg-[length:12px] bg-[right_1rem_center] bg-no-repeat pe-10 rtl:bg-[left_1rem_center] ${
                         fieldErrors.service ? invalidInputClass : ""
                       }`}
                       style={{
@@ -643,10 +649,10 @@ export default function ContactForm() {
                         fieldErrors.service ? "service-error" : undefined
                       }
                     >
-                      <option value="">Select a practice</option>
+                      <option value="">{translate(locale, "Select a practice")}</option>
                       {services.map((service) => (
                         <option key={service.title} value={service.title}>
-                          {service.title}
+                          {translate(locale, service.title)}
                         </option>
                       ))}
                     </select>
@@ -657,14 +663,14 @@ export default function ContactForm() {
                         className={errorMessageClass}
                         role="alert"
                       >
-                        {fieldErrors.service}
+                        {translate(locale, fieldErrors.service ?? "")}
                       </p>
                     )}
                   </div>
 
                   <div>
                     <label htmlFor="message" className={labelClass}>
-                      How Can We Help?
+                      {translate(locale, "How Can We Help?")}
                     </label>
 
                     <textarea
@@ -679,7 +685,7 @@ export default function ContactForm() {
                       className={`${inputClass} resize-none ${
                         fieldErrors.message ? invalidInputClass : ""
                       }`}
-                      placeholder="Briefly describe the business context and what you're looking to achieve."
+                      placeholder={translate(locale, "Briefly describe the business context and what you're looking to achieve.")}
                       maxLength={1500}
                       aria-invalid={Boolean(fieldErrors.message)}
                       aria-describedby={
@@ -697,7 +703,7 @@ export default function ContactForm() {
                             className="text-xs text-red-600"
                             role="alert"
                           >
-                            {fieldErrors.message}
+                            {translate(locale, fieldErrors.message ?? "")}
                           </p>
                         )}
                       </div>
@@ -717,7 +723,7 @@ export default function ContactForm() {
                       role="alert"
                       aria-live="polite"
                     >
-                      {error}
+                      {translate(locale, error)}
                     </p>
                   )}
 
@@ -733,10 +739,10 @@ export default function ContactForm() {
                             className="h-4 w-4 animate-spin"
                             aria-hidden
                           />
-                          Sending...
+                          {translate(locale, "Sending...")}
                         </>
                       ) : (
-                        "Request Consultation"
+                        translate(locale, "Request Consultation")
                       )}
                     </button>
 
@@ -750,7 +756,7 @@ export default function ContactForm() {
                         className="h-4 w-4 text-[#25D366]"
                         aria-hidden
                       />
-                      Or message us on WhatsApp
+                      {translate(locale, "Or message us on WhatsApp")}
                     </a>
                   </div>
                 </form>
@@ -764,7 +770,7 @@ export default function ContactForm() {
             className="space-y-8 lg:col-span-5"
           >
             <div>
-              <p className="eyebrow text-accent-600">Reach Us</p>
+              <p className="eyebrow text-accent-600">{translate(locale, "Reach Us")}</p>
 
               <ul className="mt-6 space-y-5">
                 <li className="flex items-start gap-3">
@@ -779,10 +785,10 @@ export default function ContactForm() {
                       rel="noopener noreferrer"
                       className="text-sm font-semibold text-ink transition-colors hover:text-accent-600"
                     >
-                      {contact.location.address}
+                      {translate(locale, contact.location.address)}
                     </a>
                     <p className="mt-1 text-xs text-mute">
-                      By appointment only
+                      {translate(locale, "By appointment only")}
                     </p>
                   </div>
                 </li>
@@ -792,7 +798,7 @@ export default function ContactForm() {
                     className="h-4 w-4 shrink-0 text-accent-500"
                     aria-hidden
                   />
-                  <a
+                  <a dir="ltr"
                     href={contact.emailHref}
                     className="text-sm font-semibold text-ink transition-colors hover:text-accent-600"
                   >
@@ -807,7 +813,7 @@ export default function ContactForm() {
                   />
                   <div className="flex flex-col gap-1">
                     {contact.phones.map((phone) => (
-                      <a
+                      <a dir="ltr"
                         key={phone.href}
                         href={phone.href}
                         className="text-sm font-semibold text-ink transition-colors hover:text-accent-600"
@@ -829,14 +835,14 @@ export default function ContactForm() {
                     rel="noopener noreferrer"
                     className="text-sm font-semibold text-ink transition-colors hover:text-accent-600"
                   >
-                    WhatsApp
+                    {translate(locale, "WhatsApp")}
                   </a>
                 </li>
               </ul>
             </div>
 
             <div className="bg-carbon px-6 py-7 text-white sm:px-8 sm:py-8">
-              <p className="eyebrow text-accent-400">What Happens Next</p>
+              <p className="eyebrow text-accent-400">{translate(locale, "What Happens Next")}</p>
               <ol className="mt-6 space-y-4">
                 {nextSteps.map((step, index) => (
                   <li key={step} className="flex items-start gap-4">
@@ -844,7 +850,7 @@ export default function ContactForm() {
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <span className="text-sm leading-relaxed text-white/85">
-                      {step}
+                      {translate(locale, step)}
                     </span>
                   </li>
                 ))}
@@ -855,7 +861,9 @@ export default function ContactForm() {
 
         <Reveal className="mt-14 overflow-hidden border border-platinum">
           <iframe
-            title={`Map showing ${contact.location.name}`}
+            title={locale === "ar"
+              ? `خريطة موقع ${translate(locale, contact.location.name)}`
+              : `Map showing ${contact.location.name}`}
             src={contact.location.embedSrc}
             className="h-80 w-full"
             loading="lazy"

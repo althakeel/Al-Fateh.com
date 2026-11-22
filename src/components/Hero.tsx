@@ -1,3 +1,5 @@
+import { getLocalizedPathname, type Locale } from "@/lib/i18n";
+import { translate } from "@/lib/translations";
 import Link from "next/link";
 import HeroMediaSlideshow from "@/components/HeroMediaSlideshow";
 import {
@@ -10,7 +12,7 @@ import {
   Award,
 } from "lucide-react";
 
-export default function Hero() {
+export default function Hero({ locale = "en" }: { locale?: Locale }) {
   return (
     <section className="relative overflow-hidden bg-frost pt-28 pb-8 lg:pt-32 lg:pb-10">
       <div className="pointer-events-none absolute inset-0 pattern-nodes opacity-40" />
@@ -19,7 +21,7 @@ export default function Hero() {
 
       <div className="pointer-events-none absolute bottom-10 left-3 z-20 hidden origin-left -rotate-90 lg:block xl:left-5">
         <p className="hero-side-label whitespace-nowrap text-[10px] font-semibold uppercase text-mute">
-          Dubai · UAE &nbsp;·&nbsp; Al FATEH
+          {locale === "ar" ? translate(locale, "Dubai · UAE &nbsp;·&nbsp; Al FATEH") : "Dubai · UAE  ·  Al FATEH"}
         </p>
       </div>
 
@@ -35,7 +37,7 @@ export default function Hero() {
                 <span className="relative h-1.5 w-1.5 rounded-full bg-accent-500" />
               </span>
               <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-ink">
-                Business Services & Advisory · Dubai · UAE
+                {translate(locale, "Business Services & Advisory · Dubai · UAE")}
               </span>
             </div>
 
@@ -44,13 +46,13 @@ export default function Hero() {
                 className="hero-reveal inline-block"
                 style={{ ["--hero-delay" as string]: "0.16s" }}
               >
-                Keep More
+                {translate(locale, "Keep More")}
               </span>{" "}
               <span
                 className="hero-reveal inline-block"
                 style={{ ["--hero-delay" as string]: "0.3s" }}
               >
-                <span className="hero-accent-text">of What You Earn.</span>
+                <span className="hero-accent-text">{translate(locale, "of What You Earn.")}</span>
               </span>
             </h1>
 
@@ -58,25 +60,24 @@ export default function Hero() {
               className="hero-reveal mt-5 max-w-lg text-base leading-relaxed text-mute sm:text-lg"
               style={{ ["--hero-delay" as string]: "0.56s" }}
             >
-              A practical finance partner for business growth across tax,
-              accounting, cost control and business advisory.
+              {translate(locale, "A practical finance partner for business growth across tax, accounting, cost control and business advisory.")}
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                href="/contact"
+                href={getLocalizedPathname("/contact", locale)}
                 className="btn-primary glow-accent hero-cta group"
                 style={{ ["--hero-delay" as string]: "0.68s" }}
               >
-                Get a Consultation
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                {translate(locale, "Get a Consultation")}
+                <ArrowRight className="rtl:rotate-180 h-4 w-4 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
               </Link>
               <Link
-                href="/services"
+                href={getLocalizedPathname("/services", locale)}
                 className="btn-outline-dark hero-cta group"
                 style={{ ["--hero-delay" as string]: "0.78s" }}
               >
-                Our Services
+                {translate(locale, "Our Services")}
                 <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
             </div>
@@ -99,10 +100,10 @@ export default function Hero() {
                       strokeWidth={1.75}
                     />
                     <p className="text-lg font-bold tracking-tight text-ink sm:text-xl">
-                      {stat.value}
+                      {translate(locale, stat.value)}
                     </p>
                     <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.14em] text-mute sm:text-[10px]">
-                      {stat.label}
+                      {translate(locale, stat.label)}
                     </p>
                   </div>
                 );
@@ -116,7 +117,7 @@ export default function Hero() {
 
             <div className="hero-media group relative w-full overflow-hidden border border-platinum bg-ivory shadow-luxe lg:w-[115%] xl:w-[125%]">
               <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[5/4] lg:aspect-auto lg:h-[420px] xl:h-[450px]">
-                <HeroMediaSlideshow />
+                <HeroMediaSlideshow locale={locale} />
               </div>
 
               <div
@@ -129,7 +130,7 @@ export default function Hero() {
                 >
                   <Zap className="h-3.5 w-3.5 text-accent-500" strokeWidth={2} />
                   <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-ink">
-                    Business Services & Advisory
+                    {translate(locale, "Business Services & Advisory")}
                   </span>
                 </div>
               </div>
@@ -145,11 +146,11 @@ export default function Hero() {
                       strokeWidth={1.75}
                     />
                     <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-accent-400">
-                      Keep More of What You Earn
+                      {translate(locale, "Keep More of What You Earn")}
                     </p>
                   </div>
                   <p className="mt-1.5 text-xs leading-snug text-white/80">
-                    Accounting, Feasibility, Maritime, Innovation
+                    {translate(locale, "Accounting, Feasibility, Maritime, Innovation")}
                   </p>
                 </div>
               </div>
@@ -166,24 +167,24 @@ export default function Hero() {
                         
                       </p>
                       <p className="mt-1.5 text-sm font-bold text-ink">
-                        Four service lines
+                        {translate(locale, "Four service lines")}
                       </p>
                       <ul className="mt-2 space-y-1 text-[11px] leading-snug text-mute">
                         <li className="flex gap-2">
                           <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent-500" />
-                          Accounting Services
+                          {translate(locale, "Accounting Services")}
                         </li>
                         <li className="flex gap-2">
                           <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent-500" />
-                          Feasibility Studies Consultancy
+                          {translate(locale, "Feasibility Studies Consultancy")}
                         </li>
                         <li className="flex gap-2">
                           <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent-500" />
-                          Maritime Consultancy
+                          {translate(locale, "Maritime Consultancy")}
                         </li>
                         <li className="flex gap-2">
                           <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent-500" />
-                          Innovation & Artificial Intelligence
+                          {translate(locale, "Innovation & Artificial Intelligence")}
                         </li>
                       </ul>
                     </div>

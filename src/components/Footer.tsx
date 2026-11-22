@@ -1,11 +1,14 @@
+import { getLocalizedPathname, type Locale } from "@/lib/i18n";
+import { translate, getTranslations } from "@/lib/translations";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Phone, Mail, MessageCircle, MapPin } from "lucide-react";
 import Logo from "@/components/Logo";
 import { contact } from "@/data/contact";
-import { navLinks } from "@/data/navigation";
+import { navKeys, navLinks } from "@/data/navigation";
 import Reveal from "./Reveal";
 
-export default function Footer() {
+export default function Footer({ locale = "en" }: { locale?: Locale }) {
+  const { nav } = getTranslations(locale);
   const year = new Date().getFullYear();
 
   return (
@@ -20,24 +23,23 @@ export default function Footer() {
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-3">
                 <span className="h-px w-10 bg-accent-500" />
-                <p className="eyebrow text-accent-400">Advisory Enquiries</p>
+                <p className="eyebrow text-accent-400">{translate(locale, "Advisory Enquiries")}</p>
               </div>
               <h2 className="mt-5 max-w-2xl text-3xl font-bold leading-[1.02] tracking-tight text-white sm:text-4xl lg:text-[3.2rem]">
-                Begin a conversation with the Al FATEH advisory team.
+                {translate(locale, "Begin a conversation with the Al FATEH advisory team.")}
               </h2>
               <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/65 sm:text-lg">
-                A practical finance partner for business growth across corporate
-                tax, outsourced accounting, cost control and business advisory.
+                {translate(locale, "A practical finance partner for business growth across corporate tax, outsourced accounting, cost control and business advisory.")}
               </p>
             </div>
 
             <div className="flex flex-wrap gap-3 lg:justify-end">
-              <Link href="/contact" className="btn-primary glow-accent group">
-                Request Consultation
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <Link href={getLocalizedPathname("/contact", locale)} className="btn-primary glow-accent group">
+                {translate(locale, "Request Consultation")}
+                <ArrowRight className="rtl:rotate-180 h-4 w-4 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
               </Link>
-              <Link href="/services" className="btn-outline-light group">
-                Explore Services
+              <Link href={getLocalizedPathname("/services", locale)} className="btn-outline-light group">
+                {translate(locale, "Explore Services")}
                 <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
             </div>
@@ -55,9 +57,9 @@ export default function Footer() {
                 className="footer-metric motion-card border border-white/10 bg-white/6 px-4 py-4 backdrop-blur-md"
               >
                 <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-accent-400">
-                  {item.title}
+                  {translate(locale, item.title)}
                 </p>
-                <p className="mt-2 text-sm font-medium text-white/82">{item.value}</p>
+                <p className="mt-2 text-sm font-medium text-white/82">{translate(locale, item.value)}</p>
               </div>
             ))}
           </div>
@@ -65,21 +67,20 @@ export default function Footer() {
 
         <div className="grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-[minmax(300px,1.6fr)_repeat(3,minmax(0,1fr))] lg:gap-12">
           <div className="min-w-0">
-            <Logo variant="light" />
+            <Logo locale={locale} variant="light" />
             <p className="mt-5 text-sm leading-relaxed text-white/55">
-              Structured accounting, clear reporting, and advisory support built
-              around the financial and operational needs of growing organizations.
+              {translate(locale, "Structured accounting, clear reporting, and advisory support built around the financial and operational needs of growing organizations.")}
             </p>
           </div>
 
           <div className="min-w-0">
-            <h3 className="eyebrow text-accent-400/80">Quick Links</h3>
+            <h3 className="eyebrow text-accent-400/80">{translate(locale, "Quick Links")}</h3>
             <ul className="mt-4 space-y-2.5">
-              {navLinks.map((link) => (
+              {navLinks.map((link, index) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="inline-flex items-center gap-2 text-sm text-white/60 transition-colors hover:text-accent-400">
-                    <ArrowRight className="h-3 w-3 opacity-50" />
-                    {link.label}
+                  <Link href={getLocalizedPathname(link.href, locale)} className="inline-flex items-center gap-2 text-sm text-white/60 transition-colors hover:text-accent-400">
+                    <ArrowRight className="rtl:rotate-180 h-3 w-3 opacity-50" />
+                    {nav[navKeys[index]]}
                   </Link>
                 </li>
               ))}
@@ -87,18 +88,18 @@ export default function Footer() {
           </div>
 
           <div className="min-w-0">
-            <h3 className="eyebrow text-accent-400/80">Contact</h3>
+            <h3 className="eyebrow text-accent-400/80">{translate(locale, "Contact")}</h3>
             <ul className="mt-4 space-y-2.5 text-sm text-white/60">
               {contact.phones.map((phone) => (
                 <li key={phone.href}>
-                  <a href={phone.href} className="inline-flex items-center gap-2 hover:text-accent-400">
+                  <a dir="ltr" href={phone.href} className="inline-flex items-center gap-2 hover:text-accent-400">
                     <Phone className="h-3.5 w-3.5" />
                     {phone.display}
                   </a>
                 </li>
               ))}
               <li>
-                <a href={contact.emailHref} className="inline-flex items-center gap-2 hover:text-accent-400">
+                <a dir="ltr" href={contact.emailHref} className="inline-flex items-center gap-2 hover:text-accent-400">
                   <Mail className="h-3.5 w-3.5" />
                   {contact.email}
                 </a>
@@ -106,19 +107,19 @@ export default function Footer() {
               <li>
                 <a href={contact.whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-accent-400">
                   <MessageCircle className="h-3.5 w-3.5" />
-                  WhatsApp
+                  {translate(locale, "WhatsApp")}
                 </a>
               </li>
             </ul>
           </div>
 
           <div className="min-w-0">
-            <h3 className="eyebrow text-accent-400/80">Location</h3>
+            <h3 className="eyebrow text-accent-400/80">{translate(locale, "Location")}</h3>
             <a href={contact.location.mapsHref} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-start gap-2 text-sm text-white/60 hover:text-accent-400">
               <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0" />
               <span>
-                {contact.location.name}
-                <span className="mt-1 block text-xs text-white/40">Dubai, UAE</span>
+                {translate(locale, contact.location.name)}
+                <span className="mt-1 block text-xs text-white/40">{translate(locale, "Dubai, UAE")}</span>
               </span>
             </a>
           </div>
@@ -126,7 +127,7 @@ export default function Footer() {
 
         <div className="border-t border-white/10 py-8">
           <p className="text-sm text-white/40">
-            Copyright &copy; {year} All Rights Reserved By Al-Fateh for Consultation Services
+            {locale === "ar" ? translate(locale, "Copyright &copy;") : "Copyright ©"} {year} {translate(locale, "All Rights Reserved By Al-Fateh for Consultation Services")}
           </p>
         </div>
       </div>

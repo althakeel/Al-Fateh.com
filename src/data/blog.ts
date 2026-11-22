@@ -1,3 +1,6 @@
+import type { Locale } from "@/lib/i18n";
+import { hasArabicCopy, translate } from "@/lib/translations";
+
 export interface BlogSection {
   heading: string;
   paragraphs: string[];
@@ -109,6 +112,36 @@ export const blogPosts: BlogPost[] = [
   },
 ];
 
-export function getBlogPost(slug: string) {
-  return blogPosts.find((post) => post.slug === slug);
+export function hasArabicBlogPost(post: BlogPost): boolean {
+  return [post.title, post.excerpt, post.category, post.readTime, post.imageAlt].every(hasArabicCopy)
+    && post.sections.every(({ heading, paragraphs, points }) =>
+      [heading, ...paragraphs, ...(points ?? [])].every(hasArabicCopy)
+    );
+}
+
+function localizeBlogPost(post: BlogPost, locale: Locale): BlogPost {
+  if (locale === "en") return post;
+
+  return {
+    ...post,
+    title: translate(locale, post.title),
+    excerpt: translate(locale, post.excerpt),
+    category: translate(locale, post.category),
+    readTime: translate(locale, post.readTime),
+    imageAlt: translate(locale, post.imageAlt),
+    sections: post.sections.map(({ heading, paragraphs, points }) => ({
+      heading: translate(locale, heading),
+      paragraphs: paragraphs.map((paragraph) => translate(locale, paragraph)),
+      points: points?.map((point) => translate(locale, point)),
+    })),
+  };
+}
+
+export function getBlogPosts(locale: Locale): BlogPost[] {
+  return blogPosts.map((post) => localizeBlogPost(post, locale));
+}
+
+export function getBlogPost(slug: string, locale: Locale = "en") {
+  const post = blogPosts.find((post) => post.slug === slug);
+  return post && localizeBlogPost(post, locale);
 }

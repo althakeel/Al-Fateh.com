@@ -1,3 +1,5 @@
+import { type Locale } from "@/lib/i18n";
+import { translate } from "@/lib/translations";
 import { Lightbulb, Users, HeartHandshake, Award } from "lucide-react";
 import Reveal from "./Reveal";
 import RevealStagger from "./RevealStagger";
@@ -23,17 +25,15 @@ const values = [
   },
 ];
 
-export default function HomeValues() {
+export default function HomeValues({ locale = "en" }: { locale?: Locale }) {
   return (
     <section className="py-12 lg:py-16">
       <div className="container-x">
         <Reveal className="max-w-2xl">
-          <p className="eyebrow text-accent-600">Our Approach</p>
+          <p className="eyebrow text-accent-600">{translate(locale, "Our Approach")}</p>
           <div className="accent-bar mt-4" />
           <p className="mt-6 text-base leading-relaxed text-mute sm:text-lg">
-            To help businesses keep more of what they earn through smart
-            Corporate Tax planning, reliable accounting outsourcing and
-            strategic business advisory.
+            {translate(locale, "To help businesses keep more of what they earn through smart Corporate Tax planning, reliable accounting outsourcing and strategic business advisory.")}
           </p>
         </Reveal>
 
@@ -44,7 +44,7 @@ export default function HomeValues() {
               className="reveal-child corp-card motion-card p-6 shadow-luxe backdrop-blur-sm"
             >
               <IconTile icon={valueIcons[index]} size="md" variant="solid" />
-              <h3 className="mt-5 text-lg font-bold text-ink">{value.title}</h3>
+              <h3 className="mt-5 text-lg font-bold text-ink">{translate(locale, value.title)}</h3>
             </div>
           ))}
         </RevealStagger>

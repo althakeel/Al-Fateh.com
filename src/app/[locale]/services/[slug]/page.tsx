@@ -1,3 +1,6 @@
+import { translate } from "@/lib/translations";
+import { createLocalizedMetadata } from "@/lib/localized-seo";
+import { requireLocale } from "@/lib/route-locale";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ServiceDetail from "@/components/ServiceDetail";
@@ -10,10 +13,10 @@ import {
   visibleServices,
 } from "@/data/services";
 import { serviceFaqs } from "@/data/serviceFaqs";
-import { breadcrumbJsonLd, createPageMetadata, faqJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
 
 interface ServicePageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }
 
 export function generateStaticParams() {
@@ -23,7 +26,8 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: ServicePageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale: requestedLocale } = await params;
+  const locale = requireLocale(requestedLocale);
   const service = getVisibleServiceBySlug(slug);
 
   if (!service) {
@@ -32,7 +36,8 @@ export async function generateMetadata({
 
   const image = serviceImages[service.title];
 
-  return createPageMetadata({
+  return createLocalizedMetadata({
+    locale,
     title: service.title,
     description: service.description,
     path: servicePath(service.title),
@@ -43,7 +48,8 @@ export async function generateMetadata({
 }
 
 export default async function ServicePage({ params }: ServicePageProps) {
-  const { slug } = await params;
+  const { slug, locale: requestedLocale } = await params;
+  const locale = requireLocale(requestedLocale);
   const service = getVisibleServiceBySlug(slug);
 
   if (!service) {
@@ -60,13 +66,16 @@ export default async function ServicePage({ params }: ServicePageProps) {
             { name: "Home", path: "/" },
             { name: "Services", path: "/services" },
             { name: service.title, path: servicePath(service.title) },
-          ]),
+          ], locale),
           ...(serviceFaqs[service.title]
-            ? [faqJsonLd(serviceFaqs[service.title])]
+            ? [faqJsonLd(serviceFaqs[service.title].map(({ question, answer }) => ({
+                question: translate(locale, question),
+                answer: translate(locale, answer),
+              })))]
             : []),
         ]}
       />
-      <ServiceDetail service={service} index={index} />
+      <ServiceDetail locale={locale} service={service} index={index} />
     </>
   );
 }

@@ -1,3 +1,5 @@
+import { getLocalizedPathname, type Locale } from "@/lib/i18n";
+import { translate } from "@/lib/translations";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { expertiseIcons } from "@/data/sectionIcons";
@@ -23,25 +25,25 @@ const areas = [
   },
 ];
 
-export default function HomeExpertisePreview() {
+export default function HomeExpertisePreview({ locale = "en" }: { locale?: Locale }) {
   return (
     <section className="section-glass py-12 lg:py-16">
       <div className="container-x">
         <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
           <Reveal className="max-w-2xl">
-            <p className="eyebrow text-accent-600">Our Expertise</p>
+            <p className="eyebrow text-accent-600">{translate(locale, "Our Expertise")}</p>
             <div className="accent-bar mt-4" />
             <h2 className="mt-6 text-3xl font-bold leading-[1.1] tracking-tight text-ink sm:text-4xl lg:text-5xl">
-              Industry Solutions
+              {translate(locale, "Industry Solutions")}
             </h2>
           </Reveal>
           <Reveal delay={120}>
             <Link
-              href="/expertise"
+              href={getLocalizedPathname("/expertise", locale)}
               className="group inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.04em] text-ink hover:text-accent-600"
             >
-              Explore our expertise
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              {translate(locale, "Explore our expertise")}
+              <ArrowRight className="rtl:rotate-180 h-4 w-4 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
             </Link>
           </Reveal>
         </div>
@@ -61,10 +63,10 @@ export default function HomeExpertisePreview() {
                 <div className="relative">
                   <IconTile icon={expertiseIcons[index]} size="lg" variant="solid" />
                   <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-mute">
-                    Focus / {num}
+                    {translate(locale, "Focus /")} {num}
                   </p>
-                  <h3 className="mt-4 text-lg font-bold text-ink">{area.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-mute">{area.description}</p>
+                  <h3 className="mt-4 text-lg font-bold text-ink">{translate(locale, area.title)}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-mute">{translate(locale, area.description)}</p>
                 </div>
               </div>
             );

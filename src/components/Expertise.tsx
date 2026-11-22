@@ -1,8 +1,10 @@
+import { type Locale } from "@/lib/i18n";
+import { translate } from "@/lib/translations";
 import { expertiseIcons } from "@/data/sectionIcons";
 import RevealStagger from "./RevealStagger";
 import IconTile from "./IconTile";
 
-export default function Expertise() {
+export default function Expertise({ locale = "en" }: { locale?: Locale }) {
   const areas = [
     {
       title: "Construction & Contracting",
@@ -59,13 +61,13 @@ export default function Expertise() {
                 <div className="relative">
                   <IconTile icon={expertiseIcons[index]} size="lg" variant="solid" />
                   <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-mute">
-                    Focus / {num}
+                    {translate(locale, "Focus /")} {num}
                   </p>
                   <h3 className="mt-4 text-lg font-bold tracking-tight text-ink">
-                    {area.title}
+                    {translate(locale, area.title)}
                   </h3>
                   <p className="mt-3 text-sm leading-relaxed text-mute">
-                    {area.description}
+                    {translate(locale, area.description)}
                   </p>
                 </div>
               </div>
@@ -73,11 +75,7 @@ export default function Expertise() {
           })}
         </RevealStagger>
         <p className="mx-auto mt-10 max-w-3xl text-center text-base leading-relaxed text-mute">
-          Tailored cost analysis based on each sector’s operational model and
-          available data. From understanding the cost of a treatment to measuring
-          the margin earned on each vehicle. Other suitable sectors may include
-          logistics, facilities management, professional services and other
-          service businesses.
+          {translate(locale, "Tailored cost analysis based on each sector’s operational model and available data. From understanding the cost of a treatment to measuring the margin earned on each vehicle. Other suitable sectors may include logistics, facilities management, professional services and other service businesses.")}
         </p>
       </div>
     </section>
