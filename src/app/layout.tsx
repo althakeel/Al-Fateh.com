@@ -6,6 +6,7 @@ import Script from "next/script";
 
 import "./globals.css";
 
+import PublicChrome from "@/components/PublicChrome";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -260,7 +261,7 @@ export default async function RootLayout({
             WEBSITE HEADER
         ================================== */}
 
-        <Header />
+        <PublicChrome><Header /></PublicChrome>
 
         {/* ==================================
             WEBSITE CONTENT
@@ -272,13 +273,13 @@ export default async function RootLayout({
             WEBSITE FOOTER
         ================================== */}
 
-        <Footer locale={locale} />
+        <PublicChrome><Footer locale={locale} /></PublicChrome>
 
         {/* ==================================
             WHATSAPP FLOATING BUTTON
         ================================== */}
 
-        <WhatsAppButton locale={locale} />
+        <PublicChrome><WhatsAppButton locale={locale} /></PublicChrome>
       </body>
     </html>
   );

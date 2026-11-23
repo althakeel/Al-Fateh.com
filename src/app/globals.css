@@ -1458,3 +1458,30 @@ html[lang="ar"] .btn-outline-light {
   }
 }
 
+
+.blog-rich {
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+  overflow-x: auto;
+}
+.blog-rich[dir="rtl"], .blog-form [lang="ar"] { font-family: var(--font-cairo), sans-serif; }
+.blog-form [lang="en"] { font-family: var(--font-poppins), sans-serif; }
+.blog-rich > * + * { margin-block-start: 0.9em; }
+.blog-rich :is(h1, h2, h3) { font-weight: 700; line-height: 1.3; }
+.blog-rich h1 { font-size: 1.75em; }
+.blog-rich h2 { font-size: 1.5em; }
+.blog-rich h3 { font-size: 1.25em; }
+.blog-rich :is(ol, ul) { padding-inline-start: 1.6em; }
+.blog-rich ul { list-style: disc; }
+.blog-rich ol { list-style: decimal; }
+.blog-rich a { text-decoration: underline; text-underline-offset: 0.2em; }
+.blog-rich blockquote { border-inline-start: 3px solid var(--color-accent-500); padding-inline-start: 1em; }
+.blog-rich pre { white-space: pre-wrap; }
+.blog-rich img { max-width: 100%; height: auto; border-radius: 0.5rem; }
+.blog-rich iframe { width: min(100%, 48rem); height: auto; aspect-ratio: 16 / 9; }
+.blog-rich table { width: 100%; min-width: 18rem; table-layout: fixed; }
+.blog-rich :is(td, th) { border: 1px solid var(--color-platinum); padding: 0.5em; vertical-align: top; }
+.blog-rich th { background: color-mix(in srgb, var(--color-accent-500) 12%, transparent); }
+.blog-rich .selectedCell { background: color-mix(in srgb, var(--color-accent-500) 20%, transparent); }
+.blog-editor { min-height: 11rem; padding: 1rem; outline: none; }
+.blog-editor-large { min-height: 20rem; }
