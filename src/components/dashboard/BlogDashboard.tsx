@@ -1,4 +1,3 @@
-
 "use client";
 
 import {
@@ -12,6 +11,8 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 
 import {
+  GoogleAuthProvider,
+  linkWithPopup,
   onAuthStateChanged,
   signOut,
   type User,
@@ -222,6 +223,9 @@ export default function BlogDashboard() {
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(0);
   const [message, setMessage] = useState("");
+  const [linkingGoogle, setLinkingGoogle] = useState(false);
+  const [googleFeedback, setGoogleFeedback] = useState("");
+  const [googleLinked, setGoogleLinked] = useState(false);
 
   // ------------------------------------------
   // TRANSLATIONS
@@ -329,6 +333,7 @@ export default function BlogDashboard() {
         }
 
         setUser(currentUser);
+        setGoogleLinked(currentUser.providerData.some((provider) => provider.providerId === "google.com"));
 
         // Database errors must not sign out the admin.
         try {
@@ -761,6 +766,73 @@ export default function BlogDashboard() {
   // LOGOUT
   // ============================================
 
+  // Link Google to the *existing authenticated* Firebase admin user.
+  // Linking preserves the Firebase UID used by ALFATEH_ADMIN_UID.
+  async function linkGoogleAccount() {
+    if (!user || linkingGoogle || mutation.current || uploadCount.current) return;
+
+    setLinkingGoogle(true);
+    setGoogleFeedback("");
+
+    try {
+      // Prevent unnecessary duplicate linking attempts.
+      if (user.providerData.some((provider) => provider.providerId === "google.com")) {
+        setGoogleLinked(true);
+        setGoogleFeedback(isAr ? "حساب Google مرتبط بالفعل." : "Google is already linked to your account.");
+        return;
+      }
+
+      const originalUid = user.uid;
+      const provider = new GoogleAuthProvider();
+      provider.setCustomParameters({ prompt: "select_account" });
+
+      const result = await linkWithPopup(user, provider);
+      if (result.user.uid !== originalUid) {
+        throw new Error("The Firebase account UID changed unexpectedly.");
+      }
+
+      // Verify the existing server-side admin guard still accepts the user.
+      const session = await authenticatedFetch(result.user, "/api/admin/session");
+      if (!session.ok) {
+        throw new Error("Google was linked, but administrator access could not be verified.");
+      }
+
+      setUser(result.user);
+      setGoogleLinked(true);
+      setGoogleFeedback(
+        isAr
+          ? "تم ربط حساب Google بنجاح. يمكنك الآن تسجيل الدخول باستخدام Google."
+          : "Google account linked successfully. You can now use Google sign-in."
+      );
+    } catch (error) {
+      const code =
+        typeof error === "object" && error !== null && "code" in error
+          ? String(error.code)
+          : "";
+
+      const message =
+        code === "auth/credential-already-in-use"
+          ? isAr
+            ? "حساب Google مرتبط بمستخدم Firebase آخر. لا تحذف حساب الإدارة الحالي."
+            : "This Google account is linked to a different Firebase user. Keep your existing admin account."
+          : code === "auth/popup-closed-by-user" || code === "auth/cancelled-popup-request"
+            ? isAr
+              ? "تم إلغاء عملية الربط."
+              : "Google linking was cancelled."
+            : code === "auth/popup-blocked"
+              ? isAr
+                ? "اسمح بالنوافذ المنبثقة لهذا الموقع ثم أعد المحاولة."
+                : "Allow popups for this website and try again."
+              : error instanceof Error
+                ? error.message
+                : "Unable to link Google account.";
+
+      setGoogleFeedback(message);
+    } finally {
+      setLinkingGoogle(false);
+    }
+  }
+
   async function logout() {
     if (!canLeaveEditor()) return;
 
@@ -840,15 +912,40 @@ export default function BlogDashboard() {
             </p>
           </div>
 
-          <button
-            type="button"
-            onClick={logout}
-            className="inline-flex items-center gap-2 border border-platinum px-4 py-2 text-sm hover:bg-white"
-          >
-            <LogOut size={16} />
-            {t.logout}
-          </button>
+          <div className="flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              onClick={() => void linkGoogleAccount()}
+              disabled={linkingGoogle || saving || uploading > 0 || googleLinked}
+              className="inline-flex items-center gap-2 rounded-md border border-platinum bg-white px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-accent-500 disabled:cursor-not-allowed disabled:opacity-60"
+              title={googleLinked ? "Google account already linked" : "Link Google account"}
+            >
+              {/* Save the provided Google icon as public/images/google.svg. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/google.svg" alt="" aria-hidden="true" width={20} height={20} />
+              {linkingGoogle
+                ? (isAr ? "جارٍ ربط Google..." : "Linking Google...")
+                : googleLinked
+                  ? (isAr ? "Google مرتبط" : "Google Linked")
+                  : (isAr ? "ربط حساب Google" : "Link Google Account")}
+            </button>
+
+            <button
+              type="button"
+              onClick={logout}
+              className="inline-flex items-center gap-2 border border-platinum px-4 py-2 text-sm hover:bg-white"
+            >
+              <LogOut size={16} />
+              {t.logout}
+            </button>
+          </div>
         </div>
+
+        {googleFeedback && (
+          <p role="status" className="mb-6 rounded-md border border-platinum bg-white px-4 py-3 text-sm text-ink">
+            {googleFeedback}
+          </p>
+        )}
 
         {/* ====================================
             DASHBOARD ACTIONS
@@ -1580,8 +1677,7 @@ function ImageField({
     }
   }
 
-  const validPreview =
-    /^(https?:\/\/|\/(?![\/\\]))/i.test(value);
+  const validPreview = /^(https?:\/\/|\/(?![\/\\]))/i.test(value);
 
   return (
     <fieldset

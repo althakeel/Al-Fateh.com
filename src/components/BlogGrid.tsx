@@ -1,6 +1,8 @@
 
 import Image from "next/image";
-import Link from "next/link";
+import Link from "next/link"; 
+
+import { blogPosts } from "@/data/blog";
 
 import {
   ArrowRight,
@@ -70,7 +72,6 @@ export default function BlogGrid({
                 >
                   <Image
                     src={post.image}
-                    unoptimized={/^https:\/\//i.test(post.image)}
                     alt={post.imageAlt || post.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
